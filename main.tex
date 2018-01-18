@@ -1,71 +1,67 @@
 \documentclass[12pt]{uqac}
-%\documentclass[12pt,twoside]{memoireuqam1.3}
-% Si vous souhaitez en recto-verso
-\usepackage{graphicx}% Pour les figures
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc} % Pour utiliser les caractères accentués
-\usepackage[T1]{fontenc}
-\usepackage{url}
 
+\usepackage[font=footnotesize,labelfont=bf,textfont=bf]{caption}
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%
-% Pour la page titre
-%%%%%%%%%%%%%%%%%%%%
-\title{Mon titre}
-% Votre nom complet tel qu'il apparaît à votre dossier du registrariat de l'UQAM
-\author{Mon nom}
-% Année et mois courant sauf si spécifié autrement pas \degreemonth et \degreeyear
-%\degreemonth{mois du dépôt}
-%\degreeyear{année du dépôt}
-%\uqacmemoire %% ou \uqacthese ou \uqacrapport
-\uqacthese
-\matiere{mathématiques}
+\title{Titre de la thèse du mémoire ou de l'essai}
+\author{Prénom Nom}
 
+%% Pour la rédaction d'une thèse, utiliser la commande : 
+\uqacthese 
+%% Pour la rédaction d'un mémoire, utiliser la commande : 
+% \uqacmemoire
+%% Pour la rédaction d'un essai, utiliser la commande : 
+% \uqacessai
+%% Pour la rédaction d'un rapport, utiliser la commande : 
+% \uqacrapport
 
-\thispagestyle{empty}        % La page titre n'est pas numérotée
+%% Préciser le nom du programme
+ \programme{informatique}
+
+%% S’il y a lieu indiquer le profil ou la concentration du programme
+% \concentration{profil recherche}
+
+%% Par défaut l'année courante est utilisée. Pour spéfier une autre année, utilisez la commande: 
+% \degreeyear{2018}
+
 \maketitle
 
-%%%%%%%%%%%%%%%%%%%%
-% Page préliminaires
-%%%%%%%%%%%%%%%%%%%%
-\renewcommand \bibname{R\'EF\'ERENCES}% FACULTATIF
-%si vous voulez qu'apparaisse le titre RÉFÉRENCES plutôt que BIBLIOGRAPHIE
 
-\renewcommand \listfigurename{LISTE DES FIGURES}
-\renewcommand \appendixname{APPENDICE}
-\renewcommand \figurename{Figure}
-\renewcommand \tablename{Tableau}
+%%%%
+%% Page préliminaires
+%%%%
 
-\pagenumbering{roman} % numérotation des pages en chiffres romains
-\addtocounter{page}{1} % Pour que les remerciements commencent à la page ii
-\include{nom_de_fichier_des_remerciements}
-\tableofcontents % Pour générer la table des matières
-\listoftables % Pour générer la liste des tableaux
-\listoffigures % Pour générer la liste des figures
-\include{nom_de_fichier_du_resume}
-% Utilisez l'environnement  abstract pour rédiger votre résumé
+\pagenumbering{roman}
+\addtocounter{page}{1}
 
 
-%%%%%%%%%%%%%%%%%%%%
-% Document principal
-%%%%%%%%%%%%%%%%%%%%
+\include{resume}
+\tableofcontents
+\listoftables
+\listoffigures
+\include{remerciements}
 
-\include{nom_de_fichier_de_l_introduction}
-% Utilisez l'environnement  introduction pour rédiger votre introduction
-\include{nom_de_fichier_du_premier_chapitre}
-\include{nom_de_fichier_du_deuxieme_chapitre}
-\include{nom_de_fichier_du_chapitre_suivant}
+%%%%
+%% Document principal
+%%%%
 
-\include{nom_de_fichier_de_la_conclusion}
-% Utilisez l'environnement  conclusion pour rédiger votre conclusion
+\doublespacing
+\include{introduction}
+\include{chapitre1}
+\include{conclusion}
 
-%%%%%%%%%%%%%%%%%%%%
-% Page liminaires
-%%%%%%%%%%%%%%%%%%%%
+%%%%
+%% Annexes
+%%%%
 
-\include{nom_de_fichier_d_une_annexe}
-\bibliographystyle{apalike-uqam}
-\bibliography{un_fichier_bib}
+%\include{nom_de_fichier_d_une_annexe}
+
+%%%%
+%% Références
+%%%%
+
+%\bibliographystyle{apalike-uqac}
+%\bibliography{un_fichier_bib}
+
 \end{document}

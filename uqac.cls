@@ -1,104 +1,60 @@
 %
-% format LaTeX pour memoire et these de l'UQAM
-% d'apres "Guide de presentation des memoires et theses"
-% auteur: Gisele Legault
-% collaborateurs: Stephane Poirier, Rene Ferland,
-%                  Luc Belanger, Andre Lauzon
-%                  Jerome Tremblay, Anthony Monnet
-
-%  for dull, boring thesis format:
-%       \documentclass[12pt]{memoireuqam1.3}
+% format LaTeX pour memoire et these de l'UQAC
+%       \documentclass[12pt]{uqac}
 %
 
+% Date de création: Janvier 2018
+% Auteur: Florentin Thullier 
+
 % Modifications:
-% décembre 2017
-% Modification de l'interligne avant et après une section, sous-section et sous-sous-section
-% Modification alignement NON justifié pour la bibliographie
-% janvier 2017
-% Supprimé \bf dans le titre d'une figure et d'un tableau (caption)
-% août 2015
-% Modifié \@sect pour ne pas ajouter la section dans la table des matières
-% lorsque le niveau de la section est supérieur à 2
-% mai 2015
-% Mise en forme correcte d'une section, sous-section etc. lorsque le texte est très long dans le
-% corps du document: simple interligne et alignement à gauche
-% Supprimer \large dans la page titre et les chapitres (\@makechapterhead et \@makeschapterhead)
-% avril 2014
-% modifier definition de \l@chapter pour éliminer le retrait
-% janvier 2014
-% definition de \setstretch, \doublespacing, doublespace si le package setspace n'est pas chargé
-% décembre 2013
-% ajout de \concentration pour la page titre
-% ajout du mois et de l'année courante par défaut pour \degreeyear et \degreemonth
-% aout 2013
-% commande UpperRef defini en fonction du chargement du package hypperref
-% ajout \matiere pour page titre  - Anthony Monnet
-% vrification chargement package natbib. Si oui, utiliser la \bibitem de natbib
-% sinon utiliser \bibitem de memoireuqam1.3
-% octobre 2012
-% Ajouté des commandes du package setspace pour avoir double
-% interligne dans la page titre
-% avril 2012
-% Remplacer \par par \\ dans la page titre pour avoir la même interligne partout
-% Mis la liste des tableaux et la liste des figures en simple interligne
-% juin 2011
-% Ajouté Figure + page dans la liste des figures
-% Ajouté Tableau + page dans la liste des tableaux
-% Octobre 2011 - Gisèle Legault
-% corrigé erreur avec la \paragraph et \subparagraph
-% Novembre 2010 - tremblay.jerome@uqam.ca
-%   Enlevé le gras dans les titres
-%   Ne pas paginer les pages vides
-% janvier 2007
-% ajouté \evensidemargin pour impression recto-verso
-% octobre 2004
-%1) Mis les noms des sections en majuscules pour utiliser le package babel
-%2) enlever definition \og et \fg (redefini par babel)
-%3) ajouter \uqammemoire, \uqamthese et \uqamrapport pour la page titre
+%% Date - Auteur - Commentaire
 
-% Un de mes ajouts (Luc Belanger)
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{memoireuqam1.3}
-              [2017/12/13 v1.3M
- Format LaTeX pour les memoires a l'UQAM.]
+\ProvidesClass{uqac}
 
-% Un autre ajout pour enlever le warning (Luc Belanger)
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions
 \LoadClass{report}
 
+%% -------
+% Packages
+%% -------
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{graphicx}
+\RequirePackage{url}
+\RequirePackage{float}
+\RequirePackage{fancyhdr}
+\RequirePackage[explicit]{titlesec}
+\RequirePackage[french]{babel}
+\RequirePackage{regexpatch}
 
-
-\def\mystretch{1.5}             % interligne et demi
-
-
-\def\baselinestretch{\mystretch}        % interligne et demi
+\def\mystretch{1}             			    % interligne simple
+\def\baselinestretch{\mystretch}        % interligne simple
 
 \newlength{\simpleinter}
 \setlength{\simpleinter}{\baselineskip}
 \newlength{\doubleinter}
-\setlength{\doubleinter}{1.5\baselineskip}
-
-%%%%%%%  Set up margins and formatting params %%%
-
+\setlength{\doubleinter}{1\baselineskip}
 
 %%%%%%%%%%%%%%%%%%%%%%
 % Marges
 %%%%%%%%%%%%%%%%%%%%%%
-\setlength{\oddsidemargin}{1.35cm}      % 4cm left margin
+\setlength{\oddsidemargin}{1cm}           % 4cm left margin
 \setlength{\evensidemargin}{0.35cm}
-\setlength{\topmargin}{1.3cm}           % 4cm top margin
-\setlength{\textwidth}{14.6cm}          % 6.0in text - 1.25in rt margin
-\setlength{\textheight}{21.2cm} % Body ht for 1in margins
-\addtolength{\topmargin}{-\headheight}  % No header, so compensate
-\addtolength{\topmargin}{-\headsep}     % for header height and separation
+\setlength{\topmargin}{-0.25cm}           % 4cm top margin
+\setlength{\textwidth}{14.6cm}            % 6.0in text - 1.25in rt margin
+\setlength{\textheight}{21.2cm} 		      % Body ht for 1in margins
+\addtolength{\topmargin}{-\headheight}    % No header, so compensate
+\addtolength{\topmargin}{-\headsep}       % for header height and separation
 
 %%%%%%%  End of margins and formatting params %%%
 
+\renewcommand*{\@seccntformat}[1]{\csname the#1\endcsname\hspace{-0.15cm}}
 
-% Novembre 2010 - Ne pas paginer les pages vides (tremblay.jerome@uqam.ca)
+% Ne pas paginer les pages vides
 % Code for creating empty pages
-% No headers on empty pages before new chapter
+% No headers on empty pages before new chapt  er
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
     \hbox{}
     \thispagestyle{empty}
@@ -112,19 +68,6 @@
    {\newcommand{\UpperRef}[1]{\texorpdfstring{\MakeUppercase{#1}}
                    { \expandafter\expandafter\partpdf\expandafter{#1} } }}
    {\newcommand{\UpperRef}[1]{\MakeUppercase{#1}}}
-
-\@ifpackageloaded{babel}
-{\@ifpackagewith{babel}{french}
-{\def\mois_alpha{\ifcase\month\or
-Janvier\or F\'{e}vrier\or Mars\or Avril\or Mai\or Juin\or Juillet\or Ao\^{u}t\or Septembre\or Octobre\or Novembre\or D\'{e}cembre\fi}}
-{\def\mois_alpha{\ifcase\month\or
-January\or February\or March\or April\or May\or June\or
-July\or August\or September\or October\or November\or December\fi}}
-}
-{\def\mois_alpha{\ifcase\month\or
-January\or February\or March\or April\or May\or June\or
-July\or August\or September\or October\or November\or December\fi}}
-
 
 \@ifpackageloaded{natbib}
    {\relax}
@@ -183,7 +126,7 @@ July\or August\or September\or October\or November\or December\fi}}
       \@clubpenalty \clubpenalty
       \widowpenalty4000%
       \sfcode`\.=\@m
-      \raggedright} % bibliographie non justifié à droite G.L. 13/12/2017
+      \raggedright} % bibliographie non justifié à droite
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
@@ -191,34 +134,34 @@ July\or August\or September\or October\or November\or December\fi}}
    }
 }
 %% Ajout des commandes setstrerch et doublespacing si
-%% package setspace non chargé                       G.L. 23/01/2014
+%% package setspace non chargé
 \AtBeginDocument{ \@ifpackageloaded{setspace}
    {\relax}
    {\newcommand{\restore@spacing}{%
-    \par
-    \vskip \parskip
-    \vskip \baselineskip
-  \endgroup
-  \vskip -\parskip
-  \vskip -\baselineskip
-}
+	    \par
+	    \vskip \parskip
+	    \vskip \baselineskip
+	  \endgroup
+	  \vskip -\parskip
+	  \vskip -\baselineskip
+	}
 
-\newcommand{\setstretch}[1]{%
-  \def\baselinestretch{#1}%
-  \@currsize
-}
-\newcommand{\doublespacing}{%
-  \setstretch {2}%  default
-}
+	\newcommand{\setstretch}[1]{%
+	  \def\baselinestretch{#1}%
+	  \@currsize
+	}
+	\newcommand{\doublespacing}{%
+	  \setstretch {2}%  default
+	}
 
-% double spacing is 2 x pt size
-\newenvironment{doublespace}{%
-  \begingroup
-    \doublespacing
-}{%
-  \restore@spacing
-}
-}
+	% double spacing is 2 x pt size
+	\newenvironment{doublespace}{%
+	  \begingroup
+	    \doublespacing
+	}{%
+	  \restore@spacing
+	}
+	}
 }
 
 
@@ -232,8 +175,6 @@ July\or August\or September\or October\or November\or December\fi}}
    \secdef\@chapter\@schapter}  % to \@afterindentfalse to have none.
 
 
-
-
 % If using the report style, use - instead of . in the figure number.
 
 \newcommand\numerochap{\Roman{chapter}}
@@ -241,30 +182,26 @@ July\or August\or September\or October\or November\or December\fi}}
 \renewcommand\thesection                {\thechapter.\arabic{section}}
 \@ifundefined{thechapter}{}{\def\thefigure{\thechapter-\arabic{figure}}}
 
-%% supprime \large dans le titre de chapitre   G.L. 07/05/2015
-
 \def\@makechapterhead#1{%
-  {\parskip=0pt
-   \vspace*{0.3 truecm}
-   \parindent \z@ \raggedright \reset@font
+  {\parskip=0ex
+    \parindent \z@ \raggedright \reset@font
     \ifnum \c@secnumdepth >\m@ne
-         \centering {\expandafter\MakeUppercase\expandafter{\@chapapp{} \numerochap}} \par
-         \vskip 1.6truecm
+         \centering {\textbf{\expandafter\MakeUppercase\expandafter{\@chapapp{} \numerochap}}} \par
+         \vskip 0 truecm
        \fi
-     \centering {\MakeUppercase{ #1}}\par
+     \centering {\textbf{\MakeUppercase{ #1}}}\par
 
-    \nobreak
-    \vspace*{2.15 truecm}
+    \nopagebreak
+    \vspace*{1cm}
   \parskip=2ex}}
 
 \def\@makeschapterhead#1{
-   \parskip=0pt
-   \vspace*{0.1 truecm}
+   \parskip=0ex
    \begin{center}
      {\MakeUppercase{ #1 }}\par
 
    \end{center}
-   \nobreak \vspace*{1.10 truecm}
+   \nobreak
    \parskip=2ex  }
 
 
@@ -272,56 +209,52 @@ July\or August\or September\or October\or November\or December\fi}}
 % FRANCISATION DES TERMES
 %%%%%%%%%%%%%%%%
 
-\renewcommand\contentsname{TABLE DES MATI\`ERES}
-\renewcommand\listfigurename{LISTE DES FIGURES}
-\renewcommand\listtablename{LISTE DES TABLEAUX}
-\renewcommand\bibname{BIBLIOGRAPHIE}
-\renewcommand\indexname{INDEX}
-\renewcommand\figurename{Figure}
-\renewcommand\tablename{Tableau}
-\renewcommand\partname{PARTIE}
-\renewcommand\chaptername{CHAPITRE}
-\renewcommand\appendixname{APPENDICE}
-\renewcommand\abstractname{R\'ESUM\'E}
+
+\renewcommand{\contentsname}{TABLE DES MATI\`ERES}
+\renewcommand{\listfigurename}{LISTE DES FIGURES}
+\renewcommand{\listtablename}{LISTE DES TABLEAUX}
+\renewcommand{\bibname}{BIBLIOGRAPHIE}
+\renewcommand{\indexname}{INDEX}
+\renewcommand{\figurename}{Figure}
+\addto\captionsfrench{\def\figurename{{Figure}}}
+\renewcommand{\tablename}{Tableau}
+\addto\captionsfrench{\def\tablename{{Tableau}}}
+\renewcommand{\partname}{PARTIE}
+\renewcommand{\chaptername}{CHAPITRE}
+\renewcommand{\appendixname}{APPENDICE}
+\renewcommand{\abstractname}{R\'ESUM\'E}
 
 %%%%%%%%%%%%%%%%%%%
 %% INDENTATION DES SECTIONS
 %%%%%%%%%%%%%%%%%%%
 
-%% supprime \large et ajoute simple interligne dans section et autre G.L. 07/05/2015
-%% Modification des interlignes avant et après les section et autre G.L. 13/12/2017
-
 \renewcommand\section{\@startsection{section}{1}%
-                                      {\z@}%
-                                      {3ex\@plus.2ex\@minus.2ex}%
-                                      {2ex \@plus.2ex}%
-                                      {\noindent\normalfont\baselineskip=\simpleinter}}%
+                                    {\z@}%
+                                    {2ex\@plus.2ex\@minus.2ex}%
+                                    {2ex \@plus.2ex}%
+                                    {\normalfont\scshape\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
-                                     {\normalfont\normalsize\baselineskip=\simpleinter}}
+                                     {\normalfont\scshape\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
-                                     {\normalfont\normalsize\baselineskip=\simpleinter}}
-\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
-                                    {3.25ex \@plus1ex \@minus.2ex}%
-                                    {-1em}%
-                                    {\normalfont\normalsize\baselineskip=\simpleinter}}
-\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
-                                       {3.25ex \@plus1ex \@minus .2ex}%
-                                       {-1em}%
-                                      {\normalfont\normalsize\baselineskip=\simpleinter}}
+                                     {\normalfont\normalsize\scshape\bfseries}}
+\let\oldsection\section
+\renewcommand{\section}{\leftskip=0cm \oldsection}
 
+\let\oldsubsection\subsection
+\renewcommand{\subsection}{\leftskip=1cm \oldsubsection}
+
+\let\oldsubsubsection\subsubsection
+\renewcommand{\subsubsection}{\leftskip=2cm \oldsubsubsection}
 
 \markright{}
 \pagestyle{myheadings}
-\pagenumbering{arabic}      % Arabic page numbers
-%%%%%%% pas de renfoncement au début d'un paragraphe
-\parindent=0ex
+\pagenumbering{arabic}      % Numberoration des pages en chiffres Arabes
 
-\parskip=2ex
-
+\parindent=1cm % Renfoncement au début d'un paragraphe
 
 %%%%%%%%%%%%
 %%
@@ -334,9 +267,9 @@ July\or August\or September\or October\or November\or December\fi}}
 
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  \sbox\@tempboxa{{#1} #2}   % supprime \bf dans \sbox\@tempboxa{{\bf #1} #2} G.L. 16/01/2017
+  \sbox\@tempboxa{{#1} #2}  
   \ifdim \wd\@tempboxa >\hsize
-    {#1} #2\par              % supprime \bf dans {\bf #1} #2\par G.L. 16/01/2017
+    {#1} #2\par            
   \else
     \global \@minipagefalse
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
@@ -348,9 +281,9 @@ July\or August\or September\or October\or November\or December\fi}}
 \def\fps@figure{tbp}
 \def\ftype@figure{1}
 \def\ext@figure{lof}
-\def\fnum@figure{{\figurename~}\thefigure}
+\def\fnum@figure{{\figurename~}\thefigure\vspace{-0.5cm}}
 \renewenvironment{figure}
-               {\@float{figure}}
+               {\vspace{1cm}\@float{figure}}
                {\end@float}
 \renewenvironment{figure*}
                {\@dblfloat{figure}}
@@ -360,9 +293,9 @@ July\or August\or September\or October\or November\or December\fi}}
 \def\fps@table{tbp}
 \def\ftype@table{2}
 \def\ext@table{lot}
-\def\fnum@table{{\tablename~}\thetable}
+\def\fnum@table{{\tablename~}\thetable\vspace{-0.25cm}}
 \renewenvironment{table}
-               {\@float{table}}
+               {\vspace{.5cm}\@float{table}}
                {\end@float}
 \renewenvironment{table*}
                {\@dblfloat{table}}
@@ -384,9 +317,9 @@ July\or August\or September\or October\or November\or December\fi}}
     \else
       \@restonecolfalse
     \fi
-    \chapter*{\expandafter\MakeUppercase\expandafter{\contentsname}}
+    \chapter*{\textbf{\expandafter\MakeUppercase\expandafter{\contentsname}}}
     \parskip=0ex
-    \vspace*{-1.5ex}
+    \vspace*{.75cm}
     \@starttoc{toc}%
     \noindent
     \if@restonecol\twocolumn\fi
@@ -456,12 +389,16 @@ July\or August\or September\or October\or November\or December\fi}}
   \fi
   \@xsect{#5}}
 
-%% modification indentation de \@chapter   G.L. 07/05/2015
-
-\renewcommand\l@chapter      {\@dottedtocline{0}{0em}{0em}}
-\renewcommand\l@section      {\@dottedtocline{1}{0em}{2.3em}}
-\renewcommand\l@subsection   {\@dottedtocline{2}{2.3em}{3.2em}}
+\renewcommand\l@chapter{\@dottedtocline{0}{0em}{0em}}
+\renewcommand\l@section{\@dottedtocline{1}{1.15em}{2.3em}}
+\renewcommand\l@subsection{\@dottedtocline{2}{2.3em}{3.2em}}
 \renewcommand\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
+
+\xpatchcmd*{\@sect}{\fi#7}{\fi\@nameuse{format#1}{#7}}{}{}
+
+%%% for sections and subsections we want uppercase
+\protected\def\formatsection{\MakeUppercase}
+\protected\def\formatsubsection{\MakeUppercase}
 
 %%%%%%%%%%%%%%%%%
 %%
@@ -472,8 +409,7 @@ July\or August\or September\or October\or November\or December\fi}}
 \def\appendix{\par
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
-  % modifie \MakeUppercase par \UpperRef   G.L. 28/08/2013
-  \def\@chapapp{\UpperRef{\appendixname}}%
+  \def\@chapapp{\textbf{\UpperRef{\appendixname}}}%
   \renewcommand\numerochap{\Alph{chapter}}
   \def\thechapter{\Alph{chapter}}}
 
@@ -482,6 +418,7 @@ July\or August\or September\or October\or November\or December\fi}}
 %% LISTE DES FIGURES
 %%
 %%%%%%%%%%%%%%%%%
+
 
 \renewcommand\listoffigures{%
 {
@@ -492,12 +429,11 @@ July\or August\or September\or October\or November\or December\fi}}
       \@restonecolfalse
     \fi
   % modifie \MakeUppercase par \UpperRef   G.L. 28/08/2013
-    \chapter*{\UpperRef{\listfigurename}
+    \chapter*{\textbf{\UpperRef{\listfigurename}}
       \@mkboth{\UpperRef{\listfigurename}}%
               {\UpperRef{\listfigurename}}}%
     \addtocontents{toc}{\protect\vspace{1.5ex}}
     \addcontentsline{toc}{chapter}{\UpperRef{\listfigurename}}
-    \noindent Figure \hfill Page
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     }
@@ -511,7 +447,7 @@ July\or August\or September\or October\or November\or December\fi}}
 %%%%%%%%%%%%%%%%%
 
 \renewcommand\listoftables{%
-{
+  {
     \baselineskip=\simpleinter
 
     \if@twocolumn
@@ -519,15 +455,13 @@ July\or August\or September\or October\or November\or December\fi}}
     \else
       \@restonecolfalse
     \fi
-      % modifie \MakeUppercase par \UpperRef   G.L. 28/08/2013
-    \chapter*{\UpperRef{\listtablename}
+    \chapter*{\textbf{\UpperRef{\listtablename}}
       \@mkboth{\UpperRef{\listtablename}}{\UpperRef{\listtablename}}}%
     \addtocontents{toc}{\protect\vspace{1.5ex}}
     \addcontentsline{toc}{chapter}{\UpperRef{\listtablename}}
-    \noindent Tableau \hfill Page
     \@starttoc{lot}%
     \if@restonecol\twocolumn\fi
-    }
+  }
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -547,15 +481,28 @@ July\or August\or September\or October\or November\or December\fi}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% Environnement Remerciements
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{ack}{%
+\chapter*{\textbf{\MakeUppercase{remerciements}}}
+\addtocontents{toc}{\protect\vspace{1.5ex}}
+\addcontentsline{toc}{chapter}{\UpperRef{remerciements}}
+\vspace*{.35cm}
+\baselineskip=\simpleinter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 % Environnement Resume
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   \renewenvironment{abstract}{%
-  % modifie \MakeUppercase par \UpperRef   G.L. 28/08/2013
-      \chapter*{\UpperRef{\abstractname}}
+      \chapter*{\textbf{\UpperRef{\abstractname}}}
       \addtocontents{toc}{\protect\vspace{1.5ex}}
       \addcontentsline{toc}{chapter}{\UpperRef{\abstractname}}
+      \vspace*{.35cm}
      \baselineskip=\simpleinter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -565,69 +512,69 @@ July\or August\or September\or October\or November\or December\fi}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{introduction}{%
-\chapter*{INTRODUCTION}
+\chapter*{\textbf{\MakeUppercase{introduction}}}
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\UpperRef{INTRODUCTION}}
+\addcontentsline{toc}{chapter}{\UpperRef{introduction}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Environnement CONCLUSION
 %
-     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{conclusion}{%
- \chapter*{CONCLUSION}
+ \chapter*{\textbf{\MakeUppercase{conclusion}}}
  \addtocontents{toc}{\protect\vspace{1.5ex}}
- \addcontentsline{toc}{chapter}{CONCLUSION}
+ \addcontentsline{toc}{chapter}{\UpperRef{conclusion}}
 }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Pagination
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % PAGE TITRE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\newif\ifisthesis
-%\global\isthesistrue
 
-
-\def\degree#1{\setbox0\hbox{#1}
-\def\@degree{#1}}
-\def\degreemonth#1{\gdef\@degreemonth{#1}}
-\def\degreeyear#1{\gdef\@degreeyear{#1}}
-% Ajout de \matiere  A.M. 28/08/2013
-\def\matiere#1{\gdef\@matiere{#1}}
-% matiere par defaut = mathematiques
-\matiere{MATH\'EMATIQUES}
-% Ajout de \concentration  G.L. 17/12/2013
 \def\concentration#1{\gdef\@concentration{#1}}
 \concentration{}
+\def\degreeyear#1{\gdef\@degreeyear{#1}}
+\def\programme#1{\gdef\@programme{#1}}
+\programme{}
 \degreeyear{\the\year}
-\degreemonth{\mois_alpha}
-
-\def\thesetype{TH\`ESE}
-\def\theseprog{DU DOCTORAT EN \expandafter\MakeUppercase\expandafter{\@matiere}}
-\def\accord{E}
 
 \def\uqacthese{
-   %\isthesistrue
-   \gdef\thesetype{TH\`ESE}
-   \gdef\theseprog{DU DOCTORAT EN \expandafter\MakeUppercase\expandafter{\@matiere}}
-   \gdef\accord{E}
+   \gdef\thesetype{\textbf{\MakeUppercase{th\`ese}}}
+   \gdef\thesegrade{\textbf{\MakeUppercase{philosophiae doctor en \expandafter\expandafter{\@programme}}}}
+   \gdef\accord{e}
 }
 \def\uqacmemoire{
-   %\isthesisfalse
-   \gdef\thesetype{M\'EMOIRE}
-   \gdef\theseprog{DE LA MA\^ITRISE EN \expandafter\MakeUppercase\expandafter{\@matiere}}
+   \gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
+   \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
    \gdef\accord{}
 }
-
+\def\uqacessai{
+   \gdef\thesetype{\textbf{\MakeUppercase{essai}}}
+   \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+   \gdef\accord{}
+}
 \def\uqacrapport{
-   %\isthesisfalse
-   \gdef\thesetype{RAPPORT DE RECHERCHE}
-   \gdef\theseprog{DE LA MA\^ITRISE EN \expandafter\MakeUppercase\expandafter{\@matiere}}
+   \gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
+   \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
    \gdef\accord{}
 }
 
@@ -637,29 +584,33 @@ July\or August\or September\or October\or November\or December\fi}}
 \begin{doublespace}
 \begin{center}
 
-UNIVERSIT\'E DU QU\'EBEC \`A CHICOUTIMI\\
+\includegraphics[width=1.5in]{logo-uqac}
+
 \vfill
 
-
-{\MakeUppercase{\@title}}\\
+{\textbf{\MakeUppercase{\@title}}}\\
 \vfill
 
-\thesetype
-\\
-PR\'ESENT\'E\accord \\
-COMME EXIGENCE PARTIELLE\\
-\theseprog\\
+\textbf{\MakeUppercase{par \expandafter{\@author}}}
+\vfill
+
+\thesetype{}
+\textbf{\MakeUppercase{pr\'esent\'e\accord{} comme exigence partielle en vue de l'obtention du grade de }}
+\thesegrade{}
 \ifx\@concentration\empty
 \else
-\expandafter\MakeUppercase\expandafter{\@concentration}\\
+\textbf{\MakeUppercase{\@concentration}}
 \fi
 \vfill
-PAR\\
-{\MakeUppercase{\expandafter{\@author}}}
-\\
+
+\textbf{\MakeUppercase{qu\'ebec, canada}}
 \vfill
-\MakeUppercase{\expandafter{\@degreemonth} \@degreeyear}
-\\
+
+\textbf{\MakeUppercase{\textsuperscript{\textcopyright} \@author, \@degreeyear}}
+\vfill
+
+\thispagestyle{empty}
+
 \end{center}
 \end{doublespace}
 \end{titlepage}
