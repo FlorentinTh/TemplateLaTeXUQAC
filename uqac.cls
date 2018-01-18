@@ -28,6 +28,7 @@
 \RequirePackage[explicit]{titlesec}
 \RequirePackage[french]{babel}
 \RequirePackage{regexpatch}
+\RequirePackage{titletoc}
 
 \def\mystretch{1}             			    % interligne simple
 \def\baselinestretch{\mystretch}        % interligne simple
@@ -101,7 +102,7 @@
 \bibindent=1.5em
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  BIBLIOGRAPHIE
+%%  Bibliographie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewenvironment{thebibliography}[1]
@@ -178,8 +179,8 @@
 % If using the report style, use - instead of . in the figure number.
 
 \newcommand\numerochap{\Roman{chapter}}
-\renewcommand\thechapter                {\arabic{chapter}}
-\renewcommand\thesection                {\thechapter.\arabic{section}}
+\renewcommand\thechapter{\arabic{chapter}}
+\renewcommand\thesection{\thechapter.\arabic{section}}
 \@ifundefined{thechapter}{}{\def\thefigure{\thechapter-\arabic{figure}}}
 
 \def\@makechapterhead#1{%
@@ -206,9 +207,8 @@
 
 
 %%%%%%%%%%%%%%%%
-% FRANCISATION DES TERMES
+% Francisation Des Termes
 %%%%%%%%%%%%%%%%
-
 
 \renewcommand{\contentsname}{TABLE DES MATI\`ERES}
 \renewcommand{\listfigurename}{LISTE DES FIGURES}
@@ -225,7 +225,7 @@
 \renewcommand{\abstractname}{R\'ESUM\'E}
 
 %%%%%%%%%%%%%%%%%%%
-%% INDENTATION DES SECTIONS
+%% Indentation Des Sections
 %%%%%%%%%%%%%%%%%%%
 
 \renewcommand\section{\@startsection{section}{1}%
@@ -252,15 +252,19 @@
 
 \markright{}
 \pagestyle{myheadings}
-\pagenumbering{arabic}      % Numberoration des pages en chiffres Arabes
 
-\parindent=1cm % Renfoncement au début d'un paragraphe
+ % Numberoration des pages en chiffres Arabes
+\pagenumbering{arabic}
+
+% Renfoncement au début d'un paragraphe
+\parindent=1cm
 
 %%%%%%%%%%%%
 %%
-%%  FIGURES ET TABLES
+%%  Figures Et Tables
 %%
 %%%%%%%%%%%%
+
 \setlength\abovecaptionskip{10\p@}
 \setlength\belowcaptionskip{5\p@}
 
@@ -301,9 +305,12 @@
                {\@dblfloat{table}}
                {\end@dblfloat}
 
+%% Formattage des captions pour les figures et les tableaux 
+\RequirePackage[font=footnotesize,labelfont=bf,textfont=bf]{caption}
+
 %%%%%%%%%%%%%%%%%
 %%
-%% TABLE DES MATIERES
+%% Table Des Matieres
 %%
 %%%%%%%%%%%%%%%%%
 
@@ -396,13 +403,13 @@
 
 \xpatchcmd*{\@sect}{\fi#7}{\fi\@nameuse{format#1}{#7}}{}{}
 
-%%% for sections and subsections we want uppercase
+%% Titre des section et sous-sections en majuscules dans la table des matières
 \protected\def\formatsection{\MakeUppercase}
 \protected\def\formatsubsection{\MakeUppercase}
 
 %%%%%%%%%%%%%%%%%
 %%
-%% ENVIRONNEMENT APPENDICE
+%% Environnement Appendice
 %%
 %%%%%%%%%%%%%%%%%
 
@@ -415,10 +422,16 @@
 
 %%%%%%%%%%%%%%%%%
 %%
-%% LISTE DES FIGURES
+%% Liste Des Figures
 %%
 %%%%%%%%%%%%%%%%%
 
+%% Préfixer la référence de la figure par le mot "figure" en majuscules
+\titlecontents{figure}
+ [0em]{}
+{\MakeUppercase{figure}\space\thecontentslabel\space\textendash\space}
+ {}{\ \titlerule*[8pt]{$\cdot$}\contentspage}
+%%
 
 \renewcommand\listoffigures{%
 {
@@ -428,7 +441,6 @@
     \else
       \@restonecolfalse
     \fi
-  % modifie \MakeUppercase par \UpperRef   G.L. 28/08/2013
     \chapter*{\textbf{\UpperRef{\listfigurename}}
       \@mkboth{\UpperRef{\listfigurename}}%
               {\UpperRef{\listfigurename}}}%
@@ -442,9 +454,16 @@
 
 %%%%%%%%%%%%%%%%%
 %%
-%% LISTE DES TABLEAUX
+%% Liste Des Tableaux
 %%
 %%%%%%%%%%%%%%%%%
+
+%% Préfixer la référence du tableau par le mot "tableau" en majuscules
+\titlecontents{table}
+ [0em]{}
+{\MakeUppercase{tableau}\space\thecontentslabel\space : }
+ {}{\ \titlerule*[8pt]{$\cdot$}\contentspage}
+%%
 
 \renewcommand\listoftables{%
   {
@@ -521,7 +540,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Environnement CONCLUSION
+% Environnement Conclusion
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -531,10 +550,10 @@
  \addcontentsline{toc}{chapter}{\UpperRef{conclusion}}
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Pagination
+% Pagination 
+% en bas à droite de la page
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -546,7 +565,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% PAGE TITRE
+% Page Titre
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
