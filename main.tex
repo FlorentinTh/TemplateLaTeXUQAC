@@ -1,6 +1,12 @@
 \documentclass[12pt]{uqac}
 
+%% Toutes les images utilisées doivent se trouver dans le répertoire "figure".
 \graphicspath{{figures/}}
+
+%% Package pour activer le suivi des liens dans le PDF.
+%% Il est possible de les identifier par une couleur différente du texte.
+%% Par défaut, les liens ne sont pas différenciés du reste du texte.
+\usepackage[colorlinks=false]{hyperref}
 
 \begin{document}
 
@@ -17,12 +23,13 @@
 % \uqacrapport
 
 %% Préciser le nom du programme
- \programme{informatique}
+ \programme{Informatique}
 
 %% S’il y a lieu indiquer le profil ou la concentration du programme
 % \concentration{profil recherche}
 
-%% Par défaut l'année courante est utilisée. Pour spéfier une autre année, utilisez la commande: 
+%% Par défaut l'année courante est utilisée. 
+%% Pour spéfier une autre année, utilisez la commande: 
 % \degreeyear{2018}
 
 \maketitle
@@ -30,21 +37,20 @@
 %%%%
 %% Page préliminaires
 %%%%
-
-\pagenumbering{roman}
-\addtocounter{page}{1}
+\opening
 
 \include{resume}
 \tableofcontents
-\listoftables
+		\listoftables
 \listoffigures
+\listofacro
 \include{remerciements}
 
 %%%%
 %% Document principal
 %%%%
+\maincontent
 
-\doublespacing
 \include{introduction}
 \include{chapitre1}
 \include{chapitre2}
@@ -52,16 +58,17 @@
 \include{conclusion}
 
 %%%%
-%% Annexes
-%%%%
-\appendix
-\include{annexe_a}
-
-%%%%
 %% Références
 %%%%
 
-%\bibliographystyle{apalike-uqac}
-%\bibliography{un_fichier_bib}
+\bibliographystyle{apa-uqac}
+\bibliography{references}
+
+%%%%
+%% Annexes
+%%%%
+\appendix
+
+\include{annexe_a}
 
 \end{document}

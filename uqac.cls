@@ -29,6 +29,8 @@
 \RequirePackage[french]{babel}
 \RequirePackage{regexpatch}
 \RequirePackage{titletoc}
+\RequirePackage{acronym} 
+\RequirePackage{silence}
 
 \def\mystretch{1}             			    % interligne simple
 \def\baselinestretch{\mystretch}        % interligne simple
@@ -38,6 +40,8 @@
 \newlength{\doubleinter}
 \setlength{\doubleinter}{1\baselineskip}
 
+\WarningsOff
+
 %%%%%%%%%%%%%%%%%%%%%%
 % Marges
 %%%%%%%%%%%%%%%%%%%%%%
@@ -45,7 +49,7 @@
 \setlength{\evensidemargin}{0.35cm}
 \setlength{\topmargin}{-0.25cm}           % 4cm top margin
 \setlength{\textwidth}{14.6cm}            % 6.0in text - 1.25in rt margin
-\setlength{\textheight}{21.2cm} 		      % Body ht for 1in margins
+\setlength{\textheight}{23.45cm} 		      % Body ht for 1in margins
 \addtolength{\topmargin}{-\headheight}    % No header, so compensate
 \addtolength{\topmargin}{-\headsep}       % for header height and separation
 
@@ -106,10 +110,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewenvironment{thebibliography}[1]
-     {\chapter*{\UpperRef{\bibname}
+     {\chapter*{\bfseries\UpperRef{\bibname}
         \@mkboth{\UpperRef{\bibname}}{\UpperRef{\bibname}}}%
       \addtocontents{toc}{\protect\vspace{1.5ex}}
-      \addcontentsline{toc}{chapter}{\UpperRef{\bibname}}
+      \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\bibname}}
       \baselineskip=\simpleinter
       \list{\@biblabel{\arabic{enumiv}}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -230,7 +234,7 @@
 \addto\captionsfrench{%
    \renewcommand\chaptername{Chapitre}}
 \addto\captionsfrench{%
-   \renewcommand\appendixname{Appendice}}
+   \renewcommand\appendixname{Annexe}}
 \addto\captionsfrench{%
    \renewcommand\abstractname{R\'esum\'e}}
 
@@ -455,7 +459,6 @@
     }
     }
 
-
 %%%%%%%%%%%%%%%%%
 %%
 %% Liste Des Tableaux
@@ -494,6 +497,20 @@
     \if@restonecol\twocolumn\fi
   }
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Liste des abbréviations
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\listofacro{
+  \chapter*{\textbf{\UpperRef{Liste des Abr\'eviations}}}
+  \addtocontents{toc}{\protect\vspace{1.5ex}}
+  \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Liste des Abr\'eviations}}
+  \vspace*{.35cm}
+  \input{acro}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Footnote
@@ -530,9 +547,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{ack}{%
-\chapter*{\textbf{\MakeUppercase{remerciements}}}
+\chapter*{\textbf{\MakeUppercase{Remerciements}}}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\bfseries\UpperRef{remerciements}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Remerciements}}
 \vspace*{.35cm}
 \baselineskip=\simpleinter}
 
@@ -556,11 +573,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{introduction}{%
-\chapter*{\textbf{\MakeUppercase{introduction}}}
+\chapter*{\textbf{\MakeUppercase{Introduction}}}
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\bfseries\UpperRef{introduction}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Introduction}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -570,9 +587,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{conclusion}{%
- \chapter*{\textbf{\MakeUppercase{conclusion}}}
+ \chapter*{\textbf{\MakeUppercase{Conclusion}}}
  \addtocontents{toc}{\protect\vspace{1.5ex}}
- \addcontentsline{toc}{chapter}{\bfseries\UpperRef{conclusion}}
+ \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Conclusion}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -587,6 +604,22 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \pagestyle{fancy}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Définitions des différentes  
+% parties du document
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\opening{
+  \pagenumbering{roman}
+  \addtocounter{page}{1}
+}
+
+\def\maincontent{
+  \doublespacing
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
