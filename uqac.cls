@@ -206,23 +206,33 @@
    \parskip=2ex  }
 
 
-%%%%%%%%%%%%%%%%
-% Francisation Des Termes
-%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Francisation Des 
+%% Termes de la classe report
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\renewcommand{\contentsname}{TABLE DES MATI\`ERES}
-\renewcommand{\listfigurename}{LISTE DES FIGURES}
-\renewcommand{\listtablename}{LISTE DES TABLEAUX}
-\renewcommand{\bibname}{BIBLIOGRAPHIE}
-\renewcommand{\indexname}{INDEX}
-\renewcommand{\figurename}{Figure}
-\addto\captionsfrench{\def\figurename{{Figure}}}
-\renewcommand{\tablename}{Tableau}
-\addto\captionsfrench{\def\tablename{{Tableau}}}
-\renewcommand{\partname}{PARTIE}
-\renewcommand{\chaptername}{CHAPITRE}
-\renewcommand{\appendixname}{APPENDICE}
-\renewcommand{\abstractname}{R\'ESUM\'E}
+\addto\captionsfrench{%
+   \renewcommand\contentsname{Table des Mati\`eres}}
+\addto\captionsfrench{%
+   \renewcommand\listfigurename{Liste des Figures}}
+\addto\captionsfrench{%
+   \renewcommand\listtablename{Liste des Tableaux}}
+\addto\captionsfrench{%
+   \renewcommand\bibname{Bibliographie}}
+\addto\captionsfrench{%
+   \renewcommand\indexname{Index}}
+\addto\captionsfrench{%
+   \renewcommand\figurename{Figure}}
+\addto\captionsfrench{%
+   \renewcommand\tablename{Tableau}}
+\addto\captionsfrench{%
+   \renewcommand\partname{Partie}}
+\addto\captionsfrench{%
+   \renewcommand\chaptername{Chapitre}}
+\addto\captionsfrench{%
+   \renewcommand\appendixname{Appendice}}
+\addto\captionsfrench{%
+   \renewcommand\abstractname{R\'esum\'e}}
 
 %%%%%%%%%%%%%%%%%%%
 %% Indentation Des Sections
@@ -307,6 +317,7 @@
 
 %% Formattage des captions pour les figures et les tableaux 
 \RequirePackage[font=footnotesize,labelfont=bf,textfont=bf]{caption}
+\DeclareCaptionLabelSeparator{colon}{ : }
 
 %%%%%%%%%%%%%%%%%
 %%
@@ -317,21 +328,21 @@
 \newcommand\l@specialchapitre {\@dottedtocline{1}{0em}{0em}}
 
 \renewcommand\tableofcontents{%
-    \thispagestyle{empty}
-    \baselineskip=\simpleinter
-    \if@twocolumn
-      \@restonecoltrue\onecolumn
-    \else
-      \@restonecolfalse
-    \fi
-    \chapter*{\textbf{\expandafter\MakeUppercase\expandafter{\contentsname}}}
-    \parskip=0ex
-    \vspace*{.75cm}
-    \@starttoc{toc}%
-    \noindent
-    \if@restonecol\twocolumn\fi
-    \baselineskip=\doubleinter
-    \parskip=2ex}
+  \thispagestyle{empty}
+  \baselineskip=\simpleinter
+  \if@twocolumn
+    \@restonecoltrue\onecolumn
+  \else
+    \@restonecolfalse
+  \fi
+  \chapter*{\bfseries\expandafter\MakeUppercase\expandafter{\contentsname}}
+  \parskip=0ex
+  \vspace*{.75cm}
+  \@starttoc{toc}%
+  \noindent
+  \if@restonecol\twocolumn\fi
+  \baselineskip=\doubleinter
+  \parskip=2ex}
 
 \renewcommand\l@chapter[2]{%
   \ifnum \c@tocdepth >\m@ne
@@ -342,9 +353,8 @@
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
       \nopagebreak
-      \leavevmode %\bfseries
+      \leavevmode
       \hskip -\leftskip
-%      \@dottedtocline{1}{0em}{2.3em}
       #1\nobreak\hfil \nobreak\hbox to\@pnumwidth{\hss #2}\par
       \penalty\@highpenalty
     \endgroup
@@ -354,10 +364,9 @@
                          \refstepcounter{chapter}%
                          \typeout{\@chapapp\space\thechapter.}%
                          \addtocontents{toc}{\protect\vspace{1.5ex}}
-                    \addtocontents{toc}{\noindent\UpperRef{\@chapapp\protect\hskip 0.5em \numerochap}\vskip 0ex}
-                    \addcontentsline{toc}{chapter}{\UpperRef{#1}}
+                    \addcontentsline{toc}{chapter}{\noindent\UpperRef{\bfseries\@chapapp\protect\hskip 0.5em \numerochap\hskip 0.5em \textendash\hskip 0.5em}\bfseries\UpperRef{#1}}
                      \else
-                      \addcontentsline{toc}{chapter}{#1}
+                      \addcontentsline{toc}{chapter}{\bfseries\UpperRef{#1}}
                     \fi
                     \chaptermark{#1}%
                     \if@twocolumn
@@ -409,19 +418,6 @@
 
 %%%%%%%%%%%%%%%%%
 %%
-%% Environnement Appendice
-%%
-%%%%%%%%%%%%%%%%%
-
-\def\appendix{\par
-  \setcounter{chapter}{0}%
-  \setcounter{section}{0}%
-  \def\@chapapp{\textbf{\UpperRef{\appendixname}}}%
-  \renewcommand\numerochap{\Alph{chapter}}
-  \def\thechapter{\Alph{chapter}}}
-
-%%%%%%%%%%%%%%%%%
-%%
 %% Liste Des Figures
 %%
 %%%%%%%%%%%%%%%%%
@@ -432,6 +428,13 @@
 {\MakeUppercase{figure}\space\thecontentslabel\space\textendash\space}
  {}{\ \titlerule*[8pt]{$\cdot$}\contentspage}
 %%
+
+\let\svcaption\caption
+\let\svfigure\figure
+\def\figure{\figurecaps\svfigure}
+\def\figurecaps{%
+  \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
+}
 
 \renewcommand\listoffigures{%
 {
@@ -445,7 +448,8 @@
       \@mkboth{\UpperRef{\listfigurename}}%
               {\UpperRef{\listfigurename}}}%
     \addtocontents{toc}{\protect\vspace{1.5ex}}
-    \addcontentsline{toc}{chapter}{\UpperRef{\listfigurename}}
+    \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\listfigurename}}
+    \vspace*{.35cm}
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     }
@@ -465,6 +469,13 @@
  {}{\ \titlerule*[8pt]{$\cdot$}\contentspage}
 %%
 
+\let\svcaption\caption
+\let\svtable\table
+\def\table{\tablecaps\svtable}
+\def\tablecaps{%
+  \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
+}
+
 \renewcommand\listoftables{%
   {
     \baselineskip=\simpleinter
@@ -477,7 +488,8 @@
     \chapter*{\textbf{\UpperRef{\listtablename}}
       \@mkboth{\UpperRef{\listtablename}}{\UpperRef{\listtablename}}}%
     \addtocontents{toc}{\protect\vspace{1.5ex}}
-    \addcontentsline{toc}{chapter}{\UpperRef{\listtablename}}
+    \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\listtablename}}
+    \vspace*{.35cm}
     \@starttoc{lot}%
     \if@restonecol\twocolumn\fi
   }
@@ -498,6 +510,19 @@
  \rule{4cm}{0.4pt}
 }
 
+%%%%%%%%%%%%%%%%%
+%%
+%% Environnement Appendice
+%%
+%%%%%%%%%%%%%%%%%
+
+\def\appendix{\par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \def\@chapapp{\textbf{\UpperRef{\appendixname}}}%
+  \renewcommand\numerochap{\Alph{chapter}}
+  \def\thechapter{\Alph{chapter}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Environnement Remerciements
@@ -507,7 +532,7 @@
 \newenvironment{ack}{%
 \chapter*{\textbf{\MakeUppercase{remerciements}}}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\UpperRef{remerciements}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{remerciements}}
 \vspace*{.35cm}
 \baselineskip=\simpleinter}
 
@@ -520,7 +545,7 @@
   \renewenvironment{abstract}{%
       \chapter*{\textbf{\UpperRef{\abstractname}}}
       \addtocontents{toc}{\protect\vspace{1.5ex}}
-      \addcontentsline{toc}{chapter}{\UpperRef{\abstractname}}
+      \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\abstractname}}
       \vspace*{.35cm}
      \baselineskip=\simpleinter}
 
@@ -535,7 +560,7 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\UpperRef{introduction}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{introduction}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -547,7 +572,7 @@
 \newenvironment{conclusion}{%
  \chapter*{\textbf{\MakeUppercase{conclusion}}}
  \addtocontents{toc}{\protect\vspace{1.5ex}}
- \addcontentsline{toc}{chapter}{\UpperRef{conclusion}}
+ \addcontentsline{toc}{chapter}{\bfseries\UpperRef{conclusion}}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%

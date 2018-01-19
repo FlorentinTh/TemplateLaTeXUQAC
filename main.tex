@@ -1,11 +1,13 @@
 \documentclass[12pt]{uqac}
 
+\graphicspath{{figures/}}
+
 \begin{document}
 
 \title{Titre de la thèse du mémoire ou de l'essai}
 \author{Prénom Nom}
 
-%% Pour la rédaction d'une thèse, utiliser la commande : 
+%% Pour la rédaction d'u ne thèse, utiliser la commande : 
 \uqacthese 
 %% Pour la rédaction d'un mémoire, utiliser la commande : 
 % \uqacmemoire
@@ -24,15 +26,13 @@
 % \degreeyear{2018}
 
 \maketitle
-
-
+		
 %%%%
 %% Page préliminaires
 %%%%
 
 \pagenumbering{roman}
 \addtocounter{page}{1}
-
 
 \include{resume}
 \tableofcontents
@@ -47,13 +47,15 @@
 \doublespacing
 \include{introduction}
 \include{chapitre1}
+\include{chapitre2}
+\include{chapitre3}
 \include{conclusion}
 
 %%%%
 %% Annexes
 %%%%
-
-%\include{nom_de_fichier_d_une_annexe}
+\appendix
+\include{annexe_a}
 
 %%%%
 %% Références
