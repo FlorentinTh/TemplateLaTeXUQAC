@@ -1,5 +1,4 @@
-# Gabarit LaTeX pour la rédaction \ 
-de documents pour l'UQAC
+# Gabarit LaTeX pour la rédaction de documents pour l'UQAC
 
 Ce template respecte les directives fournies selon l'Université du Québec à Chicoutimi (UQAC).
 
