@@ -1,6 +1,40 @@
+### LaTeX ###
+## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
 *.log
 *.lot
-*.synctex.gz
+*.fls
+*.out
 *.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+
+## Intermediate documents:
+*.dvi
+*.xdv
+*-converted-to.*
+
+## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+
+### OSX ###
+*.DS_Store
+
+### Windows ###
+Desktop.ini

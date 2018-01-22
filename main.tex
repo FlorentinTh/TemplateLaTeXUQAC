@@ -1,4 +1,12 @@
-\documentclass[12pt]{uqac}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Classes disponibles : 
+%%	- times : utilisation de la police Times par défaut.
+%%	- these, projthese, memoire, essai, rapport : pour 
+%%		générer la page de garde en fonction du type document.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,times,these]{uqac}
 
 %% Toutes les images utilisées doivent se trouver dans le répertoire "figure".
 \graphicspath{{figures/}}
@@ -6,30 +14,26 @@
 %% Package pour activer le suivi des liens dans le PDF.
 %% Il est possible de les identifier par une couleur différente du texte.
 %% Par défaut, les liens ne sont pas différenciés du reste du texte.
-\usepackage[colorlinks=false]{hyperref}
+\usepackage[hidelinks=true]{hyperref}
 
 \begin{document}
 
+% Titre du document
 \title{Titre de la thèse du mémoire ou de l'essai}
+
+% Auteur du document
 \author{Prénom Nom}
 
-%% Pour la rédaction d'u ne thèse, utiliser la commande : 
-\uqacthese 
-%% Pour la rédaction d'un mémoire, utiliser la commande : 
-% \uqacmemoire
-%% Pour la rédaction d'un essai, utiliser la commande : 
-% \uqacessai
-%% Pour la rédaction d'un rapport, utiliser la commande : 
-% \uqacrapport
-
 %% Préciser le nom du programme
- \programme{Informatique}
+\programme{Informatique}
 
-%% S’il y a lieu indiquer le profil ou la concentration du programme
+%% S’il y a lieu, 
+%% indiquer le profil 
+%% ou la concentration du programme
 % \concentration{profil recherche}
 
 %% Par défaut l'année courante est utilisée. 
-%% Pour spéfier une autre année, utilisez la commande: 
+%% Pour spéfier une autre année : 
 % \degreeyear{2018}
 
 \maketitle
@@ -41,10 +45,12 @@
 
 \include{resume}
 \tableofcontents
-		\listoftables
+\listoftables
 \listoffigures
 \listofacro
+\include{dedicace}
 \include{remerciements}
+\include{avant_propos}
 
 %%%%
 %% Document principal

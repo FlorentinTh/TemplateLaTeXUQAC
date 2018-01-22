@@ -1,30 +1,79 @@
-%
-% format LaTeX pour memoire et these de l'UQAC
-%       \documentclass[12pt]{uqac}
-%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Format LaTeX pour memoire et these de l'UQAC
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Date de création: Janvier 2018
-% Auteur: Florentin Thullier 
+%% Date de création: Janvier 2018
+%% Auteur: Florentin Thullier 
 
-% Modifications:
-%% Date - Auteur - Commentaire
+%%%%%%%%%%%%%%%%%
+%%
+%% Modifications
+%%
+% Date - Auteur - Commentaire
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{uqac}
+
+%%%&&&&&&&&&&&&&&&&&&&&&&&
+%%
+%% Définitions des options
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Times
+\def\@uqactimes{false}
+\DeclareOption{times}{%
+  \def\@uqacpdctimes{true}
+}
+
+%% Thèse
+\def\@uqacthese{false}
+\DeclareOption{these}{%
+  \def\@uqacthese{true}
+}
+
+%% Projet de Thèse
+\def\@uqacprojthese{false}
+\DeclareOption{projthese}{%
+  \def\@uqacprojthese{true}
+}
+
+%% Mémoire
+\def\@uqacmemoire{false}
+\DeclareOption{memoire}{%
+  \def\@uqacmemoire{true}
+}
+
+%% Essai
+\def\@uqacessai{false}
+\DeclareOption{essai}{%
+  \def\@uqacessai{true}
+}
+
+%% Rapport
+\def\@uqacrapport{false}
+\DeclareOption{rapport}{%
+  \def\@uqacrapport{true}
+}
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions
 \LoadClass{report}
 
-%% -------
-% Packages
-%% -------
+%%%%%%%%%%
+%%
+%% Packages
+%%
+%%%%%%%%%%
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{graphicx}
 \RequirePackage{url}
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
+\RequirePackage{ifthen}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage[french]{babel}
 \RequirePackage{regexpatch}
@@ -32,8 +81,9 @@
 \RequirePackage{acronym} 
 \RequirePackage{silence}
 
-\def\mystretch{1}             			    % interligne simple
-\def\baselinestretch{\mystretch}        % interligne simple
+% interligne simple
+\def\mystretch{1}             			   	 
+\def\baselinestretch{\mystretch}  
 
 \newlength{\simpleinter}
 \setlength{\simpleinter}{\baselineskip}
@@ -42,16 +92,24 @@
 
 \WarningsOff
 
-%%%%%%%%%%%%%%%%%%%%%%
-% Marges
-%%%%%%%%%%%%%%%%%%%%%%
-\setlength{\oddsidemargin}{1cm}           % 4cm left margin
+\ifthenelse{\equal{\@uqacpdctimes}{true}}{%
+  \RequirePackage{mathptmx}
+  \renewcommand{\sfdefault}{phv}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Définition des marges
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\oddsidemargin}{1cm}
 \setlength{\evensidemargin}{0.35cm}
-\setlength{\topmargin}{-0.25cm}           % 4cm top margin
-\setlength{\textwidth}{14.6cm}            % 6.0in text - 1.25in rt margin
-\setlength{\textheight}{23.45cm} 		      % Body ht for 1in margins
-\addtolength{\topmargin}{-\headheight}    % No header, so compensate
-\addtolength{\topmargin}{-\headsep}       % for header height and separation
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{14.6cm}
+\setlength{\textheight}{23.45cm}
+\addtolength{\topmargin}{-\headheight}
+\addtolength{\topmargin}{-\headsep}
 
 %%%%%%%  End of margins and formatting params %%%
 
@@ -105,9 +163,11 @@
 \newdimen\bibindent
 \bibindent=1.5em
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%
+%%
 %%  Bibliographie
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%%%%%%%%%%%%%%%%
 
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bfseries\UpperRef{\bibname}
@@ -140,6 +200,7 @@
 }
 %% Ajout des commandes setstrerch et doublespacing si
 %% package setspace non chargé
+
 \AtBeginDocument{ \@ifpackageloaded{setspace}
    {\relax}
    {\newcommand{\restore@spacing}{%
@@ -211,8 +272,8 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Francisation Des 
-%% Termes de la classe report
+%% Francisation des 
+%% termes de la classe report
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addto\captionsfrench{%
@@ -238,9 +299,11 @@
 \addto\captionsfrench{%
    \renewcommand\abstractname{R\'esum\'e}}
 
-%%%%%%%%%%%%%%%%%%%
-%% Indentation Des Sections
-%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Indentation des sections
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \renewcommand\section{\@startsection{section}{1}%
                                     {\z@}%
@@ -267,17 +330,17 @@
 \markright{}
 \pagestyle{myheadings}
 
- % Numberoration des pages en chiffres Arabes
+ % Numéroration des pages en chiffres Arabes
 \pagenumbering{arabic}
 
 % Renfoncement au début d'un paragraphe
 \parindent=1cm
 
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
 %%
-%%  Figures Et Tables
+%%  Figures & tables
 %%
-%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
 
 \setlength\abovecaptionskip{10\p@}
 \setlength\belowcaptionskip{5\p@}
@@ -319,15 +382,15 @@
                {\@dblfloat{table}}
                {\end@dblfloat}
 
-%% Formattage des captions pour les figures et les tableaux 
+%% Formatage des captions pour les figures et les tableaux 
 \RequirePackage[font=footnotesize,labelfont=bf,textfont=bf]{caption}
 \DeclareCaptionLabelSeparator{colon}{ : }
 
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Table Des Matieres
+%% Table des matieres
 %%
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand\l@specialchapitre {\@dottedtocline{1}{0em}{0em}}
 
@@ -416,15 +479,15 @@
 
 \xpatchcmd*{\@sect}{\fi#7}{\fi\@nameuse{format#1}{#7}}{}{}
 
-%% Titre des section et sous-sections en majuscules dans la table des matières
+%% Titre des sections et sous-sections en majuscules dans la table des matières
 \protected\def\formatsection{\MakeUppercase}
 \protected\def\formatsubsection{\MakeUppercase}
 
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
 %%
-%% Liste Des Figures
+%% Liste des figures
 %%
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%
 
 %% Préfixer la référence de la figure par le mot "figure" en majuscules
 \titlecontents{figure}
@@ -459,11 +522,11 @@
     }
     }
 
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Liste Des Tableaux
+%% Liste des tableaux
 %%
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
 
 %% Préfixer la référence du tableau par le mot "tableau" en majuscules
 \titlecontents{table}
@@ -498,11 +561,12 @@
   }
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Liste des abbréviations
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Liste des abréviations
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \def\listofacro{
   \chapter*{\textbf{\UpperRef{Liste des Abr\'eviations}}}
   \addtocontents{toc}{\protect\vspace{1.5ex}}
@@ -511,11 +575,12 @@
   \input{acro}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Footnote
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%
+%% Footnotes
+%%
+%%%%%%%%%%%%
+
 \setlength{\footnotesep}{\doubleinter}
 
 \renewcommand{\@makefntext}[1]%
@@ -527,23 +592,36 @@
  \rule{4cm}{0.4pt}
 }
 
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Environnement Appendice
+%% Environnement Resume
 %%
-%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\appendix{\par
-  \setcounter{chapter}{0}%
-  \setcounter{section}{0}%
-  \def\@chapapp{\textbf{\UpperRef{\appendixname}}}%
-  \renewcommand\numerochap{\Alph{chapter}}
-  \def\thechapter{\Alph{chapter}}}
+\renewenvironment{abstract}{%
+\chapter*{\textbf{\UpperRef{\abstractname}}}
+\addtocontents{toc}{\protect\vspace{1.5ex}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{\abstractname}}
+\vspace*{.35cm}
+\baselineskip=\simpleinter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Environnement Dédicace
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{dedic}{%
+\chapter*{\textbf{\MakeUppercase{D\'edicace}}}
+\addtocontents{toc}{\protect\vspace{1.5ex}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{D\'edicace}}
+\vspace*{.35cm}
+\baselineskip=\simpleinter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Environnement Remerciements
-%
+%%
+%% Environnement Remerciements
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{ack}{%
@@ -554,22 +632,22 @@
 \baselineskip=\simpleinter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Environnement Resume
-%
+%%
+%% Environnement Avant-propos
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  \renewenvironment{abstract}{%
-      \chapter*{\textbf{\UpperRef{\abstractname}}}
-      \addtocontents{toc}{\protect\vspace{1.5ex}}
-      \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\abstractname}}
-      \vspace*{.35cm}
-     \baselineskip=\simpleinter}
+\newenvironment{preface}{%
+\chapter*{\textbf{\MakeUppercase{Avant-propos}}}
+\addtocontents{toc}{\protect\vspace{1.5ex}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Avant-propos}}
+\vspace*{.35cm}
+\baselineskip=\simpleinter}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Environnement Introduction
-%
+%%
+%% Environnement Introduction
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{introduction}{%
@@ -577,26 +655,38 @@
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Introduction}}
-}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Introduction}}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Environnement Conclusion
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Environnement Conclusion
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{conclusion}{%
- \chapter*{\textbf{\MakeUppercase{Conclusion}}}
- \addtocontents{toc}{\protect\vspace{1.5ex}}
- \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Conclusion}}
+\chapter*{\textbf{\MakeUppercase{Conclusion}}}
+\addtocontents{toc}{\protect\vspace{1.5ex}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Conclusion}}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Environnement Annexes
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\appendix{\par
+\setcounter{chapter}{0}%
+\setcounter{section}{0}%
+\def\@chapapp{\textbf{\UpperRef{\appendixname}}}%
+\renewcommand\numerochap{\Alph{chapter}}
+\def\thechapter{\Alph{chapter}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Pagination 
-% en bas à droite de la page
-%
+%%
+%% Pagination 
+%% en bas à droite de la page
+%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \fancyhf{}
@@ -605,12 +695,12 @@
 \renewcommand{\footrulewidth}{0pt}
 \pagestyle{fancy}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Définitions des différentes  
-% parties du document
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Définitions des différentes  
+%% parties du document
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\opening{
   \pagenumbering{roman}
@@ -621,11 +711,11 @@
   \doublespacing
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Page Titre
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%
+%% Page de Garde
+%%
+%%%%%%%%%%%%%%%%
 
 \def\concentration#1{\gdef\@concentration{#1}}
 \concentration{}
@@ -634,25 +724,34 @@
 \programme{}
 \degreeyear{\the\year}
 
-\def\uqacthese{
-   \gdef\thesetype{\textbf{\MakeUppercase{th\`ese}}}
+\ifthenelse{\equal{\@uqacthese}{true}}{%
+  \gdef\thesetype{\textbf{\MakeUppercase{th\`ese}}}
    \gdef\thesegrade{\textbf{\MakeUppercase{philosophiae doctor en \expandafter\expandafter{\@programme}}}}
    \gdef\accord{e}
-}
-\def\uqacmemoire{
-   \gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
-   \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-   \gdef\accord{}
-}
-\def\uqacessai{
-   \gdef\thesetype{\textbf{\MakeUppercase{essai}}}
-   \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-   \gdef\accord{}
-}
-\def\uqacrapport{
-   \gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
-   \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-   \gdef\accord{}
+}{%
+	\ifthenelse{\equal{\@uqacprojthese}{true}}{%
+  		\gdef\thesetype{\textbf{\MakeUppercase{projet de th\`ese}}}
+   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophiae doctor en \expandafter\expandafter{\@programme}}}}
+   		\gdef\accord{}
+	}{
+		\ifthenelse{\equal{\@uqacmemoire}{true}}{%
+	  		\gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
+		   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+			\gdef\accord{}
+		}{
+			\ifthenelse{\equal{\@uqacessai}{true}}{%
+		  		\gdef\thesetype{\textbf{\MakeUppercase{essai}}}
+			   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+				\gdef\accord{}
+			}{
+				\ifthenelse{\equal{\@uqacrapport}{true}}{%
+			  		\gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
+				   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+					\gdef\accord{}
+				}
+			}
+		}
+	}
 }
 
 \newpage\null\thispagestyle{empty}\newpage
