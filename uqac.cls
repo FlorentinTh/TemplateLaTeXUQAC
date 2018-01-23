@@ -70,6 +70,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{graphicx}
+\RequirePackage{natbib}
 \RequirePackage{url}
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
@@ -566,13 +567,14 @@
 %% Liste des abréviations
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\acrolistpath#1{\gdef\@acrolistpath{#1}}
 
 \def\listofacro{
   \chapter*{\textbf{\UpperRef{Liste des Abr\'eviations}}}
   \addtocontents{toc}{\protect\vspace{1.5ex}}
   \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Liste des Abr\'eviations}}
   \vspace*{.35cm}
-  \input{acro}
+  \input{\@acrolistpath}
 }
 
 %%%%%%%%%%%%
@@ -652,6 +654,7 @@
 
 \newenvironment{introduction}{%
 \chapter*{\textbf{\MakeUppercase{Introduction}}}
+\renewcommand{\thesection}{\arabic{section}}
 \pagenumbering{arabic}
 \setcounter{page}{1}
 \addtocontents{toc}{\protect\vspace{1.5ex}}

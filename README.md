@@ -6,6 +6,6 @@ _Source : [Décanat des études](http://services.uqac.ca/decanat-des-etudes/sous
 
 Auteur
 ---
-**[Florentin Thullier](https://github.com/florentinth)** - _2016_
+**[Florentin Thullier](https://github.com/florentinth)** - _2018_
 
 _Contact : **[florentin.thullier1@uqac.ca](florentin.thullier1@uqa.ca)**_

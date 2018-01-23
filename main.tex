@@ -8,6 +8,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,times,these]{uqac}
 
+%% Préciser l'emplacement du fichier contenant les acronymes.
+\acrolistpath{assets/acro}
+
 %% Toutes les images utilisées doivent se trouver dans le répertoire "figure".
 \graphicspath{{figures/}}
 
@@ -38,9 +41,9 @@
 
 \maketitle
 		
-%%%%
+%%%%%%%%%%%%%%%%%%%%%
 %% Page préliminaires
-%%%%
+%%%%%%%%%%%%%%%%%%%%%
 \opening
 
 \include{resume}
@@ -52,9 +55,9 @@
 \include{remerciements}
 \include{avant_propos}
 
-%%%%
+%%%%%%%%%%%%%%%%%%%%%
 %% Document principal
-%%%%
+%%%%%%%%%%%%%%%%%%%%%
 \maincontent
 
 \include{introduction}
@@ -63,16 +66,16 @@
 \include{chapitre3}
 \include{conclusion}
 
-%%%%
+%%%%%%%%$%%%%
 %% Références
-%%%%
+%%%%%%%%%%%%%
 
 \bibliographystyle{apa-uqac}
 \bibliography{references}
 
-%%%%
+%%%%%%%%%%%
 %% Annexes
-%%%%
+%%%%%%%%%%%
 \appendix
 
 \include{annexe_a}
