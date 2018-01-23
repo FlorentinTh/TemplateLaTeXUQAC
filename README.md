@@ -8,4 +8,4 @@ Auteur
 ---
 **[Florentin Thullier](https://github.com/florentinth)** - _2016_
 
-_Contact : **[florentin.thullier1@uqa.ca](florentin.thullier1@uqa.ca)**_
+_Contact : **[florentin.thullier1@uqac.ca](florentin.thullier1@uqa.ca)**_
