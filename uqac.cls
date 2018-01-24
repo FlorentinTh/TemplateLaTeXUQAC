@@ -70,17 +70,19 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{graphicx}
-\RequirePackage{natbib}
 \RequirePackage{url}
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
 \RequirePackage{ifthen}
 \RequirePackage[explicit]{titlesec}
+\RequirePackage{natbib}
 \RequirePackage[french]{babel}
 \RequirePackage{regexpatch}
 \RequirePackage{titletoc}
 \RequirePackage{acronym} 
 \RequirePackage{silence}
+
+\WarningsOff
 
 % interligne simple
 \def\mystretch{1}             			   	 
@@ -90,8 +92,6 @@
 \setlength{\simpleinter}{\baselineskip}
 \newlength{\doubleinter}
 \setlength{\doubleinter}{1\baselineskip}
-
-\WarningsOff
 
 \ifthenelse{\equal{\@uqacpdctimes}{true}}{%
   \RequirePackage{mathptmx}
@@ -133,37 +133,6 @@
                    { \expandafter\expandafter\partpdf\expandafter{#1} } }}
    {\newcommand{\UpperRef}[1]{\MakeUppercase{#1}}}
 
-\@ifpackageloaded{natbib}
-   {\relax}
-   {
-
-\def\@citex[#1]#2{%
-  \let\@citea\@empty
-  \@cite{\@for\@citeb:=#2\do
-    {\@citea\def\@citea{;\penalty\@m\ }%
-     \edef\@citeb{\expandafter\@firstofone\@citeb}%
-     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
-     \@ifundefined{b@\@citeb}{\mbox{\reset@font\bfseries ?}%
-       \G@refundefinedtrue
-       \@latex@warning
-         {Citation `\@citeb' on page \thepage \space undefined}}%
-       {\csname b@\@citeb\endcsname}}}{#1}}
-
-
-\def\hang{\hangindent\parindent}
-\def\@cite#1#2{({#1\if@tempswa , #2\fi})}
-
-\def\@biblabel#1{(#1)\hfill}
-%\def\@lbibitem[#1]#2{\item[{}]\if@filesw
-\def\@lbibitem[#1]#2{\item[{}]\ \par\if@filesw
-      { \def\protect##1{\string ##1\space}\immediate
-        \write\@auxout{\string\bibcite{#2}{#1}}}\fi\ignorespaces }
-
-\def\bibitem{\hang \@ifnextchar[{\@lbibitem}{\@bibitem}}
-
-\newdimen\bibindent
-\bibindent=1.5em
-
 %%%%%%%%%%%%%%%%%
 %%
 %%  Bibliographie
@@ -183,7 +152,7 @@
             \advance\leftmargin\labelsep
             \@openbib@code
             \setlength{\listparindent}{-\leftmargin}
-            \setlength{\itemsep}{-0.5em}
+            \setlength{\itemsep}{2em} % double spacing entre chaque référence
             \setlength{\parsep}{0em}
             \usecounter{enumiv}%
             \let\p@enumiv\@empty
@@ -191,13 +160,11 @@
       \sloppy\clubpenalty4000
       \@clubpenalty \clubpenalty
       \widowpenalty4000%
-      \sfcode`\.=\@m
-      \raggedright} % bibliographie non justifié à droite
+      \sfcode`\.=\@m}
+      %\raggedright} % bibliographie non justifié à droite
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
-
-   }
 }
 %% Ajout des commandes setstrerch et doublespacing si
 %% package setspace non chargé
@@ -319,14 +286,15 @@
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
                                      {\normalfont\normalsize\scshape\bfseries}}
-\let\oldsection\section
-\renewcommand{\section}{\leftskip=0cm \oldsection}
 
-\let\oldsubsection\subsection
-\renewcommand{\subsection}{\leftskip=1cm \oldsubsection}
+%\let\oldsection\section
+%\renewcommand{\section}{\leftskip=0cm \oldsection}
 
-\let\oldsubsubsection\subsubsection
-\renewcommand{\subsubsection}{\leftskip=2cm \oldsubsubsection}
+%\let\oldsubsection\subsection
+%\renewcommand{\subsection}{\leftskip=1cm \oldsubsection}
+
+%\let\oldsubsubsection\subsubsection
+%\renewcommand{\subsubsection}{\leftskip=2cm \oldsubsubsection}
 
 \markright{}
 \pagestyle{myheadings}
@@ -360,31 +328,36 @@
 
 
 \renewcommand\thefigure{{\thechapter.\@arabic\c@figure}}
-\def\fps@figure{tbp}
-\def\ftype@figure{1}
-\def\ext@figure{lof}
-\def\fnum@figure{{\figurename~}\thefigure\vspace{-0.5cm}}
-\renewenvironment{figure}
-               {\vspace{1cm}\@float{figure}}
-               {\end@float}
-\renewenvironment{figure*}
-               {\@dblfloat{figure}}
-               {\end@dblfloat}
 
-\renewcommand\thetable{{\thechapter.\@arabic\c@table}}
-\def\fps@table{tbp}
-\def\ftype@table{2}
-\def\ext@table{lot}
-\def\fnum@table{{\tablename~}\thetable\vspace{-0.25cm}}
-\renewenvironment{table}
-               {\vspace{.5cm}\@float{table}}
-               {\end@float}
-\renewenvironment{table*}
-               {\@dblfloat{table}}
-               {\end@dblfloat}
+%\def\fps@figure{tbp}
+%\def\ftype@figure{1}
+%\def\ext@figure{lof}
+%\def\fnum@figure{{\figurename~}\thefigure\vspace{-0.5cm}}
+%\renewenvironment{figure}
+%               {\vspace{1cm}\@float{figure}}
+%               {\end@float}
+%\renewenvironment{figure*}
+%               {\@dblfloat{figure}}
+%               {\end@dblfloat}
+
+%\renewcommand\thetable{{\thechapter.\@arabic\c@table}}
+%\def\fps@table{tbp}
+%\def\ftype@table{2}
+%\def\ext@table{lot}
+%\def\fnum@table{{\tablename~}\thetable\vspace{-0.25cm}}
+%\renewenvironment{table}
+%               {\vspace{.5cm}\@float{table}}
+%               {\end@float}
+%\renewenvironment{table*}
+%               {\@dblfloat{table}}
+%               {\end@dblfloat}
+
+\setlength{\intextsep}{1cm} 
 
 %% Formatage des captions pour les figures et les tableaux 
-\RequirePackage[font=footnotesize,labelfont=bf,textfont=bf]{caption}
+\RequirePackage{caption}
+\captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=justified}
+\captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=justified}
 \DeclareCaptionLabelSeparator{colon}{ : }
 
 %%%%%%%%%%%%%%%%%%%%%
@@ -567,6 +540,10 @@
 %% Liste des abréviations
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% éviter un fail de compilation lorsqu'un acronyme est utilisé dans une section
+\protected\def\sl@Terminator{\sl@Terminator}
+
 \def\acrolistpath#1{\gdef\@acrolistpath{#1}}
 
 \def\listofacro{
@@ -654,9 +631,6 @@
 
 \newenvironment{introduction}{%
 \chapter*{\textbf{\MakeUppercase{Introduction}}}
-\renewcommand{\thesection}{\arabic{section}}
-\pagenumbering{arabic}
-\setcounter{page}{1}
 \addtocontents{toc}{\protect\vspace{1.5ex}}
 \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Introduction}}}
 
@@ -711,6 +685,8 @@
 }
 
 \def\maincontent{
+  \pagenumbering{arabic}
+  \setcounter{page}{1}
   \doublespacing
 }
 

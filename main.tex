@@ -12,7 +12,7 @@
 \acrolistpath{assets/acro}
 
 %% Toutes les images utilisées doivent se trouver dans le répertoire "figure".
-\graphicspath{{figures/}}
+\graphicspath{{assets/figures/}}
 
 %% Package pour activer le suivi des liens dans le PDF.
 %% Il est possible de les identifier par une couleur différente du texte.
@@ -46,38 +46,38 @@
 %%%%%%%%%%%%%%%%%%%%%
 \opening
 
-\include{resume}
+\include{content/resume}
 \tableofcontents
 \listoftables
 \listoffigures
 \listofacro
-\include{dedicace}
-\include{remerciements}
-\include{avant_propos}
+\include{content/dedicace}
+\include{content/remerciements}
+\include{content/avant_propos}
 
 %%%%%%%%%%%%%%%%%%%%%
 %% Document principal
 %%%%%%%%%%%%%%%%%%%%%
 \maincontent
 
-\include{introduction}
-\include{chapitre1}
-\include{chapitre2}
-\include{chapitre3}
-\include{conclusion}
+\include{content/introduction}
+\include{content/chapitre1}
+\include{content/chapitre2}
+\include{content/chapitre3}
+\include{content/conclusion}
 
 %%%%%%%%$%%%%
 %% Références
 %%%%%%%%%%%%%
 
 \bibliographystyle{apa-uqac}
-\bibliography{references}
+\bibliography{assets/references}
 
 %%%%%%%%%%%
 %% Annexes
 %%%%%%%%%%%
 \appendix
 
-\include{annexe_a}
+\include{content/annexe_a}
 
 \end{document}
