@@ -326,7 +326,7 @@
   \fi
   \vskip\belowcaptionskip}
 
-
+%% Numérotation des figures avec un "." à la place d'un "-"
 \renewcommand\thefigure{{\thechapter.\@arabic\c@figure}}
 
 %\def\fps@figure{tbp}
@@ -352,10 +352,18 @@
 %               {\@dblfloat{table}}
 %               {\end@dblfloat}
 
-\setlength{\intextsep}{1cm} 
+\RequirePackage{etoolbox}
+\RequirePackage{caption}
+
+%% Espacements avant et après les figures
+\BeforeBeginEnvironment{figure}{\vspace{1cm}}
+\AfterEndEnvironment{figure}{\vspace{-0.5cm}}
+
+%% Espacements avant et après les tableaux
+\BeforeBeginEnvironment{table}{\vspace{0.5cm}}
+\AfterEndEnvironment{table}{\vspace{-0.5cm}}
 
 %% Formatage des captions pour les figures et les tableaux 
-\RequirePackage{caption}
 \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=justified}
 \captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=justified}
 \DeclareCaptionLabelSeparator{colon}{ : }
