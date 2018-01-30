@@ -272,20 +272,20 @@
 %% Indentation des sections
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \renewcommand\section{\@startsection{section}{1}%
                                     {\z@}%
                                     {2ex\@plus.2ex\@minus.2ex}%
-                                    {2ex \@plus.2ex}%
-                                    {\normalfont\scshape\bfseries}}
+                                    {.5pt \@plus .2ex}%
+                                    {\normalsize\scshape\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
-                                     {2ex \@plus .2ex}%
-                                     {\normalfont\scshape\bfseries}}
+                                     {.5pt \@plus .2ex}%
+                                     {\scshape\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
-                                     {\normalfont\normalsize\scshape\bfseries}}
+                                     {\normalsize\scshape\bfseries}}   
+                  
 
 %\let\oldsection\section
 %\renewcommand{\section}{\leftskip=0cm \oldsection}
@@ -374,8 +374,6 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%
 
-\newcommand\l@specialchapitre {\@dottedtocline{1}{0em}{0em}}
-
 \renewcommand\tableofcontents{%
   \thispagestyle{empty}
   \baselineskip=\simpleinter
@@ -426,7 +424,6 @@
                     \fi
                     }
 
-
 \def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
       \let\@svsec\@empty \else
     \refstepcounter{#1} \protected@edef\@svsec{\@seccntformat{#1}\hskip 1em}%
@@ -437,7 +434,7 @@
         \@hangfrom{\hskip #3\relax\@svsec}\interlinepenalty \@M #8\@@par}%
     \endgroup
     \csname #1mark\endcsname{#7}%
-	\ifnum #2>\tw@ \else
+  \ifnum #2>\tw@ \else
     \addtocontents{toc}{\protect\vspace{1.5ex}} %ne pas inserer si niveau de section > 2
     \addcontentsline
     {toc}{#1}{\ifnum #2>\c@secnumdepth \else
@@ -455,6 +452,7 @@
   \@xsect{#5}}
 
 \renewcommand\l@chapter{\@dottedtocline{0}{0em}{0em}}
+\newcommand\l@specialchapitre{\@dottedtocline{0}{0em}{0em}}
 \renewcommand\l@section{\@dottedtocline{1}{1.15em}{2.3em}}
 \renewcommand\l@subsection{\@dottedtocline{2}{2.3em}{3.2em}}
 \renewcommand\l@subsubsection{\@dottedtocline{3}{7.0em}{4.1em}}
@@ -510,6 +508,9 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%
 
+\titleformat{name=\table}
+  {\normalfont\Large\bfseries}{\thetable}{1em}{\hspace{0em}}{}
+
 %% Préfixer la référence du tableau par le mot "tableau" en majuscules
 \titlecontents{table}
  [0em]{}
@@ -542,6 +543,10 @@
     \if@restonecol\twocolumn\fi
   }
 }
+
+% Indenter la liste des figures et des tableaux
+\renewcommand*\l@figure{\@dottedtocline{1}{0em}{2.3em}}
+\renewcommand*\l@table{\@dottedtocline{1}{0em}{2.3em}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -713,12 +718,12 @@
 
 \ifthenelse{\equal{\@uqacthese}{true}}{%
   \gdef\thesetype{\textbf{\MakeUppercase{th\`ese}}}
-   \gdef\thesegrade{\textbf{\MakeUppercase{philosophiae doctor en \expandafter\expandafter{\@programme}}}}
+   \gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
    \gdef\accord{e}
 }{%
 	\ifthenelse{\equal{\@uqacprojthese}{true}}{%
   		\gdef\thesetype{\textbf{\MakeUppercase{projet de th\`ese}}}
-   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophiae doctor en \expandafter\expandafter{\@programme}}}}
+   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
    		\gdef\accord{}
 	}{
 		\ifthenelse{\equal{\@uqacmemoire}{true}}{%
