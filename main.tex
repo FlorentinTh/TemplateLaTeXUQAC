@@ -4,9 +4,11 @@
 %%	- times : utilisation de la police Times par défaut.
 %%	- these, projthese, memoire, essai, rapport : pour 
 %%		générer la page de garde en fonction du type document.
+%%	- french, english : selon la langue dans laquelle doit 
+%%		être rédigé le document.
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[12pt,times,these]{uqac}
+\documentclass[12pt,times,these,french]{uqac}
 
 %% Préciser l'emplacement du fichier contenant les acronymes.
 \acrolistpath{assets/acro}
@@ -42,21 +44,33 @@
 \maketitle
 		
 %%%%%%%%%%%%%%%%%%%%%
+%%
 %% Page préliminaires
+%%
 %%%%%%%%%%%%%%%%%%%%%
 \opening
 
-\include{content/resume}
+\include{content/abstract}
+
+%%Si vous écrivez un document en anglais, 
+%%il sera necessaire de fournir un résumé en Français : 
+
+%\include{content/resume}
+
 \tableofcontents
+\cleardoublepage
 \listoftables
 \listoffigures
 \listofacro
+
 \include{content/dedicace}
 \include{content/remerciements}
 \include{content/avant_propos}
 
 %%%%%%%%%%%%%%%%%%%%%
+%%
 %% Document principal
+%%
 %%%%%%%%%%%%%%%%%%%%%
 \maincontent
 
@@ -67,14 +81,21 @@
 \include{content/conclusion}
 
 %%%%%%%%$%%%%
+%%
 %% Références
+%%
+%% apa-uqac-fr si document rédigé en français
+%% apa-uqac-en si document rédigé en anglais
+%%
 %%%%%%%%%%%%%
 
-\bibliographystyle{apa-uqac}
+\bibliographystyle{apa-uqac-fr}
 \bibliography{assets/references}
 
 %%%%%%%%%%%
+%%
 %% Annexes
+%%
 %%%%%%%%%%%
 \appendix
 

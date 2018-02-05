@@ -58,6 +58,18 @@
   \def\@uqacrapport{true}
 }
 
+%% French
+\def\@uqacfrench{false}
+\DeclareOption{french}{%
+  \def\@uqacfrench{true}
+}
+
+%% English
+\def\@uqacenglish{false}
+\DeclareOption{rapport}{%
+  \def\@uqacenglish{true}
+}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions
 \LoadClass{report}
@@ -69,14 +81,18 @@
 %%%%%%%%%%
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
+\RequirePackage{ifthen}
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+  \RequirePackage[french]{babel}
+}{
+  \RequirePackage[english]{babel}
+}
 \RequirePackage{graphicx}
 \RequirePackage{url}
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
-\RequirePackage{ifthen}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{natbib}
-\RequirePackage[french]{babel}
 \RequirePackage{regexpatch}
 \RequirePackage{titletoc}
 \RequirePackage{acronym} 
@@ -239,33 +255,43 @@
    \parskip=2ex  }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Francisation des 
-%% termes de la classe report
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Redéfinition des termes 
+%% en Francais et en anglais
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\addto\captionsfrench{%
-   \renewcommand\contentsname{Table des Mati\`eres}}
-\addto\captionsfrench{%
-   \renewcommand\listfigurename{Liste des Figures}}
-\addto\captionsfrench{%
-   \renewcommand\listtablename{Liste des Tableaux}}
-\addto\captionsfrench{%
-   \renewcommand\bibname{Bibliographie}}
-\addto\captionsfrench{%
-   \renewcommand\indexname{Index}}
-\addto\captionsfrench{%
-   \renewcommand\figurename{Figure}}
-\addto\captionsfrench{%
-   \renewcommand\tablename{Tableau}}
-\addto\captionsfrench{%
-   \renewcommand\partname{Partie}}
-\addto\captionsfrench{%
-   \renewcommand\chaptername{Chapitre}}
-\addto\captionsfrench{%
-   \renewcommand\appendixname{Annexe}}
-\addto\captionsfrench{%
-   \renewcommand\abstractname{R\'esum\'e}}
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	\addto\captionsfrench{%
+	   \renewcommand\contentsname{Table des Mati\`eres}}
+	\addto\captionsfrench{%
+	   \renewcommand\listfigurename{Liste des Figures}}
+	\addto\captionsfrench{%
+	   \renewcommand\listtablename{Liste des Tableaux}}
+	\addto\captionsfrench{%
+	   \renewcommand\bibname{Bibliographie}}
+	\addto\captionsfrench{%
+	   \renewcommand\indexname{Index}}
+	\addto\captionsfrench{%
+	   \renewcommand\figurename{Figure}}
+	\addto\captionsfrench{%
+	   \renewcommand\tablename{Tableau}}
+	\addto\captionsfrench{%
+	   \renewcommand\partname{Partie}}
+	\addto\captionsfrench{%
+	   \renewcommand\chaptername{Chapitre}}
+	\addto\captionsfrench{%
+	   \renewcommand\appendixname{Annexe}}
+	\addto\captionsfrench{%
+	   \renewcommand\abstractname{R\'esum\'e}}
+}{%
+	\addto\captionsenglish{%
+	   \renewcommand\contentsname{Table of Contents}}
+
+   \addto\captionsenglish{%
+	   \renewcommand\bibname{References}}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -285,8 +311,8 @@
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
                                      {\normalsize\scshape\bfseries}}   
-                  
 
+                  
 %\let\oldsection\section
 %\renewcommand{\section}{\leftskip=0cm \oldsection}
 
@@ -314,7 +340,6 @@
 \setlength\abovecaptionskip{10\p@}
 \setlength\belowcaptionskip{5\p@}
 
-
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
   \sbox\@tempboxa{{#1} #2}  
@@ -328,7 +353,6 @@
 
 %% Numérotation des figures avec un "." à la place d'un "-"
 \renewcommand\thefigure{{\thechapter.\@arabic\c@figure}}
-
 %\def\fps@figure{tbp}
 %\def\ftype@figure{1}
 %\def\ext@figure{lof}
@@ -470,11 +494,17 @@
 %%%%%%%%%%%%%%%%%%%%
 
 %% Préfixer la référence de la figure par le mot "figure" en majuscules
-\titlecontents{figure}
- [0em]{}
-{\MakeUppercase{figure}\space\thecontentslabel\space\textendash\space}
- {}{\ \titlerule*[8pt]{$\cdot$}\contentspage}
-%%
+%% et gestion de l'indentation lorsque la légende admet plusieurs lignes.
+
+\titlecontents{figure}[2.74cm]
+  {}
+  {
+  	\makebox[-3pt][r]{%
+      \makebox[2.78cm][l]{\MakeUppercase{figure}\space\thecontentslabel\space\textendash}%
+    }%
+  }
+  {}
+  {\titlerule*[8pt]{.}\contentspage}
 
 \let\svcaption\caption
 \let\svfigure\figure
@@ -500,7 +530,7 @@
     \@starttoc{lof}%
     \if@restonecol\twocolumn\fi
     }
-    }
+}
 
 %%%%%%%%%%%%%%%%%%%%%
 %%
@@ -511,12 +541,32 @@
 \titleformat{name=\table}
   {\normalfont\Large\bfseries}{\thetable}{1em}{\hspace{0em}}{}
 
+
 %% Préfixer la référence du tableau par le mot "tableau" en majuscules
-\titlecontents{table}
- [0em]{}
-{\MakeUppercase{tableau}\space\thecontentslabel\space : }
- {}{\ \titlerule*[8pt]{$\cdot$}\contentspage}
-%%
+%% et gestion de l'indentation lorsque la légende admet plusieurs lignes.
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	\titlecontents{table}[3.1cm]
+  	{}
+  	{
+  		\makebox[-3pt][r]{%©
+      		\makebox[3.15cm][l]{\MakeUppercase{\tablename}\space\thecontentslabel\space : }%
+    	}%
+  	}
+  	{}
+  	{\titlerule*[8pt]{.}\contentspage}
+}{
+	\titlecontents{table}[2.45cm]
+  	{}
+  	{
+  		\makebox[-3pt][r]{%©
+      		\makebox[2.5cm][l]{\MakeUppercase{\tablename}\space\thecontentslabel\space : }%
+    	}%
+  	}
+  	{}
+  	{\titlerule*[8pt]{.}\contentspage}
+}
+
 
 \let\svcaption\caption
 \let\svtable\table
@@ -544,10 +594,6 @@
   }
 }
 
-% Indenter la liste des figures et des tableaux
-\renewcommand*\l@figure{\@dottedtocline{1}{0em}{2.3em}}
-\renewcommand*\l@table{\@dottedtocline{1}{0em}{2.3em}}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% Liste des abréviations
@@ -560,9 +606,17 @@
 \def\acrolistpath#1{\gdef\@acrolistpath{#1}}
 
 \def\listofacro{
-  \chapter*{\textbf{\UpperRef{Liste des Abr\'eviations}}}
+  \ifthenelse{\equal{\@uqacfrench}{true}}{%
+  	\chapter*{\textbf{\UpperRef{Liste des Abr\'eviations}}}
+  }{
+  	\chapter*{\textbf{\UpperRef{List of Abbreviations}}}
+  }
   \addtocontents{toc}{\protect\vspace{1.5ex}}
-  \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Liste des Abr\'eviations}}
+  \ifthenelse{\equal{\@uqacfrench}{true}}{%
+ 	 \addcontentsline{toc}{chapter}{\bfseries\UpperRef{Liste des Abr\'eviations}}
+  }{
+  	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{List of Abbreviations}}
+  }
   \vspace*{.35cm}
   \input{\@acrolistpath}
 }
@@ -597,6 +651,20 @@
 \vspace*{.35cm}
 \baselineskip=\simpleinter}
 
+%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Environnement Resume
+%% en Français
+%%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{resume}{%
+\chapter*{\textbf{\MakeUppercase{Résumé}}}
+\addtocontents{toc}{\protect\vspace{1.5ex}}
+\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Résumé}}
+\vspace*{.35cm}
+\baselineskip=\simpleinter}
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% Environnement Dédicace
@@ -604,9 +672,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{dedic}{%
-\chapter*{\textbf{\MakeUppercase{D\'edicace}}}
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+  	\chapter*{\textbf{\MakeUppercase{D\'edicace}}}
+}{
+  	\chapter*{\textbf{\UpperRef{Dedication}}}
+}
+
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\bfseries\UpperRef{D\'edicace}}
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{D\'edicace}}
+}{
+  	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Dedication}}
+}
+
 \vspace*{.35cm}
 \baselineskip=\simpleinter}
 
@@ -617,9 +697,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{ack}{%
-\chapter*{\textbf{\MakeUppercase{Remerciements}}}
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+  	\chapter*{\textbf{\MakeUppercase{Remerciements}}}
+}{
+  	\chapter*{\textbf{\UpperRef{Acknowledgements}}}
+}
+
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Remerciements}}
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Remerciements}}
+}{
+  	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Acknowledgements}}
+}
+
 \vspace*{.35cm}
 \baselineskip=\simpleinter}
 
@@ -630,9 +722,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{preface}{%
-\chapter*{\textbf{\MakeUppercase{Avant-propos}}}
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+  	\chapter*{\textbf{\MakeUppercase{Avant-propos}}}
+}{
+  	\chapter*{\textbf{\UpperRef{Preface}}}
+}
+
 \addtocontents{toc}{\protect\vspace{1.5ex}}
-\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Avant-propos}}
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Avant-propos}}
+}{
+  	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Preface}}
+}
+
 \vspace*{.35cm}
 \baselineskip=\simpleinter}
 
@@ -717,29 +821,59 @@
 \degreeyear{\the\year}
 
 \ifthenelse{\equal{\@uqacthese}{true}}{%
-  \gdef\thesetype{\textbf{\MakeUppercase{th\`ese}}}
-   \gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
-   \gdef\accord{e}
+	\ifthenelse{\equal{\@uqacfrench}{true}}{%
+  		\gdef\thesetype{\textbf{\MakeUppercase{th\`ese}}}
+   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
+   		\gdef\accord{e}
+	}{
+		\gdef\thesetype{\textbf{\MakeUppercase{thesis}}}
+   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
+   		\gdef\accord{e}
+	}
 }{%
 	\ifthenelse{\equal{\@uqacprojthese}{true}}{%
-  		\gdef\thesetype{\textbf{\MakeUppercase{projet de th\`ese}}}
-   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
-   		\gdef\accord{}
+		\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	  		\gdef\thesetype{\textbf{\MakeUppercase{projet de th\`ese}}}
+	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
+	   		\gdef\accord{}
+   		}{
+   			\gdef\thesetype{\textbf{\MakeUppercase{thesis project}}}
+	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
+	   		\gdef\accord{}
+   		}
 	}{
 		\ifthenelse{\equal{\@uqacmemoire}{true}}{%
-	  		\gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
-		   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-			\gdef\accord{}
-		}{
-			\ifthenelse{\equal{\@uqacessai}{true}}{%
-		  		\gdef\thesetype{\textbf{\MakeUppercase{essai}}}
-			   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+			\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	  			\gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
+		   		\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
 				\gdef\accord{}
 			}{
-				\ifthenelse{\equal{\@uqacrapport}{true}}{%
-			  		\gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
+				\gdef\thesetype{\textbf{\MakeUppercase{master thesis}}}
+		   		\gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
+				\gdef\accord{}
+			}
+		}{
+			\ifthenelse{\equal{\@uqacessai}{true}}{%
+				\ifthenelse{\equal{\@uqacfrench}{true}}{%
+			  		\gdef\thesetype{\textbf{\MakeUppercase{essai}}}
 				   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
 					\gdef\accord{}
+				}{
+					\gdef\thesetype{\textbf{\MakeUppercase{research essay}}}
+				   	\gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
+					\gdef\accord{}
+				}
+			}{
+				\ifthenelse{\equal{\@uqacrapport}{true}}{%
+					\ifthenelse{\equal{\@uqacfrench}{true}}{%
+				  		\gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
+					   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+						\gdef\accord{}
+					}{
+						\gdef\thesetype{\textbf{\MakeUppercase{research report}}}
+					   	\gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
+						\gdef\accord{}
+					}
 				}
 			}
 		}
@@ -763,7 +897,11 @@
 \vfill
 
 \thesetype{}
-\textbf{\MakeUppercase{pr\'esent\'e\accord{} comme exigence partielle en vue de l'obtention du grade de }}
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	\textbf{\MakeUppercase{pr\'esent\'e\accord{} à l'université du québec à chicoutimi comme exigence partielle en vue de l'obtention du grade de}}
+}{
+	\textbf{\MakeUppercase{presented to l'université du québec à chicoutimi in partial fulfillment of the requierments for the degree of}}
+}
 \thesegrade{}
 \ifx\@concentration\empty
 \else
