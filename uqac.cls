@@ -95,7 +95,12 @@
 \RequirePackage{natbib}
 \RequirePackage{regexpatch}
 \RequirePackage{titletoc}
-\RequirePackage{acronym} 
+\RequirePackage{acronym}
+\ifthenelse{\equal{\@uqacfrench}{true}}{%
+  \RequirePackage[lined,boxed,linesnumbered,french,onelanguage]{algorithm2e}
+}{
+ \RequirePackage[lined,boxed,linesnumbered,english,onelanguage]{algorithm2e}
+}
 \RequirePackage{silence}
 
 \WarningsOff
@@ -387,9 +392,19 @@
 \BeforeBeginEnvironment{table}{\vspace{0.5cm}}
 \AfterEndEnvironment{table}{\vspace{-0.5cm}}
 
+%% Espacements avant et après les algorithmes
+\BeforeBeginEnvironment{algorithm}{\vspace{1cm}}
+\AfterEndEnvironment{algorithm}{\vspace{1cm}}
+
+\SetAlCapSkip{12pt}
+\SetAlgoInsideSkip{medskip}
+\renewcommand\AlCapFnt{\bfseries\small}
+\renewcommand{\AlCapNameSty}{\bfseries\small}
+
 %% Formatage des captions pour les figures et les tableaux 
 \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=justified}
 \captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=justified}
+
 \DeclareCaptionLabelSeparator{colon}{ : }
 
 %%%%%%%%%%%%%%%%%%%%%
