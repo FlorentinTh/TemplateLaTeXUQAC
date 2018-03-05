@@ -97,9 +97,9 @@
 \RequirePackage{titletoc}
 \RequirePackage{acronym}
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
-  \RequirePackage[lined,boxed,linesnumbered,french,onelanguage]{algorithm2e}
+  \RequirePackage[lined,boxed,linesnumbered,french,onelanguage,resetcount,algochapter]{algorithm2e}
 }{
- \RequirePackage[lined,boxed,linesnumbered,english,onelanguage]{algorithm2e}
+ \RequirePackage[lined,boxed,linesnumbered,english,onelanguage,resetcount,algochapter]{algorithm2e}
 }
 \RequirePackage{silence}
 
