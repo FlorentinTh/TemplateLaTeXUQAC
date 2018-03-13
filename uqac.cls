@@ -402,8 +402,8 @@
 \renewcommand{\AlCapNameSty}{\bfseries\small}
 
 %% Formatage des captions pour les figures et les tableaux 
-\captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=justified}
-\captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=justified}
+\captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=centering}
+\captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=centering}
 
 \DeclareCaptionLabelSeparator{colon}{ : }
 
@@ -515,7 +515,7 @@
   {}
   {
   	\makebox[-3pt][r]{%
-      \makebox[2.78cm][l]{\MakeUppercase{figure}\space\thecontentslabel\space\textendash}%
+      \makebox[2.78cm][l]{\MakeUppercase{figure}\space\thecontentslabel\protect\space\textendash}%
     }%
   }
   {}
@@ -565,7 +565,7 @@
   	{}
   	{
   		\makebox[-3pt][r]{%©
-      		\makebox[3.15cm][l]{\MakeUppercase{\tablename}\space\thecontentslabel\space : }%
+      		\makebox[3.15cm][l]{\MakeUppercase{\tablename}\space\thecontentslabel\protect\space : }%
     	}%
   	}
   	{}
@@ -575,7 +575,7 @@
   	{}
   	{
   		\makebox[-3pt][r]{%©
-      		\makebox[2.5cm][l]{\MakeUppercase{\tablename}\space\thecontentslabel\space : }%
+      		\makebox[2.5cm][l]{\MakeUppercase{\tablename}\space\thecontentslabel\protect\space : }%
     	}%
   	}
   	{}
