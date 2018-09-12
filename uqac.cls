@@ -307,15 +307,15 @@
                                     {\z@}%
                                     {2ex\@plus.2ex\@minus.2ex}%
                                     {.5pt \@plus .2ex}%
-                                    {\normalsize\scshape\bfseries}}
+                                    {\normalsize\bfseries\MakeUppercase}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {.5pt \@plus .2ex}%
-                                     {\scshape\bfseries}}
+                                     {\normalsize\bfseries\MakeUppercase}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
-                                     {\normalsize\scshape\bfseries}}   
+                                     {\normalsize\bfseries\MakeUppercase}}   
 
                   
 %\let\oldsection\section
@@ -482,7 +482,7 @@
     \def\@svsechd{%
       #6{\hskip #3\relax
        \@svsec #8}\csname #1mark\endcsname
-        {#7} \addcontentsline{toc}{#1}{%
+        {#7} \addcontentsline{toc}{#1}{
         \ifnum #2>\c@secnumdepth \else
           \protect\numberline{\csname the#1\endcsname}%
         \fi
