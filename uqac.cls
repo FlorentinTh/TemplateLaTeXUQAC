@@ -40,6 +40,12 @@
   \def\@uqacprojthese{true}
 }
 
+%% Sujet de Thèse
+\def\@uqacsujthese{false}
+\DeclareOption{sujthese}{%
+  \def\@uqacsujthese{true}
+}
+
 %% Mémoire
 \def\@uqacmemoire{false}
 \DeclareOption{memoire}{%
@@ -853,6 +859,17 @@
 	   		\gdef\accord{}
    		}{
    			\gdef\thesetype{\textbf{\MakeUppercase{thesis project}}}
+	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
+	   		\gdef\accord{}
+   		}
+	}{%
+	\ifthenelse{\equal{\@uqacsujthese}{true}}{%
+		\ifthenelse{\equal{\@uqacfrench}{true}}{%
+	  		\gdef\thesetype{\textbf{\MakeUppercase{sujet de th\`ese}}}
+	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
+	   		\gdef\accord{}
+   		}{
+   			\gdef\thesetype{\textbf{\MakeUppercase{thesis subject}}}
 	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
 	   		\gdef\accord{}
    		}
