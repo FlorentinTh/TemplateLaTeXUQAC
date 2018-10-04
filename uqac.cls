@@ -97,13 +97,23 @@
 \RequirePackage{url}
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{natbib}
 \RequirePackage{regexpatch}
 \RequirePackage{titletoc}
 \RequirePackage{acronym}
+\RequirePackage{enumitem}
+\RequirePackage{hyphenat}
+\RequirePackage{multirow}
+\RequirePackage{makecell}
+\RequirePackage{textcomp}
+
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
   \RequirePackage[lined,boxed,linesnumbered,french,onelanguage,resetcount,algochapter]{algorithm2e}
+  \RequirePackage{babel}
+  \RequirePackage[autolanguage]{numprint}
 }{
  \RequirePackage[lined,boxed,linesnumbered,english,onelanguage,resetcount,algochapter]{algorithm2e}
 }
@@ -388,11 +398,13 @@
 %               {\end@dblfloat}
 
 \RequirePackage{etoolbox}
-\RequirePackage{caption}
+\RequirePackage{caption, subfig}
 
 %% Espacements avant et après les figures
 \BeforeBeginEnvironment{figure}{\vspace{1cm}}
 \AfterEndEnvironment{figure}{\vspace{-0.5cm}}
+\BeforeBeginEnvironment{figure*}{\vspace{1cm}}
+\AfterEndEnvironment{figure*}{\vspace{-0.5cm}}
 
 %% Espacements avant et après les tableaux
 \BeforeBeginEnvironment{table}{\vspace{0.5cm}}
@@ -409,6 +421,7 @@
 
 %% Formatage des captions pour les figures et les tableaux 
 \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=centering}
+\captionsetup[subfloat]{labelfont={small, stretch=1.17}, textfont={small, stretch=1.17}, justification=centering}
 \captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=centering}
 
 \DeclareCaptionLabelSeparator{colon}{ : }
@@ -862,54 +875,55 @@
 	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
 	   		\gdef\accord{}
    		}
-	}{%
-	\ifthenelse{\equal{\@uqacsujthese}{true}}{%
-		\ifthenelse{\equal{\@uqacfrench}{true}}{%
-	  		\gdef\thesetype{\textbf{\MakeUppercase{sujet de th\`ese}}}
-	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
-	   		\gdef\accord{}
-   		}{
-   			\gdef\thesetype{\textbf{\MakeUppercase{thesis subject}}}
-	   		\gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
-	   		\gdef\accord{}
-   		}
 	}{
-		\ifthenelse{\equal{\@uqacmemoire}{true}}{%
-			\ifthenelse{\equal{\@uqacfrench}{true}}{%
-	  			\gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
-		   		\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-				\gdef\accord{}
-			}{
-				\gdef\thesetype{\textbf{\MakeUppercase{master thesis}}}
-		   		\gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
-				\gdef\accord{}
-			}
-		}{
-			\ifthenelse{\equal{\@uqacessai}{true}}{%
-				\ifthenelse{\equal{\@uqacfrench}{true}}{%
-			  		\gdef\thesetype{\textbf{\MakeUppercase{essai}}}
-				   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-					\gdef\accord{}
-				}{
-					\gdef\thesetype{\textbf{\MakeUppercase{research essay}}}
-				   	\gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
-					\gdef\accord{}
-				}
-			}{
-				\ifthenelse{\equal{\@uqacrapport}{true}}{%
-					\ifthenelse{\equal{\@uqacfrench}{true}}{%
-				  		\gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
-					   	\gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
-						\gdef\accord{}
-					}{
-						\gdef\thesetype{\textbf{\MakeUppercase{research report}}}
-					   	\gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
-						\gdef\accord{}
-					}
-				}
-			}
-		}
-	}
+    \ifthenelse{\equal{\@uqacsujthese}{true}}{%
+      \ifthenelse{\equal{\@uqacfrench}{true}}{%
+          \gdef\thesetype{\textbf{\MakeUppercase{sujet de th\`ese}}}
+          \gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) en \expandafter\expandafter{\@programme}}}}
+          \gdef\accord{}
+        }{
+          \gdef\thesetype{\textbf{\MakeUppercase{thesis subject}}}
+          \gdef\thesegrade{\textbf{\MakeUppercase{philosophi\ae{} doctor (Ph.D.) in the subject of \expandafter\expandafter{\@programme}}}}
+          \gdef\accord{}
+        }
+    }{
+      \ifthenelse{\equal{\@uqacmemoire}{true}}{%
+        \ifthenelse{\equal{\@uqacfrench}{true}}{%
+            \gdef\thesetype{\textbf{\MakeUppercase{m\'emoire}}}
+            \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+          \gdef\accord{}
+        }{
+          \gdef\thesetype{\textbf{\MakeUppercase{master thesis}}}
+            \gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
+          \gdef\accord{}
+        }
+      }{
+        \ifthenelse{\equal{\@uqacessai}{true}}{%
+          \ifthenelse{\equal{\@uqacfrench}{true}}{%
+              \gdef\thesetype{\textbf{\MakeUppercase{essai}}}
+              \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+            \gdef\accord{}
+          }{
+            \gdef\thesetype{\textbf{\MakeUppercase{research essay}}}
+              \gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
+            \gdef\accord{}
+          }
+        }{
+          \ifthenelse{\equal{\@uqacrapport}{true}}{%
+            \ifthenelse{\equal{\@uqacfrench}{true}}{%
+                \gdef\thesetype{\textbf{\MakeUppercase{rapport de recherche}}}
+                \gdef\thesegrade{\textbf{\MakeUppercase{ma\^itre \`es sciences en \expandafter\expandafter{\@programme}}}}
+              \gdef\accord{}
+            }{
+              \gdef\thesetype{\textbf{\MakeUppercase{research report}}}
+                \gdef\thesegrade{\textbf{\MakeUppercase{master of science in the subject of \expandafter\expandafter{\@programme}}}}
+              \gdef\accord{}
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 \newpage\null\thispagestyle{empty}\newpage
