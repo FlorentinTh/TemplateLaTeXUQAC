@@ -3,9 +3,14 @@ jobs:
   build:
     docker:
       - image: koppor/texlive
-    working_directory: ./src
     steps:
       - checkout
+      - run:
+          name: Copy Files
+          command: cp -R src/* /tex/src
+      - run:
+          name: Change Directory 
+          command: 'cd /tex/src'
       - run:
           name: Build LaTeX 
           command: 'make build'
