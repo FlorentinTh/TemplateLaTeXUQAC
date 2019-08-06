@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Copy Files
-          command: src/* .
+          command: 'cp -R ./src/* .'
       - run:
           name: Build LaTeX 
           command: 'make build'
