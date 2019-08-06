@@ -13,6 +13,8 @@ jobs:
           command: 'make build'
       - run:
           name: Copy Artifact
-          command: 'cp main.pdf /tmp/artifacts/'
+          command: |
+            mkdir /tmp/artifacts;
+            cp main.pdf /tmp/artifacts/;
       - store_artifacts:
           path: /tmp/artifacts
