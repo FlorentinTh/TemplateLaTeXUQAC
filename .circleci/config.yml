@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: koppor/texlive
+    working_directory: ./src
+    steps:
+      - checkout
+      - run:
+          name: Build LaTeX 
+          command: 'make build'
+      - store_artifacts:
+          path: /tmp/artifacts
