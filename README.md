@@ -1,6 +1,6 @@
 # TemplateLaTeXUQAC
 
-[![Build](https://img.shields.io/circleci/build/github/FlorentinTh/TemplateLaTeXUQAC/master?style=flat-square&token=0fdc873e50de49d6e9868ff847d740d20813f3bd)](https://circleci.com/gh/FlorentinTh/TemplateLaTeXUQAC) ![Last Commit](https://img.shields.io/github/last-commit/FlorentinTh/TemplateLaTeXUQAC?style=flat-square) ![License](https://img.shields.io/github/license/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)
+[![Build](https://img.shields.io/circleci/build/github/FlorentinTh/TemplateLaTeXUQAC/master?style=flat-square&token=0fdc873e50de49d6e9868ff847d740d20813f3bd)](https://circleci.com/gh/FlorentinTh/TemplateLaTeXUQAC) [![Last Commit](https://img.shields.io/github/last-commit/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/commits/master) [![License](https://img.shields.io/github/license/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/blob/master/LICENSE)
 
 [![Release Version](https://img.shields.io/github/release/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/releases) ![Release Date](https://img.shields.io/github/release-date/FlorentinTh/TemplateLaTeXUQAC?style=flat-square) ![Downloads](https://img.shields.io/github/downloads/FlorentinTh/TemplateLaTeXUQAC/v1.1/total?style=flat-square)
 
