@@ -7,12 +7,12 @@ jobs:
       - checkout
       - run:
           name: Copy Files
-          command: mkdir -p /tex/src && cp -R src/* /tex/src
-      - run:
-          name: Change Directory 
-          command: 'cd /tex/src'
+          command: src/* .
       - run:
           name: Build LaTeX 
           command: 'make build'
+      - run:
+          name: Copy Artifact
+          commad: 'cp main.pdf /tmp/artifacts/'
       - store_artifacts:
           path: /tmp/artifacts
