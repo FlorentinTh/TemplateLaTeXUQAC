@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.1] - 2019-08-07
+
+### Changed
+
+- Change local TeXLive container build to pre-built image [available on Docker Hub](https://hub.docker.com/r/florentinth/texlive-full).
+
 ## [1.1] - 2019-08-06
 
 ### Added

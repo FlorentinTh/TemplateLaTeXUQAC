@@ -5,7 +5,13 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    image: texlive:latest
+    image: tex-template:latest
     container_name: latex
+    networks: 
+      - latex-net
     volumes: 
       - ./src:/tex/src
+
+networks: 
+  latex-net:
+    name: latex-net

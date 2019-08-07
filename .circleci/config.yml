@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  build:
+  build-2019:
     docker:
-      - image: koppor/texlive
+      - image: florentinth/texlive-full:2019
     steps:
       - checkout
       - run:
@@ -18,3 +18,32 @@ jobs:
             cp main.pdf /tmp/artifacts/;
       - store_artifacts:
           path: /tmp/artifacts
+  build-2018:
+    docker:
+      - image: florentinth/texlive-full:2018
+    steps:
+      - checkout
+      - run:
+          name: Copy Files
+          command: 'cp -R ./src/* .'
+      - run:
+          name: Build LaTeX 
+          command: 'make build'
+    build-2017:
+    docker:
+      - image: florentinth/texlive-full:2017
+    steps:
+      - checkout
+      - run:
+          name: Copy Files
+          command: 'cp -R ./src/* .'
+      - run:
+          name: Build LaTeX 
+          command: 'make build'
+workflows:
+  version: 2
+  build_all_versions:
+    jobs:
+      - build-2019
+      - build-2018
+      - build-2017
