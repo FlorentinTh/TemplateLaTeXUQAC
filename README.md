@@ -2,51 +2,51 @@
 
 [![Build](https://img.shields.io/circleci/build/github/FlorentinTh/TemplateLaTeXUQAC/master?style=flat-square&token=0fdc873e50de49d6e9868ff847d740d20813f3bd)](https://circleci.com/gh/FlorentinTh/TemplateLaTeXUQAC) [![Last Commit](https://img.shields.io/github/last-commit/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/commits/master) [![License](https://img.shields.io/github/license/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/blob/master/LICENSE)
 
-[![Release Version](https://img.shields.io/github/release/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/releases) ![Release Date](https://img.shields.io/github/release-date/FlorentinTh/TemplateLaTeXUQAC?style=flat-square) ![Downloads](https://img.shields.io/github/downloads/FlorentinTh/TemplateLaTeXUQAC/v1.1/total?style=flat-square)
+[![Release Version](https://img.shields.io/github/release/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/releases) ![Release Date](https://img.shields.io/github/release-date/FlorentinTh/TemplateLaTeXUQAC?style=flat-square) ![Downloads](https://img.shields.io/github/downloads/FlorentinTh/TemplateLaTeXUQAC/v1.1.1/total?style=flat-square)
 
 Ce projet est un gabarit LaTeX pour la rédaction de documents pour l'Université du Québec à Chicoutimi (UQAC). Il respecte les directives fournies par le [décanat des études](http://services.uqac.ca/decanat-des-etudes/sous-menu-2/). De plus, il est également possible de l'utiliser pour la rédaction de documents dans les deux langues principales, c'est-à-dire le français et l'anglais.
 
-## Auteur
+## Auteurs
 
 **[Florentin Thullier](https://github.com/florentinth)** - _2018_
 
 _**Contact :** [florentin.thullier1@uqac.ca](florentin.thullier1@uqa.ca)_
 
-## Requirements
+## Prérequis
 
 - [Docker](https://www.docker.com/get-started)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-## Usage
+## Utilisation
 
-- Clone the repository :
+- Cloner le dépôt :
 
 ```sh
 $ git clone https://github.com/FlorentinTh/TemplateLaTeXUQAC.git
 ```
 
-- Open the project with VSCode :
+- Ouvrir le projet avec VSCode :
 
 ```sh
 $ cd TemplateLaTeXUQAC
 $ code .
 ```
 
-- Generate the PDF file for the first time :
+- Générer le PDF final pour la première fois :
 
 ```
-$ docker-compose -f "docker-compose.yml" up -d --build 
+$ docker-compose -f "docker-compose.yml" up -d --build
 ```
 
-> The first time you try to generate the PDF file it may take some time (depending on your hardware). Don't worry, it's totally normal and next tries will be a lot faster.
+> La première fois que vous allez générer le fichier PDF final, cela pourra prendre un certain temps (en fonction de votre matériel). Ne vous inquiétez pas, c'est tout à fait normal et les prochaines itérations seront beaucoup plus rapides.
 
-- Generate the PDF file following times :
+- Générer le PDF final les fois suivantes :
 
 ```sh
 $ docker start latex
 ```
 
-> If you're not familiar with LaTeX, you can [download](https://github.com/FlorentinTh/TemplateLaTeXUQAC/archive/master.zip) the sources of this repository, extract the archive and upload the content of the ```src``` folder on [Overleaf](https://overleaf.com/).
+> Si vous n'êtes pas familier avec LaTeX, vous pouvez [télécharger](https://github.com/FlorentinTh/TemplateLaTeXUQAC/archive/master.zip) les fichiers sources de ce dépôt, extraire l'archive et importer le contenu du dossier ```src``` directement dans [Overleaf](https://overleaf.com/).
 
 ## Licence
 
