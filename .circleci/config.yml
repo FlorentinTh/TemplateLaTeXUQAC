@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Build LaTeX 
           command: 'make build'
-    build-2017:
+  build-2017:
     docker:
       - image: florentinth/texlive-full:2017
     steps:
