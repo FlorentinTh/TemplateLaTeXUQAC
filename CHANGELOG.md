@@ -46,3 +46,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [1.1]: https://github.com/florentinth/FlOS/compare/v1.0.9-stable...v1.1
 [1.1.1]: https://github.com/florentinth/FlOS/compare/v1.1...v1.1.1
 [1.1.2]: https://github.com/florentinth/FlOS/compare/v1.1.1...v1.1.2
+[1.1.3]: https://github.com/florentinth/FlOS/compare/v1.1.2...v1.1.3
