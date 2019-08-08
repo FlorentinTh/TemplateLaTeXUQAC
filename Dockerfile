@@ -1,4 +1,4 @@
-FROM tex-project:latest
+FROM florentinth/tex-project:latest
 
 LABEL maintainer "Florentin Thullier <florentin.thullier1@uqac.ca>"
 
