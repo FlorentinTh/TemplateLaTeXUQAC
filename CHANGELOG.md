@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.4] - 2019-09-16
+
+### Changed
+
+- Dedication environment style in ```uqac.cls```.
+
 ## [1.1.3] - 2019-08-08
 
 ### Changed
