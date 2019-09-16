@@ -2,7 +2,7 @@
 
 [![Build](https://img.shields.io/circleci/build/github/FlorentinTh/TemplateLaTeXUQAC/master?style=flat-square&token=0fdc873e50de49d6e9868ff847d740d20813f3bd)](https://circleci.com/gh/FlorentinTh/TemplateLaTeXUQAC) [![Last Commit](https://img.shields.io/github/last-commit/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/commits/master) [![License](https://img.shields.io/github/license/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/blob/master/LICENSE)
 
-[![Release Version](https://img.shields.io/github/release/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/releases) ![Release Date](https://img.shields.io/github/release-date/FlorentinTh/TemplateLaTeXUQAC?style=flat-square) ![Downloads](https://img.shields.io/github/downloads/FlorentinTh/TemplateLaTeXUQAC/v1.1.3/total?style=flat-square)
+[![Release Version](https://img.shields.io/github/release/FlorentinTh/TemplateLaTeXUQAC?style=flat-square)](https://github.com/FlorentinTh/TemplateLaTeXUQAC/releases) ![Release Date](https://img.shields.io/github/release-date/FlorentinTh/TemplateLaTeXUQAC?style=flat-square) ![Downloads](https://img.shields.io/github/downloads/FlorentinTh/TemplateLaTeXUQAC/v1.1.4/total?style=flat-square)
 
 Ce projet est un gabarit LaTeX pour la rédaction de documents pour l'Université du Québec à Chicoutimi (UQAC). Il respecte les directives fournies par le [décanat des études](http://services.uqac.ca/decanat-des-etudes/sous-menu-2/). De plus, il est également possible de l'utiliser pour la rédaction de documents dans les deux langues principales, c'est-à-dire le français et l'anglais.
 
