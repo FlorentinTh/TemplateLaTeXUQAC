@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.5] - 2019-10-21
+
+### Changed
+
+- Default behaviour of ```footnote``` in ```uqac.cls```. Don't reset the number anymore after each new chapter.
+
 ## [1.1.4] - 2019-09-16
 
 ### Changed
@@ -54,3 +60,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [1.1.2]: https://github.com/florentinth/FlOS/compare/v1.1.1...v1.1.2
 [1.1.3]: https://github.com/florentinth/FlOS/compare/v1.1.2...v1.1.3
 [1.1.4]: https://github.com/florentinth/FlOS/compare/v1.1.3...v1.1.4
+[1.1.5]: https://github.com/florentinth/FlOS/compare/v1.1.4...v1.1.5

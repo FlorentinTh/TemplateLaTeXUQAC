@@ -111,6 +111,7 @@
 \RequirePackage{textcomp}
 \RequirePackage{rotating}
 \RequirePackage{microtype}
+\RequirePackage{chngcntr}
 
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
   \RequirePackage[lined,boxed,linesnumbered,french,onelanguage,resetcount,algochapter]{algorithm2e}
@@ -669,6 +670,8 @@
  \noindent
  \rule{4cm}{0.4pt}
 }
+
+\counterwithout*{footnote}{chapter}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%
