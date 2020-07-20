@@ -1,19 +1,19 @@
 version: '3.7'
 
 services:
-  latex: 
-    build: 
+  latex:
+    build:
       context: .
       dockerfile: Dockerfile
     image: tex-template:latest
     container_name: latex
-    environment: 
+    environment:
       CLEAN: ${CLEAN}
-    networks: 
+    networks:
       - latex-net
-    volumes: 
+    volumes:
       - ./src:/tex/src
 
-networks: 
+networks:
   latex-net:
     name: latex-net

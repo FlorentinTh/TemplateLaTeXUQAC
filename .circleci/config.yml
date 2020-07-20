@@ -1,5 +1,23 @@
 version: 2
 jobs:
+  build-2020:
+    docker:
+      - image: florentinth/texlive-full:2020
+    steps:
+      - checkout
+      - run:
+          name: Copy Files
+          command: 'cp -R ./src/* .'
+      - run:
+          name: Build LaTeX
+          command: 'make build'
+      - run:
+          name: Copy Artifact
+          command: |
+            mkdir /tmp/artifacts;
+            cp main.pdf /tmp/artifacts/;
+      - store_artifacts:
+          path: /tmp/artifacts
   build-2019:
     docker:
       - image: florentinth/texlive-full:2019
@@ -9,15 +27,8 @@ jobs:
           name: Copy Files
           command: 'cp -R ./src/* .'
       - run:
-          name: Build LaTeX 
+          name: Build LaTeX
           command: 'make build'
-      - run:
-          name: Copy Artifact
-          command: |
-            mkdir /tmp/artifacts;
-            cp main.pdf /tmp/artifacts/;
-      - store_artifacts:
-          path: /tmp/artifacts
   build-2018:
     docker:
       - image: florentinth/texlive-full:2018
@@ -27,7 +38,7 @@ jobs:
           name: Copy Files
           command: 'cp -R ./src/* .'
       - run:
-          name: Build LaTeX 
+          name: Build LaTeX
           command: 'make build'
   build-2017:
     docker:
@@ -38,12 +49,13 @@ jobs:
           name: Copy Files
           command: 'cp -R ./src/* .'
       - run:
-          name: Build LaTeX 
+          name: Build LaTeX
           command: 'make build'
 workflows:
   version: 2
   build_all_versions:
     jobs:
+      - build-2020
       - build-2019
       - build-2018
       - build-2017
