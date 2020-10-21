@@ -112,6 +112,7 @@
 \RequirePackage{rotating}
 \RequirePackage{microtype}
 \RequirePackage{chngcntr}
+\RequirePackage{geometry}
 
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
   \RequirePackage[lined,boxed,linesnumbered,french,onelanguage,resetcount,algochapter]{algorithm2e}
@@ -143,14 +144,7 @@
 %% Définition des marges
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%
-
-\setlength{\oddsidemargin}{1cm}
-\setlength{\evensidemargin}{0.35cm}
-\setlength{\topmargin}{-0.25cm}
-\setlength{\textwidth}{14.6cm}
-\setlength{\textheight}{23.45cm}
-\addtolength{\topmargin}{-\headheight}
-\addtolength{\topmargin}{-\headsep}
+\geometry{left=3.5cm, right=2.5cm, top=3cm}
 
 %%%%%%%  End of margins and formatting params %%%
 
@@ -158,7 +152,7 @@
 
 % Ne pas paginer les pages vides
 % Code for creating empty pages
-% No headers on empty pages before new chapt  er
+% No headers on empty pages before new chapter
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
     \hbox{}
     \thispagestyle{empty}
@@ -303,7 +297,7 @@
 	\addto\captionsfrench{%
 	   \renewcommand\chaptername{Chapitre}}
 	\addto\captionsfrench{%
-	   \renewcommand\appendixname{Annexe}}
+	   \renewcommand\appendixname{Appendice}}
 	\addto\captionsfrench{%
 	   \renewcommand\abstractname{R\'esum\'e}}
 }{%
@@ -398,6 +392,10 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{caption, subfig}
+
+%% Espacements avant et après les équations
+\BeforeBeginEnvironment{equation}{\vspace{-0.5cm}}
+\AfterEndEnvironment{equation}{\vspace{-0.5cm}}
 
 %% Espacements avant et après les figures
 \BeforeBeginEnvironment{figure}{\vspace{1cm}}
@@ -801,7 +799,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Environnement Annexes
+%% Environnement Appendice
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%
 
