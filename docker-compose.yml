@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: tex-template:latest
-    container_name: latex
+    container_name: template_uqac
     environment:
       CLEAN: ${CLEAN}
     networks:
