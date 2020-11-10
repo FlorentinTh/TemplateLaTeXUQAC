@@ -757,7 +757,7 @@ FUNCTION {format.pages.inbook}                              %UQAM G.L.  02/06/20
 	{ "(" en.page * pages n.dashify tie.or.space.connect }	%UQAM G.L. 02/06/2015
 	{ "(" en.page * pages tie.or.space.connect }			%UQAM G.L. 02/06/2015
       if$
-      ")." *								
+      ")." *
     }
   if$
 }
