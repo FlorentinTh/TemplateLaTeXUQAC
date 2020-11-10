@@ -1,22 +1,22 @@
 \chapter{premier chapitre}
-	
-\section{Exemples} 
 
-\subsection{citations} 
+\section{Exemples}
+
+\subsection{citations}
 
 Ceci est un premier exemple de citation \cite{Ful83}. Ceci est un deuxième exemple de citation \citep{GMP81}. Ceci est un troisième exemple de citation \citet{PP98}.
 
-\subsection{acronymes} 
+\subsection{acronymes}
 
 Exemple de définition d'un acronyme de trois lettres : \ac{TLA}. Puis utilisation de cet acronyme en version courte \acs{TLA}.
 
-\subsection{equations}   
+\subsection{equations}
 
 \begin{equation}
-E=mc^2	
+E=mc^2
 \end{equation}
 
-\subsection{figures}   
+\subsection{figures}
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -31,7 +31,7 @@ consequat.
 \begin{figure}[H]
  \centering
  \includegraphics[width=7cm]{lenna.png}
- \caption{Titre de la figure qui doit normalement se tenir sur deux lignes car il est assez long}
+ \caption{Titre de la figure qui doit normalement se tenir sur deux lignes car il est assez long.}
  \label{fig:figure1}
 \end{figure}
 
@@ -45,7 +45,14 @@ tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
 
-\subsection{tableaux}   
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=7cm]{lenna.png}
+  \caption[Titre de la figure sans citation]{Titre de la figure qui comporte une citation \citep{Ful83}.}
+  \label{fig:figure1}
+ \end{figure}
+
+\subsection{tableaux}
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -54,7 +61,7 @@ consequat.
 
 \begin{table}[H]
   \begin{center}
-    \caption{Titre du tableau qui doit normalement se tenir sur deux lignes}
+    \caption{Titre du tableau qui doit normalement se tenir sur deux lignes.}
     \label{tab:table1}
     \begin{tabular}{l|c|r}
       \textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
@@ -86,7 +93,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 consequat.
-	
+
 \begin{algorithm}[H]
 \KwData{input}
 \KwResult{output}
@@ -100,7 +107,7 @@ initialization\;
    instructions3\;
   }
  }
-\caption{Titre de l'algorithme}
+\caption{Titre de l'algorithme.}
 \label{algo:algo_1}
 \end{algorithm}
 

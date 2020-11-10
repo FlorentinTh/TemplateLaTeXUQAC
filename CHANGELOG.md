@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3] - 2020-11-10
+
+### Changed
+
+- Fix ```figure``` and ```table``` captions to allow short version without ```\cite``` command issue in LoF.
+- Edit example accordingly.
+
+## [1.2] - 2020-10-21
+
+### Changed
+
+- Change default left margin.
+- Change spacing before and after ```equation``` environment.
+- Rename ```Annexe``` to ```Appendice``` in the french class.
+
 ## [1.1.5] - 2019-10-21
 
 ### Changed
@@ -61,3 +76,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [1.1.3]: https://github.com/florentinth/FlOS/compare/v1.1.2...v1.1.3
 [1.1.4]: https://github.com/florentinth/FlOS/compare/v1.1.3...v1.1.4
 [1.1.5]: https://github.com/florentinth/FlOS/compare/v1.1.4...v1.1.5
+[1.2]: https://github.com/florentinth/FlOS/compare/v1.1.5...v1.2
+[1.3]: https://github.com/florentinth/FlOS/compare/v1.2...v1.3

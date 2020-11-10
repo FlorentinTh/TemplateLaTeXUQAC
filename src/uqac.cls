@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Date de création: Janvier 2018
-%% Auteur: Florentin Thullier 
+%% Auteur: Florentin Thullier
 
 %%%%%%%%%%%%%%%%%
 %%
@@ -144,6 +144,15 @@
 %% Définition des marges
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%
+
+% \setlength{\oddsidemargin}{1cm}
+% \setlength{\evensidemargin}{0.35cm}
+% \setlength{\topmargin}{-0.25cm}
+% \setlength{\textwidth}{14.6cm}
+% \setlength{\textheight}{23.45cm}
+% \addtolength{\topmargin}{-\headheight}
+% \addtolength{\topmargin}{-\headsep}
+
 \geometry{left=3.5cm, right=2.5cm, top=3cm}
 
 %%%%%%%  End of margins and formatting params %%%
@@ -418,7 +427,9 @@
 
 %% Formatage des captions pour les figures et les tableaux
 \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=centering}
+
 \captionsetup[subfloat]{labelfont={small, stretch=1.17}, textfont={small, stretch=1.17}, justification=centering}
+
 \captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=centering}
 
 \DeclareCaptionLabelSeparator{colon}{ : }
@@ -520,6 +531,51 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %%
+%% Liste des algorithmes
+%%
+%%%%%%%%%%%%%%%%%%%%
+
+% \let\oldl@algocf\l@algocf
+% \renewcommand{\l@algocf}[2]{\oldl@algocf{\MakeUppercase{algorithme} #1}{#2}}
+
+% \titlecontents{algorithm}[2.74cm]
+%   {}
+%   {
+%   	\makebox[-3pt][r]{%
+%       \makebox[2.78cm][l]{\MakeUppercase{algorithm}\space\l@algocf}%
+%     }%
+%   }
+%   {}
+%   {\titlerule*[8pt]{.}\contentspage}
+
+% \let\svcaption\caption
+% \let\svalgo\algorithm
+% \def\algorithm{\algocaps\svalgo}
+% \def\algocaps{%
+%   \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
+% }
+
+% \renewcommand\listofalgorithms{%
+% {
+%     \baselineskip=\simpleinter
+%     \if@twocolumn
+%       \@restonecoltrue\onecolumn
+%     \else
+%       \@restonecolfalse
+%     \fi
+%     \chapter*{\textbf{\UpperRef{\listalgorithmcfname}}
+%       \@mkboth{\UpperRef{\listalgorithmcfname}}%
+%               {\UpperRef{\listalgorithmcfname}}}%
+%     \addtocontents{toc}{\protect\vspace{1.5ex}}
+%     \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\listalgorithmcfname}}
+%     \vspace*{.35cm}
+%     \@starttoc{loa}%
+%     \if@restonecol\twocolumn\fi
+%     }
+% }
+
+%%%%%%%%%%%%%%%%%%%%
+%%
 %% Liste des figures
 %%
 %%%%%%%%%%%%%%%%%%%%
@@ -527,22 +583,25 @@
 %% Préfixer la référence de la figure par le mot "figure" en majuscules
 %% et gestion de l'indentation lorsque la légende admet plusieurs lignes.
 
-\titlecontents{figure}[2.74cm]
+\titlecontents{figure}[2.72cm]
   {}
   {
   	\makebox[-3pt][r]{%
-      \makebox[2.78cm][l]{\MakeUppercase{figure}\space\thecontentslabel\protect\space\textendash}%
+      \makebox[2.77cm][l]{\MakeUppercase{figure}\space\thecontentslabel\protect\space\textendash}%
     }%
   }
   {}
   {\titlerule*[8pt]{.}\contentspage}
 
-\let\svcaption\caption
-\let\svfigure\figure
-\def\figure{\figurecaps\svfigure}
-\def\figurecaps{%
-  \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
-}
+  \let\svcaption\caption
+  \let\svfigure\figure
+  \def\figure{\figurecaps\svfigure}
+  \def\figurecaps{%
+    \renewcommand\caption[2][\shortcaption]{
+      \def\shortcaption{##2}
+      \svcaption[\MakeUppercase{##1}]{##2}
+    }
+  }
 
 \renewcommand\listoffigures{%
 {
@@ -603,7 +662,10 @@
 \let\svtable\table
 \def\table{\tablecaps\svtable}
 \def\tablecaps{%
-  \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
+  \renewcommand\caption[2][\shortcaption]{
+    \def\shortcaption{##2}
+    \svcaption[\MakeUppercase{##1}]{##2}
+  }
 }
 
 \renewcommand\listoftables{%
