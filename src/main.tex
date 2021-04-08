@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 %% Classes disponibles :
 %%	- times : utilisation de la police Times par défaut.
@@ -7,9 +7,13 @@
 %%	- french, english : selon la langue dans laquelle doit
 %%		être rédigé le document.
 %%  - twoside : alternance des marges pour impression recto/verso
+%%    vous devez décommenter la ligne xx si vous utilisez cette classe
 %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,times,these,french]{uqac}
+
+%% Décommenter la ligne suivante avec l'utilisation de la classe "twoside"
+% \raggedbottom
 
 %% Préciser l'emplacement du fichier contenant les acronymes.
 \acrolistpath{assets/acro}
@@ -36,12 +40,10 @@
 %% S’il y a lieu,
 %% indiquer le profil
 %% ou la concentration du programme
-
 %\concentration{profil recherche}
 
 %% Par défaut l'année courante est utilisée.
 %% Pour spéfier une autre année :
-
 %\degreeyear{2018}
 
 \maketitle
@@ -56,7 +58,7 @@
 \include{content/abstract}
 
 %%Si vous écrivez un document en anglais,
-%%il sera necessaire de fournir un résumé en Français :
+%%il sera nécessaire de fournir un résumé en Français :
 
 %\include{content/resume}
 
@@ -87,8 +89,8 @@
 %%
 %% Références
 %%
-%% apa-uqac-fr si document rédigé en français
-%% apa-uqac-en si document rédigé en anglais
+%% apa-uqac-fr si le document est rédigé en français
+%% apa-uqac-en si le document est rédigé en anglais
 %%
 %%%%%%%%%%%%%
 
