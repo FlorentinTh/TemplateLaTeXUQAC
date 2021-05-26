@@ -130,7 +130,7 @@ ENTRY
 
 
 FUNCTION{en.and}{		%% le "et" entre les deux derniers auteurs
-" and "
+" \& "
 }
 
 FUNCTION{en.editeur}{		%% ", \'editeur" au singulier, ou " (\'editeur)"...
@@ -209,8 +209,8 @@ STRINGS { urlintro doiprefix doiurl }
 
 FUNCTION{init.variables}
 {
-  "R\'ecup\'er\'e" 'urlintro := % prefix before URL; typically "Available from:" or "URL":
-  "http://dx.doi.org/" 'doiurl := % prefix to make URL from DOI
+  "R\'ecup\'er\'e \`a" 'urlintro := % prefix before URL; typically "Available from:" or "URL":
+  "doi:" 'doiurl := % prefix to make URL from DOI
   "" 'doiprefix :=      % text prefix printed before DOI ref; typically "doi:"
 }
 
@@ -608,7 +608,7 @@ FUNCTION {format.url}
             "~le " * urldate *
          }
          if$
-       " de \url{" * url * "}" * }
+       " \url{" * url * "}" * }
    if$
 }
 
