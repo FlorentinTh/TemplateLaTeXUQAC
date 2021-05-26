@@ -209,7 +209,7 @@ STRINGS { urlintro doiprefix doiurl }
 
 FUNCTION{init.variables}
 {
-  "R\'ecup\'er\'e" 'urlintro := % prefix before URL; typically "Available from:" or "URL":
+  "R\'ecup\'er\'e \`a" 'urlintro := % prefix before URL; typically "Available from:" or "URL":
   "doi:" 'doiurl := % prefix to make URL from DOI
   "" 'doiprefix :=      % text prefix printed before DOI ref; typically "doi:"
 }
@@ -608,7 +608,7 @@ FUNCTION {format.url}
             "~le " * urldate *
          }
          if$
-       " de \url{" * url * "}" * }
+       " \url{" * url * "}" * }
    if$
 }
 
