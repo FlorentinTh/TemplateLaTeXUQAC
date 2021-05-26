@@ -210,7 +210,7 @@ STRINGS { urlintro doiprefix doiurl }
 FUNCTION{init.variables}
 {
   "R\'ecup\'er\'e" 'urlintro := % prefix before URL; typically "Available from:" or "URL":
-  "http://dx.doi.org/" 'doiurl := % prefix to make URL from DOI
+  "doi:" 'doiurl := % prefix to make URL from DOI
   "" 'doiprefix :=      % text prefix printed before DOI ref; typically "doi:"
 }
 
