@@ -7,7 +7,7 @@
 %%	- french, english : selon la langue dans laquelle doit
 %%		être rédigé le document.
 %%  - twoside : alternance des marges pour impression recto/verso
-%%    vous devez décommenter la ligne xx si vous utilisez cette classe
+%%    vous devez décommenter la ligne 16 si vous utilisez cette classe
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,times,these,french]{uqac}
@@ -23,7 +23,8 @@
 
 %% Package pour activer le suivi des liens dans le PDF.
 %% Il est possible de les identifier par une couleur différente du texte.
-%% Par défaut, les liens ne sont pas différenciés du reste du texte.
+%% Par défaut, les liens ne sont pas différenciés du reste du texte
+%% par leur couleur ou leur font.
 \usepackage[hidelinks=true]{hyperref}
 \urlstyle{same}
 
@@ -44,7 +45,7 @@
 %\concentration{profil recherche}
 
 %% Par défaut l'année courante est utilisée.
-%% Pour spéfier une autre année :
+%% Pour spécifier une autre année :
 %\degreeyear{2018}
 
 \maketitle
@@ -58,8 +59,8 @@
 
 \include{content/abstract}
 
-%%Si vous écrivez un document en anglais,
-%%il sera nécessaire de fournir un résumé en Français :
+%% Si vous écrivez un document en anglais,
+%% il sera nécessaire de fournir un résumé en Français :
 
 %\include{content/resume}
 

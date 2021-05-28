@@ -91,6 +91,7 @@
 
 ENTRY
   { address
+    assignee
     author
     booktitle
     chapter
@@ -457,7 +458,12 @@ FUNCTION {new.sentence}
   if$
 }
 
-
+FUNCTION {format.assignee}
+{ assignee empty$
+    { "" }
+    { " [" assignee * "]" *}
+  if$
+}
 
 FUNCTION {new.block.checkb}
 { empty$
@@ -1111,6 +1117,21 @@ FUNCTION {mastersthesis}
   format.doi output				% UQAM ajout doi G.L. 28/08/2013
   new.block
   format.url output			    % UQAM ajout url G.L. 28/08/2013
+  fin.entry
+}
+
+FUNCTION {patent}
+{ output.bibitem
+  format.authors "author" output.check
+  author format.key output
+  output.year.check
+  new.block
+  format.title "title" output.check
+  new.block
+  format.assignee output
+  new.block
+  number output
+
   fin.entry
 }
 
