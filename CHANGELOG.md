@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0] - 2021-06-15
+
+### Features
+
+- Add ```ieee-uqac-fr.bst``` and ```ieee-uqac-fr.bst``` files to allow using IEEE bibliographic style.
+
+- Add ```apa``` and ```ieee``` classes to automatically set bibliographic style according to both the precised style and the language.
+
+- Add ```rev``` class for bibliographic revision (it will highlight URLs in green).
+
+### Bug Fixes
+
+⚠️**Breaking Changes**:
+
+- Entirely rewrite both ```apa-uqac-fr.bst``` and ```apa-uqac-en.bst``` bibliographic style as they now completely adopt the APA 6th Provost template without using any custom document type. _Some previous changes (such as ```@patent```) may not work anymore!_
+
+### Chore
+
+- Remove useless PDF examples.
+
 ## [1.3.3] - 2021-05-28
 
 ### Bug Fixes
@@ -121,3 +141,4 @@ __If your bib file is exported from *Mendeley*, you should consider updating it 
 [1.3.1]: https://github.com/florentinth/FlOS/compare/v1.3...v1.3.1
 [1.3.2]: https://github.com/florentinth/FlOS/compare/v1.3.1...v1.3.2
 [1.3.3]: https://github.com/florentinth/FlOS/compare/v1.3.2...v1.3.3
+[2.0]: https://github.com/florentinth/FlOS/compare/v1.3.3...v2.0
