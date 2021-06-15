@@ -1,220 +1,146 @@
-% Bibtex `apalike-uqam'
-% Gisele Legault, 28 aout 2013.
-% construit sur le style `apalike2'.
-% Changements:
-%  1) francisation des mots et des fonctions fr.XXX, exemple fr.and, fr.editeur
-%     etc... . Utilise apalike-fr
-%     http://www.lsv.ens-cachan.fr/~markey/BibTeX/bst/apalike-fr.bst
-%  2) ajout des champs url, doi et support
-%     exemple support: DVD, document electronique, logiciel.
-%  3) modifie output.year.check pour que "sans date" apparaisse
-%     entre [] et non ()
-%  4) modifie fin.entry pour n'ajoute pas de point si la reference se termine
-%     par un url ou doi
-%  5) modifie format.name -- utilisation de fr.et.al et fr.and
-%     modifie format.editors et eho.format.editors -- utilisation de fr.editeur %     et fr.editeurs
-%     modifie format.bvolume -- utilisation de fr.volume et fr.of
-%     modifie format.number.series pour qu'il utilise fr.number et
-%     fr.number.maj et fr.in.spc
-%     modifie format.edition -- utilisation de fr.edtion
-%     modifie format.pages -- utilisation de fr.page et fr.pages + retire la
-%     parenthese a la fin du format.pages
-%     modifie format.vol.num.pages -- volume en italique (emphasize)
-%     modifie format.chapter.pages -- utilisation de fr.chapter
-%     modifie format.in.ed.booktitle -- utilisation de fr.in et
-%     eho.format.editors et remplace virgule par point
-%     modifie format.thesis.type -- ajoute parentheses
-%     modifie format.tr.number -- utilisation de fr.tech.rep
-%     modifie format.article.crossref et format.incoll.inproc.crossref  --
-%     utilisation de fr.in
-%     modifie format.book.crossref --utilisation de fr.in et fr.of
-%  6) ajout des fonctions format.doi, format.url et format.support
-%  7) ajout de format.support, format.doi, format.url dans fonction article
-%  8) deplace format.edition apres le titre et ajout format.support, format.doi
-%     et format.url dans fonction book
-%  9) ajout des fonctions output.nonnull.point et output.point
-% 10) ajout de format.url dans fonction book
-% 11) ajout de format.support apres booktitle + format.url dans
-%     function{inproceedings}
-% 12) utilisation de format.btitle, format.support, format.doi et
-%     format.url dans function{mastersthesis}
-% 13) ajout de format.support, format.doi et format.url dans function{misc}
-% 14) utilisation de fr.phd + ajout de format.support, format.doi et
-%     format.url dans function{misc}
-% 15) ajout de format.doi et format.url dans function{proceedings}
-% 16) utilisation de fr.et.al et fr.and dans function{format.lab.names}
-% 17) utilisation de fr.et.al dans function{sort.format.name}
-% 18) ajout execute{init.variables}
-% 2 novembre 2016
-% 19) ajout du champ urldate
-% 20) modifie variable urlintro (retire "de")
-% 21) modifie format.url pour y ajouter la date de recuperation
-
-% BibTeX `apalike' bibliography style (24-Jan-88 version)
-% Adapted from the `alpha' style, version 0.99a; for BibTeX version 0.99a.
-% Copyright (C) 1988, all rights reserved.
-% Copying of this file is allowed, provided that if you make any changes at all
-% you name it something other than `apalike.bst'.
-% This restriction helps ensure that all copies are identical.
-% Differences between this style and `alpha' are generally heralded by a `%'.
-% The file btxbst.doc has the documentation for alpha.bst.
+% Florentin Thullier, juin 2021.
+% based on `apalike2'.
 %
-% This style should be used with the `apalike' LaTeX style (apalike.sty).
-% \cite's come out like "(Jones, 1986)" in the text but there are no labels
-% in the bibliography, and something like "(1986)" comes out immediately
-% after the author.  Author (and editor) names appear as last name, comma,
-% initials.  A `year' field is required for every entry, and so is either
-% an author (or in some cases, an editor) field or a key field.
+%%
+% CHANGES
+% report every changes below :
 %
-% Editorial note:
-% Many journals require a style like `apalike', but I strongly, strongly,
-% strongly recommend that you not use it if you have a choice---use something
-% like `plain' instead.  Mary-Claire van Leunen (A Handbook for Scholars,
-% Knopf, 1979) argues convincingly that a style like `plain' encourages better
-% writing than one like `apalike'.  Furthermore the strongest arguments for
-% using an author-date style like `apalike'---that it's "the most practical"
-% (The Chicago Manual of Style, University of Chicago Press, thirteenth
-% edition, 1982, pages 400--401)---fall flat on their face with the new
-% computer-typesetting technology.  For instance page 401 anachronistically
-% states "The chief disadvantage of [a style like `plain'] is that additions
-% or deletions cannot be made after the manuscript is typed without changing
-% numbers in both text references and list."  LaTeX sidesteps the disadvantage.
-%
-% History:
-%   15-sep-86	(SK,OP)	Original version, by Susan King and Oren Patashnik.
-%   10-nov-86	(OP)	Truncated the sort.key$ string to the correct length
-%			in bib.sort.order to eliminate error message.
-%   24-jan-88	(OP)	Updated for BibTeX version 0.99a, from alpha.bst 0.99a;
-%			apalike now sorts by author, then year, then title;
-%			THIS `apalike' VERSION DOES NOT WORK WITH BIBTEX 0.98i.
-% Local modifications 10/89 -- Brian Reiser
 
 ENTRY
-  { address
-    assignee
-    author
-    booktitle
-    chapter
-    doi
-    edition
-    editor
-    howpublished
-    institution
-    journal
-    key
-%    month		not used in apalike
-    note
-    number
-    organization
-    pages
-    publisher
-    school
-    series
-    support
-    title
-    type
-    url
-    urldate  % ajout G.L. 2/11/2016
-    volume
-    year
-  }
-  {}
-  { label extra.label sort.label }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% C'est ici que je definis les "traductions". Normalement, y a
-%% que ca a changer pour franciser le style...
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+  address
+  assignee
+  author
+  booktitle
+  chapter
+  doi
+  edition
+  editor
+  howpublished
+  institution
+  journal
+  key
+  month
+  note
+  number
+  organization
+  pages
+  publisher
+  school
+  series
+  support
+  title
+  type
+  university
+  url
+  urldate
+  volume
+  year
+}
+{}
+{ label extra.label sort.label }
 
-
-FUNCTION{fr.and}{		%% le "et" entre les deux derniers auteurs
-" \& "
+FUNCTION{fr.and}
+{
+  " \& "
 }
 
-FUNCTION{fr.editeur}{		%% ", \'editeur" au singulier, ou " (\'editeur)"...
-" (dir.)"
+FUNCTION{fr.editeur}
+{
+  " (\'Ed.)"
 }
 
-FUNCTION{fr.editeurs}{		%% ", \'editeurs" au pluriel, ou " (\'editeurs)"...
-" (dir.)"
+FUNCTION{fr.editeurs}
+{
+  " (\'Eds.)"
 }
 
-FUNCTION{fr.et.al}{		%% " et~al."
-" \emph{et~al.}"
+FUNCTION{fr.et.al}
+{
+  " \emph{et~al.}"
 }
 
-FUNCTION{fr.in}{		%% "Dans "
-"Dans "
+FUNCTION{fr.in}
+{
+  "Dans "
 }
 
-FUNCTION{fr.in.spc}{		%% " de " (ou " de la s\'erie ")
-" de "
+FUNCTION{fr.in.spc}
+{
+  " de "
 }
 
-FUNCTION{fr.of}{		%% " de "
-" de "
+FUNCTION{fr.of}
+{
+  " de "
 }
 
-FUNCTION{fr.number}{		%% "num{\'e}ro "
-"num\'ero "
+FUNCTION{fr.number}
+{
+  "num\'ero "
 }
 
-FUNCTION{fr.number.maj}{	%% "Num\'ero "
-"Num\'ero "
+FUNCTION{fr.number.short}
+{
+  "\no "
 }
 
-FUNCTION{fr.volume}{		%% "volume"
-"volume"
+FUNCTION{fr.number.maj}
+{
+  "Num\'ero "
 }
 
-FUNCTION{fr.volume.maj}{	%% "Volume"
-"Volume"
+FUNCTION{fr.volume}
+{
+  "Vol."
 }
 
-FUNCTION{fr.edition}{		%% " \'edition"
-" \'ed."
+FUNCTION{fr.edition}
+{
+  " \'ed."
 }
 
-FUNCTION{fr.pages}{		%% "pages"
-""
+FUNCTION{fr.pages}
+{
+  "pp."
 }
 
-FUNCTION{fr.page}{		%% "page"
-"p.~"
+FUNCTION{fr.page}
+{
+  "p."
 }
 
-FUNCTION{fr.chapter}{		%% "chapitre"
-"chapitre"
+FUNCTION{fr.chapter}
+{
+  "chapitre"
 }
 
-FUNCTION{fr.tech.rep}{		%% "Rapport Technique"
-"Rapport technique"
+FUNCTION{fr.tech.rep}
+{
+  "Rapport technique"
 }
 
-FUNCTION{fr.master}{		%% "M\'emoire de maîtrise."
-"(M\'emoire de ma\^itrise)"
+FUNCTION{sans.date}
+{
+  "s.d."
 }
 
-FUNCTION{fr.phd}{		%% "Th\`ese de doctorat"
-"(Th\`ese de doctorat)"
+STRINGS {
+  journart
+  urlintro
+  doiprefix
+  doiurl
 }
-
-FUNCTION{sans.date}{		%% "sans date"
-"s.d."
-}
-
-STRINGS { urlintro doiprefix doiurl }
 
 FUNCTION{init.variables}
 {
-  "R\'ecup\'er\'e \`a" 'urlintro := % prefix before URL; typically "Available from:" or "URL":
-  "doi:" 'doiurl := % prefix to make URL from DOI
-  "" 'doiprefix :=      % text prefix printed before DOI ref; typically "doi:"
+  "journal article" 'journart :=
+  "Rep\'er\'e" 'urlintro :=
+  "doi : " 'doiurl :=
+  "" 'doiprefix :=
 }
 
+% used for month field
 MACRO {jan} {"janvier"}
 MACRO {feb} {"f\'evrier"}
 MACRO {mar} {"mars"}
@@ -228,7 +154,14 @@ MACRO {oct} {"octobre"}
 MACRO {nov} {"novembre"}
 MACRO {dec} {"d\'ecembre"}
 
-INTEGERS { output.state before.all mid.sentence after.sentence after.block }
+INTEGERS
+{
+  output.state
+  before.all
+  mid.sentence
+  after.sentence
+  after.block
+}
 
 FUNCTION {init.state.consts}
 { #0 'before.all :=
@@ -237,7 +170,11 @@ FUNCTION {init.state.consts}
   #3 'after.block :=
 }
 
-STRINGS { s t }
+STRINGS
+{
+  s
+  t
+}
 
 FUNCTION {output.nonnull}
 { 's :=
@@ -265,14 +202,14 @@ FUNCTION {eho.special.output.nonnull}
   output.state mid.sentence =
     { "  " * write$ }
     { output.state after.block =
-	{ % add.period$ write$
+	{
 	  ": " write$
 	  newline$
 	  "\newblock " write$
 	}
 	{ output.state before.all =
 	    'write$
-	    { % add.period$ " " * write$
+	    {
 	      ": " * write$
             }
 	  if$
@@ -290,9 +227,6 @@ FUNCTION {eho.special.output}
     'eho.special.output.nonnull
   if$
 }
-
-%% Added by Eric Ho <eho@word> on Wed Jan 10 20:13:56 1990
-%% A special patch for output.nonnull in book environment.
 
 FUNCTION {eho.output.nonnull}
 { 's :=
@@ -343,9 +277,6 @@ FUNCTION {output}
   if$
 }
 
-%% Added by Eric Ho <eho@word> on Wed Jan 10 20:13:56 1990
-%% A special patch for output in book environment.
-
 FUNCTION {eho.output}
 { duplicate$ empty$
     'pop$
@@ -368,9 +299,6 @@ FUNCTION {output.check}
   if$
 }
 
-%% Added by Eric Ho <eho@word> on Wed Jan 10 20:13:56 1990
-%% A special patch for output.check in book environment.
-
 FUNCTION {eho.output.check}
 { 't :=
   duplicate$ empty$
@@ -379,19 +307,16 @@ FUNCTION {eho.output.check}
   if$
 }
 
-%					apalike needs this function because
-%					the year has special punctuation;
-%					apalike ignores the month
 FUNCTION {output.year.check}
 { year empty$
     { "empty year in " cite$ * warning$ }
     { write$
-    year sans.date =	            %UQAM G.L. 28/08/2013
-      {                             %
-      " [" sans.date * "]" *        %
-      }                             %
+    year sans.date =
+      {
+      " [" sans.date * "]" *
+      }
            {
-      " (" year * extra.label * ")" *
+      " (" year * ")" *
       }
       if$
       mid.sentence 'output.state :=
@@ -430,9 +355,9 @@ FUNCTION {or}
 }
 
 FUNCTION {fin.entry}
-{doi empty$						%UQAM G.L. 28/08/2013
- url empty$                     %
- and                            %
+{doi empty$
+ url empty$
+ and
   {add.period$}
   {skip$}
   if$
@@ -496,17 +421,17 @@ FUNCTION {format.names}
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't :=   % last name first
+    { s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't :=
       nameptr #1 >
 	{ namesleft #1 >
 	    { ", " * t * }
-	    { numnames #2 =    %UQAM pas de virgule devant "et" s'il reste 2 auteurs G.L. 03/09/2013
-		{ " " * }          %UQAM  G.L. 03/09/2013
+	    { numnames #2 =
+		{ " " * }
 		'skip$
 	      if$
 	      t "others" =
-		{ fr.et.al * }		%UQAM G.L. 28/08/2013
-		{ fr.and * t * }    %
+		{ fr.et.al * }
+		{ fr.and * t * }
 	      if$
 	    }
 	  if$
@@ -519,16 +444,13 @@ FUNCTION {format.names}
   while$
 }
 
-%% Added by Fri Jan 12 19:03:22 1990 on Fri Jan 12 19:03:27 1990
-%% Mainly to make sure that editors have initials before last names.
-
 FUNCTION {eho.format.names}
 { 's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr "{f.} {vv~}{ll}{, jj}" format.name$ 't :=  %% initials first.
+    { s nameptr "{f.} {vv~}{ll}{, jj}" format.name$ 't :=
       nameptr #1 >
 	{ namesleft #1 >
 	    { ", " * t * }
@@ -537,8 +459,8 @@ FUNCTION {eho.format.names}
 		'skip$
 	      if$
 	      t "others" =
-		{ fr.et.al * }		%UQAM G.L. 28/08/2013
-		{ fr.and * t * }    % changed from " and " for names -- BJR 10/5/89
+		{ fr.et.al * }
+		{ fr.and * t * }
 	      if$
 	    }
 	  if$
@@ -558,7 +480,7 @@ FUNCTION {format.authors}
   if$
 }
 
-FUNCTION {format.key}			% this function is just for apalike
+FUNCTION {format.key}
 { empty$
     { key field.or.null }
     { "" }
@@ -570,25 +492,20 @@ FUNCTION {format.editors}
     { "" }
     { editor format.names
       editor num.names$ #1 >
-	{ fr.editeurs * }    %UQAM G.L. 28/08/2013
-	{ fr.editeur * }     %UQAM G.L. 28/08/2013
+	{ fr.editeurs * }
+	{ fr.editeur * }
       if$
     }
   if$
 }
-
-%% Added by Eric Ho <eho@word> Fri Jan 12 19:11:12 1990
-%% Mainly to call eho.format.names instead of format.names and
-%% to make Eds or Ed to be surrounded by pararentheses instead of preceeded by
-%% a comma.
 
 FUNCTION {eho.format.editors}
 { editor empty$
     { "" }
     { editor eho.format.names
       editor num.names$ #1 >
-	{ fr.editeurs * }    %UQAM G.L. 28/08/2013
-	{ fr.editeur * }     %UQAM G.L. 28/08/2013
+	{ fr.editeurs * }
+	{ fr.editeur * }
 	      if$
     }
   if$
@@ -607,17 +524,16 @@ FUNCTION {format.doi}
 FUNCTION {format.url}
 { url empty$
    { "" }
-   { urlintro
-          urldate empty$                          %UQAM G.L. 2/11/2016 ajout de date de recuperation
-         { "there is url but no urldate in " cite$ * warning$ }
-         {
-            "~le " * urldate *
-         }
-         if$
-       " \url{" * url * "}" * }
+   {
+      urlintro
+          urldate empty$
+            { "there is url but no urldate in " cite$ * warning$ }
+            { "~le " * urldate * "," * }
+          if$
+      " \`a \url{" * url * "}" *
+    }
    if$
 }
-
 
 FUNCTION {format.support}
 { support empty$
@@ -629,7 +545,7 @@ FUNCTION {format.support}
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { title "t" change.case$ }
+    { title }
   if$
 }
 
@@ -681,10 +597,10 @@ FUNCTION {either.or.check}
 FUNCTION {format.bvolume}
 { volume empty$
     { "" }
-    { fr.volume volume tie.or.space.connect	    %UQAM G.L. 28/08/2013
+    { fr.volume volume tie.or.space.connect
       series empty$
 	'skip$
-	{ fr.of * series emphasize * }				%UQAM G.L. 28/08/2013
+	{ fr.of * series emphasize * }
       if$
       "volume and number" number either.or.check
     }
@@ -696,13 +612,13 @@ FUNCTION {format.number.series}
     { number empty$
 	{ series field.or.null }
 	{ output.state mid.sentence =
-	    { fr.number }						%UQAM G.L. 28/08/2013
-	    { fr.number.maj }					%UQAM G.L. 28/08/2013
+	    { fr.number }
+	    { fr.number.maj }
 	  if$
 	  number tie.or.space.connect
 	  series empty$
 	    { "there's a number but no series in " cite$ * warning$ }
-	    { fr.in.spc * series * }			%UQAM G.L. 28/08/2013
+	    { fr.in.spc * series * }
 	  if$
 	}
       if$
@@ -715,8 +631,8 @@ FUNCTION {format.edition}
 { edition empty$
     { "" }
     { output.state mid.sentence =
-	{ "(" edition "l" change.case$ * fr.edition * ")" * }	%UQAM G.L. 28/08/2013
-	{ "(" edition "t" change.case$ * fr.edition * ")" * }	%UQAM G.L. 28/08/2013
+	      { "(" edition "l" change.case$ * ")" * }
+	      { "(" edition "t" change.case$ * ")" * }
       if$
     }
   if$
@@ -748,20 +664,34 @@ FUNCTION {format.pages}
 { pages empty$
     { "" }
     { pages multi.page.check
-	{ fr.pages pages n.dashify tie.or.space.connect }	%UQAM G.L. 28/08/2013
-	{ fr.page pages tie.or.space.connect }				%UQAM G.L. 28/08/2013
+	{ fr.pages pages n.dashify tie.or.space.connect }
+	{ fr.page pages tie.or.space.connect }
       if$
-      "." *								%UQAM retirer ")"   G.L. 28/08/2013
+      "." *
     }
   if$
 }
 
-FUNCTION {format.pages.inbook}                              %UQAM G.L.  02/06/2015
+FUNCTION {format.edition.pages.inbook}
 { pages empty$
     { "" }
-    { pages multi.page.check
-	{ "(" fr.page * pages n.dashify tie.or.space.connect }	%UQAM G.L. 02/06/2015
-	{ "(" fr.page * pages tie.or.space.connect }			%UQAM G.L. 02/06/2015
+    {
+      pages multi.page.check
+	      { ", " fr.pages * pages n.dashify tie.or.space.connect }
+	      { ", " fr.page * pages tie.or.space.connect }
+      if$
+      "" *
+    }
+  if$
+}
+
+FUNCTION {format.pages.inbook}
+{ pages empty$
+    { "" }
+    {
+      pages multi.page.check
+	      { "(" fr.pages * pages n.dashify tie.or.space.connect }
+	      { "(" fr.page * pages tie.or.space.connect }
       if$
       ")." *
     }
@@ -769,7 +699,7 @@ FUNCTION {format.pages.inbook}                              %UQAM G.L.  02/06/20
 }
 
 FUNCTION {format.vol.num.pages}
-{ volume emphasize field.or.null						%UQAM Vol en italique G.L. 28/08/2013
+{ volume emphasize field.or.null
   number empty$
     'skip$
     { "(" number * ")"  * *
@@ -783,7 +713,7 @@ FUNCTION {format.vol.num.pages}
     'skip$
     { duplicate$ empty$
 	{ pop$ format.pages }
-	{ ", " * pages n.dashify * }    % changed from ":" for vol,pgs -- BJR 10/5/89
+	{ ", " * pages n.dashify * }
       if$
     }
   if$
@@ -793,7 +723,7 @@ FUNCTION {format.chapter.pages}
 { chapter empty$
     'format.pages
     { type empty$
-	{ fr.chapter }										%UQAM G.L. 28/08/2013
+	{ fr.chapter }
 	{ type "l" change.case$ }
       if$
       chapter tie.or.space.connect
@@ -808,23 +738,21 @@ FUNCTION {format.chapter.pages}
 FUNCTION {format.in.ed.booktitle}
 { booktitle empty$
     { "" }
-    { editor empty$
-	{ fr.in booktitle emphasize * }									%UQAM G.L. 28/08/2013
-	{ fr.in eho.format.editors * ". " * booktitle emphasize * }     %UQAM remplace "," par "." G.L. 28/08/2013
+    {
+      editor empty$
+	      { fr.in booktitle emphasize * }
+	      { fr.in eho.format.editors * ". " * booktitle emphasize * }
       if$
     }
   if$
 }
 
-%% Added by Eric Ho <eho@word> Fri Jan 12 19:17:37 1990
-%% Primarily to call eho.format.editors instead of format.editors.
-
 FUNCTION {eho.format.in.ed.booktitle}
 { booktitle empty$
     { "" }
     { editor empty$
-	{ "In " booktitle emphasize * }
-	{ "In " eho.format.editors * ", " * booktitle emphasize * }
+	{ "Dans " booktitle emphasize * }
+	{ "Dans " eho.format.editors * ", " * booktitle emphasize * }
       if$
     }
   if$
@@ -835,72 +763,93 @@ FUNCTION {format.thesis.type}
   type empty$
     'skip$
     { pop$
-      "(" type "t" change.case$ * ")" *      %UQAM ajout "(" ")" G.L. 28/08/2013
+      "(" type "t" change.case$ * ")" *      %
     }
   if$
 }
 
 FUNCTION {format.tr.number}
 { type empty$
-    { fr.tech.rep }						   %UQAM G.L. 28/08/2013
-    'type
+    { "" }
+    { "" }
   if$
   number empty$
     { "t" change.case$ }
-    { number tie.or.space.connect }
+    {
+      " publication " * fr.number.short
+      number tie.or.space.connect *
+    }
   if$
 }
 
 FUNCTION {format.article.crossref}
-{ fr.in							          %UQAM terme francais G.L. 28/08/2013
+{ fr.in
   " \cite{" * crossref * "}" *
 }
 
 FUNCTION {format.book.crossref}
 { volume empty$
     { "empty volume in " cite$ * "'s crossref of " * crossref * warning$
-      fr.in								%UQAM terme francais G.L. 28/08/2013
+      fr.in
     }
     { "Volume" volume tie.or.space.connect
-      fr.of *							%UQAM terme francais G.L. 28/08/2013
+      fr.of *
     }
   if$
-  "\cite{" * crossref * "}" *				% this is for apalike
+  "\cite{" * crossref * "}" *
 }
 
 FUNCTION {format.incoll.inproc.crossref}
-{ fr.in							%UQAM terme francais G.L. 28/08/2013
+{ fr.in
   " \cite{" * crossref * "}" *
 }
 
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+  month missing$
+    { output.year.check }
+    {
+      number missing$
+      { output.year.check }
+      { " (" * year * ", " * number * ")" * }
+      if$
+    }
+  if$
   new.block
   format.title "title" output.check
-  format.support output.point			%UQAM ajout support G.L. 28/08/2013
+  format.support output.point
   new.block
   crossref missing$
-    { journal emphasize "journal" output.check
-      format.vol.num.pages output
+    {
+      journal emphasize "journal" output.check
+      month missing$ not
+        { format.pages output }
+        {
+          format.vol.num.pages output
+        }
+      if$
     }
-    { format.article.crossref output.nonnull
+    {
+      format.article.crossref output.nonnull
       format.pages output
     }
   if$
   new.block
   note output
-  format.doi output					%UQAM ajout doi G.L. 28/08/2013
+  format.doi output
   new.block
-  format.url output					%UQAM ajout url G.L. 28/08/2013
+
+  type "l" change.case$ journart =
+    'skip$
+    { format.url output }
+  if$
+
   fin.entry
 }
 
-%% Modified by Eric Ho <eho@word> on Wed Jan 10 20:30:11 1990
-%% Making it to call eho.output.check instead of output.check and eho.output
-%% instead of output.
+
 
 FUNCTION {book}
 { output.bibitem
@@ -909,7 +858,6 @@ FUNCTION {book}
       editor format.key output
     }
    {
-      %UQAM ajout add.period$ dans le cas o l'auteur est un D.B. ou site web G.L. 03/09/2013
       format.authors add.period$ output.nonnull
        crossref missing$
 	{ "author and editor" editor either.or.check }
@@ -917,19 +865,18 @@ FUNCTION {book}
       if$
     }
   if$
-  output.year.check				% special for apalike
+  output.year.check
   new.block
   format.btitle "title" output.check
-  format.edition eho.special.output     % UQAM edition apres titre G.L. 28/08/2013
-  format.support output.point           % UQAM ajout support G.L. 28/08/2013
+  format.edition eho.special.output
+  format.support output.point
   crossref missing$
     { format.bvolume output
       new.block
       format.number.series output
       new.sentence
-      address eho.output	% Using eho.output instead of output.
-      publisher "publisher" eho.output.check	% Using eho.output.check
-      						% instead of output.check.
+      address eho.output
+      publisher "publisher" eho.output.check
     }
     { new.block
       format.book.crossref output.nonnull
@@ -937,17 +884,17 @@ FUNCTION {book}
   if$
    new.block
   note output
- format.doi output				%UQAM ajout doi G.L. 28/08/2013
+ format.doi output
   new.block
-  format.url output				%UQAM ajout url G.L. 28/08/2013
+  format.url output
   fin.entry
 }
 
 FUNCTION {booklet}
 { output.bibitem
   format.authors output
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+  output.year.check
   new.block
   format.title "title" output.check
   new.block
@@ -955,20 +902,12 @@ FUNCTION {booklet}
   address output
   new.block
   note output
-  format.doi output				%UQAM ajout doi G.L. 28/08/2013
+  format.doi output
   new.block
-  format.url output			%UQAM ajout url G.L. 28/08/2013
+  format.url output
 
   fin.entry
 }
-
-FUNCTION {database} { book }
-
-FUNCTION {electronic} { book }
-
-%% Modified by Eric Ho <eho@word> on Wed Jan 10 20:27:26 1990
-%% Making it to call eho.output.check instead of output.check and eho.output
-%% instead of output.
 
 FUNCTION {inbook}
 { output.bibitem
@@ -983,68 +922,73 @@ FUNCTION {inbook}
       if$
     }
   if$
-  output.year.check				% special for apalike
+  output.year.check
   new.block
-  format.btitle "title" output.check
+  format.title "title" output.check
+
   crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check     % UQAM titre du livre 02/06/2015
-      format.support  output.point			              % UQAM ajout support apres titre G.L. 28/08/2013
+   {
+      new.block
+      format.in.ed.booktitle "booktitle" output.check
+
+      format.support  output.point
       format.bvolume output
-      format.pages.inbook  "chapter and pages" output.check  %UQAM G.L. Mise en forme des pages 02/06/2015
+
+      edition missing$
+        { " " * format.pages.inbook * }
+        {
+          " (" * edition "t" change.case$ *
+          format.edition.pages.inbook *
+          ")" *
+        }
+      if$
+
       new.block
       format.number.series output
       new.sentence
-      publisher "publisher" eho.output.check	% Using eho.output.check instead
-						% of output.check.
-      address eho.output	% Using eho.output instead of output.
+      address eho.output
+      publisher "publisher" eho.output.check
     }
-    { format.chapter.pages "chapter and pages" output.check
+    {
+      format.chapter.pages "chapter and pages" output.check
       new.block
       format.book.crossref output.nonnull
     }
   if$
-  format.edition output
+
+  new.block
+  format.url output
+  new.block
+  format.doi output
   new.block
   note output
   fin.entry
 }
 
-%% Modified by Eric Ho <eho@word> on Wed Jan 10 20:27:26 1990
-%% Making it to call eho.output.check instead of output.check and eho.output
-%% instead of output.  Also modified by Eric Ho <eho@word> on Fri Jan 12
-%% 19:21:59 1990 so as to call eho.format.in.ed.booktitle instead of the old
-%% format.in.ed.booktitle.
-
 FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+  output.year.check
   new.block
   format.title "title" output.check
   new.block
+
   crossref missing$
     { eho.format.in.ed.booktitle "booktitle" output.check
-	% The above line is changed by Eric Ho <eho@word> on Fri Jan 12
-	% 19:20:28 1990 so that it'll call eho.format.in.ed.booktitle instead
-	% of format.in.ed.booktitle.
-
       format.bvolume output
       format.number.series output
       format.chapter.pages eho.special.output
       new.sentence
-%      publisher "publisher" output.check
-%      address output
-% switched order of publisher and address for incollection -- BJR 1/3/90
-      address eho.output	% Use eho.output instead of output.
-      publisher "publisher" eho.output.check	% Use eho.output.check instead
-						% of output.check.
+      address eho.output
+      publisher "publisher" eho.output.check
       format.edition output
     }
     { format.incoll.inproc.crossref output.nonnull
       format.chapter.pages output
     }
   if$
+
   new.block
   note output
   fin.entry
@@ -1053,21 +997,21 @@ FUNCTION {incollection}
 FUNCTION {inproceedings}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+  output.year.check
   new.block
   format.title "title" output.check
   new.block
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      format.support  output.point			% UQAM ajout support apres titre G.L. 28/08/2013
+      format.support  output.point
       format.bvolume output
       format.number.series output
       format.pages output
-      address output			% for apalike
-      new.sentence					% there's no year
-      organization output			% here so things
-      publisher output			% are simpler
+      address output
+      new.sentence
+      organization output
+      publisher output
     }
     { format.incoll.inproc.crossref output.nonnull
       format.pages output
@@ -1075,82 +1019,58 @@ FUNCTION {inproceedings}
   if$
   new.block
   note output
-  format.doi output				% UQAM ajout doi G.L. 28/08/2013
+  format.doi output
   new.block
-  format.url output				% UQAM ajout url G.L. 28/08/2013
-  fin.entry
-}
-
-FUNCTION {conference} { inproceedings }
-
-FUNCTION {manual}
-{ output.bibitem
-  format.authors output
-  author format.key output				% special for
-  output.year.check					% apalike
-  new.block
-  format.btitle "title" output.check
-  organization address new.block.checkb
-  organization output
-  address output
-  format.edition output
-  new.block
-  note output
-  fin.entry
-}
-
-FUNCTION {mastersthesis}
-{ output.bibitem
-  format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
-  new.block
-  format.btitle "title" output.check	% UQAM Titre en italique G.L. 28/08/2013
-  new.block
-  fr.master format.thesis.type output.nonnull	% UQAM terme francais G.L. 28/08/2013
-  format.support output.point					% UQAM ajout support G.L. 28/08/2013
-  new.block
-  school "school" output.check
-  address output
-  new.block
-  note output
-  format.doi output				% UQAM ajout doi G.L. 28/08/2013
-  new.block
-  format.url output			    % UQAM ajout url G.L. 28/08/2013
-  fin.entry
-}
-
-FUNCTION {patent}
-{ output.bibitem
-  format.authors "author" output.check
-  author format.key output
-  output.year.check
-  new.block
-  format.title "title" output.check
-  new.block
-  format.assignee output
-  new.block
-  number output
-
+  format.url output
   fin.entry
 }
 
 FUNCTION {misc}
 { output.bibitem
   format.authors output
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+   month missing$
+    { output.year.check }
+    {
+      month year =
+      { output.year.check }
+      { " (" * year * ", " * month * ")" * }
+      if$
+    }
+  if$
   new.block
-  format.title output
+
+  type empty$
+    {
+      format.btitle output
+    }
+    {
+      format.btitle output
+      " [" * type * "]" *
+    }
+  if$
+
+  assignee missing$
+    'skip$
+    {
+      new.block
+      format.assignee output
+      new.block
+      number output
+    }
+  if$
+
+  new.sentence
+  address eho.output
+  institution "institution" eho.output.check
   new.block
   howpublished output
-  new.block
-  format.support output.point	% UQAM support url G.L. 28/08/2013
+  format.support output.point
   new.block
   note output
-  format.doi output		% UQAM ajout doi G.L. 28/08/2013
+  format.doi output
   new.block
-  format.url output		% UQAM ajout url G.L. 28/08/2013
+  format.url output
 
   fin.entry
 }
@@ -1158,60 +1078,72 @@ FUNCTION {misc}
 FUNCTION {phdthesis}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+  output.year.check
   new.block
   format.btitle "title" output.check
   new.block
-  fr.phd format.thesis.type output.nonnull	% UQAM terme francais G.L. 28/08/2013
-  format.support output.point		% UQAM ajout support G.L. 28/08/2013
+  type format.thesis.type output.nonnull
+  format.support output.point
   new.block
-  school "school" output.check
+  university output
   address output
   new.block
   note output
-  format.doi output					% UQAM ajout doi G.L. 28/08/2013
+  format.doi output
   new.block
-  format.url output					% UQAM ajout url G.L. 28/08/2013
+  format.url output
   fin.entry
 }
 
 FUNCTION {proceedings}
 { output.bibitem
   format.editors output
-  editor format.key output				% special for
-  output.year.check					% apalike
+  editor format.key output
+  output.year.check
   new.block
   format.btitle "title" output.check
   format.bvolume output
   format.number.series output
-  address output				% for apalike
-  new.sentence					% we always output
-  organization output				% a nonempty organization
-  publisher output				% here
+  address output
+  new.sentence
+  organization output
+  publisher output
   new.block
   note output
-  format.doi output		        % UQAM ajout doi G.L. 28/08/2013
+  format.doi output
   new.block
-  format.url output				% UQAM ajout url G.L. 28/08/2013
+  format.url output
   fin.entry
 }
-
-FUNCTION {software} { book }
 
 
 FUNCTION {techreport}
 { output.bibitem
-  format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
+
+  author "l" change.case$ institution "l" change.case$ =
+    { author * }
+    { format.authors "author" output.check }
+  if$
+
+
+  author format.key output
+  output.year.check
   new.block
-%  format.title "title" output.check
-  format.btitle "title" output.check            % change to ital title -- BJR
+
+  format.btitle output
+  format.tr.number *
   new.block
-  format.tr.number output.nonnull
-  institution "institution" output.check
+
+
+  author "l" change.case$ institution "l" change.case$ =
+    'skip$
+    { institution "institution" output.check }
+  if$
+
   address output
+  new.block
+  format.url output
   new.block
   note output
   fin.entry
@@ -1220,16 +1152,24 @@ FUNCTION {techreport}
 FUNCTION {unpublished}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
+  author format.key output
+  output.year.check
   new.block
   format.title "title" output.check
+
+  type empty$
+    'skip$
+    { " [" * type * "]" * }
+  if$
+
   new.block
+  publisher "publisher" output.check
+  address "address" output.check
+  new.block
+  format.url output
   note "note" output.check
   fin.entry
 }
-
-FUNCTION {webpage} { book }
 
 FUNCTION {default.type} { misc }
 
@@ -1292,21 +1232,17 @@ FUNCTION {chop.word}
   if$
 }
 
-%			There are three apalike cases: one person (Jones),
-%			two (Jones and de~Bruijn), and more (Jones et~al.).
-%			This function is much like format.crossref.editors.
-%
 FUNCTION {format.lab.names}
 { 's :=
   s #1 "{vv~}{ll}" format.name$
   s num.names$ duplicate$
   #2 >
-    { pop$ fr.et.al * }		% UQAM terme francais G.L. 28/08/2013
+    { pop$ fr.et.al * }
     { #2 <
 	'skip$
 	{ s #2 "{ff }{vv }{ll}{ jj}" format.name$ "others" =
-	    { fr.et.al * }		% UQAM terme francais G.L. 28/08/2013
-	    { fr.and * s #2 "{vv~}{ll}" format.name$ * } % " and " --  BJR 10/5/89
+	    { fr.et.al * }
+	    { fr.and * s #2 "{vv~}{ll}" format.name$ * }
 	  if$
 	}
       if$
@@ -1318,7 +1254,7 @@ FUNCTION {author.key.label}
 { author empty$
     { key empty$
 	{ cite$ #1 #3 substring$ }
-	'key					% apalike uses the whole key
+	'key
       if$
     }
     { author format.lab.names }
@@ -1330,7 +1266,7 @@ FUNCTION {author.editor.key.label}
     { editor empty$
 	{ key empty$
 	    { cite$ #1 #3 substring$ }
-	    'key				% apalike uses the whole key
+	    'key
 	  if$
 	}
 	{ editor format.lab.names }
@@ -1345,7 +1281,7 @@ FUNCTION {editor.key.label}
   editor empty$
     { key empty$
 	{ cite$ #1 #3 substring$ }
-	'key			% apalike uses the whole key, no organization
+	'key
       if$
     }
     { editor format.lab.names }
@@ -1361,14 +1297,14 @@ FUNCTION {calc.label}
   or
     'author.editor.key.label
     { type$ "proceedings" =
-	    'editor.key.label			% apalike ignores organization
+	    'editor.key.label
         'author.key.label
       if$
     }
   if$
-  ", "							% these three lines are
-  *							% for apalike, which
-  year field.or.null purify$ #-1 #4 substring$     % uses all four digits
+  ", "
+  *
+  year field.or.null purify$ #-1 #4 substring$
   *
   'label :=
 }
@@ -1383,10 +1319,10 @@ FUNCTION {sort.format.names}
     { nameptr #1 >
 	{ "   " * }
 	'skip$
-      if$						% apalike uses initials
-      s nameptr "{vv{ } }{ll{ }}{  f{ }}{  jj{ }}" format.name$ 't := % <= here
+      if$
+      s nameptr "{vv{ } }{ll{ }}{  f{ }}{  jj{ }}" format.name$ 't :=
       nameptr numnames = t "others" = and
-	{ fr.et.al * }				% UQAM terme francais G.L. 28/08/2013
+	{ fr.et.al * }
 	{ t sortify * }
       if$
       nameptr #1 + 'nameptr :=
@@ -1451,11 +1387,6 @@ FUNCTION {editor.sort}
   if$
 }
 
-%			apalike uses two sorting passes; the first one sets the
-%			labels so that the `a's, `b's, etc. can be computed;
-%			the second pass puts the references in "correct" order.
-%			The presort function is for the first pass. It computes
-%			label, sort.label, and title, and then concatenates.
 FUNCTION {presort}
 {
   calc.label
@@ -1473,9 +1404,9 @@ FUNCTION {presort}
       if$
     }
   if$
-  #1 entry.max$ substring$	% for
-  'sort.label :=		% apalike
-  sort.label			% style
+  #1 entry.max$ substring$
+  'sort.label :=
+  sort.label
   *
   "    "
   *
@@ -1488,13 +1419,13 @@ FUNCTION {presort}
 
 ITERATE {presort}
 
-SORT		% by label, sort.label, title---for final label calculation
+SORT
 
-STRINGS { last.label next.extra }	% apalike labels are only for the text;
+STRINGS { last.label next.extra }
 
-INTEGERS { last.extra.num }		% there are none in the bibliography
+INTEGERS { last.extra.num }
 
-FUNCTION {initialize.extra.label.stuff}	% and hence there is no `longest.label'
+FUNCTION {initialize.extra.label.stuff}
 { #0 int.to.chr$ 'last.label :=
   "" 'next.extra :=
   #0 'last.extra.num :=
@@ -1527,9 +1458,6 @@ ITERATE {forward.pass}
 
 REVERSE {reverse.pass}
 
-%				Now that the label is right we sort for real,
-%				on sort.label then year then title.  This is
-%				for the second sorting pass.
 FUNCTION {bib.sort.order}
 { sort.label
   "    "
@@ -1547,18 +1475,18 @@ FUNCTION {bib.sort.order}
 
 ITERATE {bib.sort.order}
 
-SORT		% by sort.label, year, title---giving final bibliography order
+SORT
 
 FUNCTION {begin.bib}
-{ preamble$ empty$				% no \etalchar in apalike
+{ preamble$ empty$
     'skip$
     { preamble$ write$ newline$ }
   if$
-  "\begin{thebibliography}{}" write$ newline$		% no labels in apalike
+  "\begin{thebibliography}{}" write$ newline$
 }
 
 EXECUTE {begin.bib}
-EXECUTE {init.variables}      % urlbst UQAM initialisation francais G.L. 28/08/2013
+EXECUTE {init.variables}
 EXECUTE {init.state.consts}
 
 ITERATE {call.type$}
