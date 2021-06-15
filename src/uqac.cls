@@ -76,6 +76,21 @@
   \def\@uqacenglish{true}
 }
 
+\def\@refieee{false}
+\DeclareOption{ieee}{%
+  \def\@refieee{true}
+}
+
+\def\@refapa{false}
+\DeclareOption{apa}{%
+  \def\@refapa{true}
+}
+
+\def\@uqacrev{false}
+\DeclareOption{rev}{%
+  \def\@uqacrev{true}
+}
+
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions
 \LoadClass{report}
@@ -100,7 +115,13 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[explicit]{titlesec}
-\RequirePackage{natbib}
+
+\ifthenelse{\equal{\@refieee}{true}}{%
+  \RequirePackage[numbers]{natbib}
+}{
+  \RequirePackage{natbib}
+}
+
 \RequirePackage{regexpatch}
 \RequirePackage{titletoc}
 \RequirePackage{acronym}
@@ -121,9 +142,20 @@
 }{
  \RequirePackage[lined,boxed,linesnumbered,english,onelanguage,resetcount,algochapter]{algorithm2e}
 }
+
+\ifthenelse{\equal{\@uqacrev}{true}}{%
+  \usepackage{hyperref}
+}{
+  \usepackage[hidelinks=true]{hyperref}
+}
+
+\RequirePackage{soul}
 \RequirePackage{silence}
 
 \WarningsOff
+
+%% URLs
+\urlstyle{same}
 
 % interligne simple
 \def\mystretch{1}
@@ -182,6 +214,20 @@
 %%
 %%%%%%%%%%%%%%%%%
 
+\ifthenelse{\equal{\@uqacfrench}{true}}{
+  \ifthenelse{\equal{\@refieee}{true}}{
+    \bibliographystyle{ieee-uqac-fr}
+  } {
+    \bibliographystyle{apa-uqac-fr}
+  }
+} {
+  \ifthenelse{\equal{\@refieee}{true}}{
+    \bibliographystyle{ieee-uqac-en}
+  } {
+    \bibliographystyle{apa-uqac-en}
+  }
+}
+
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bfseries\UpperRef{\bibname}
         \@mkboth{\UpperRef{\bibname}}{\UpperRef{\bibname}}}%
@@ -204,7 +250,7 @@
       \@clubpenalty \clubpenalty
       \widowpenalty4000%
       \sfcode`\.=\@m}
-      %\raggedright} % bibliographie non justifié à droite
+      % \raggedright} % bibliographie non justifié à droite
      {\def\@noitemerr
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}

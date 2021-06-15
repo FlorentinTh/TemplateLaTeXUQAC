@@ -6,11 +6,15 @@
 %%		générer la page de garde en fonction du type document.
 %%	- french, english : selon la langue dans laquelle doit
 %%		être rédigé le document.
+%%  - ieee, apa : style des références bibliographiques
 %%  - twoside : alternance des marges pour impression recto/verso
 %%    vous devez décommenter la ligne 16 si vous utilisez cette classe
+%%  - rev : permet d'activer l'identification des URLs pour la
+%%    révision bibliographique. Vous ne devez pas faire votre dépôt final
+%%    sans avoir préalablement retiré l'utilisation de cette classe.
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[12pt,times,these,french]{uqac}
+\documentclass[12pt,times,these,french,apa]{uqac}
 
 %% Décommenter la ligne suivante avec l'utilisation de la classe "twoside"
 % \raggedbottom
@@ -18,15 +22,8 @@
 %% Préciser l'emplacement du fichier contenant les acronymes.
 \acrolistpath{assets/acro}
 
-%% Toutes les images utilisées doivent se trouver dans le répertoire "figure".
+%% Toutes les images utilisées doivent se trouver dans le répertoire "assets/figure".
 \graphicspath{{assets/figures/}}
-
-%% Package pour activer le suivi des liens dans le PDF.
-%% Il est possible de les identifier par une couleur différente du texte.
-%% Par défaut, les liens ne sont pas différenciés du reste du texte
-%% par leur couleur ou leur font.
-\usepackage[hidelinks=true]{hyperref}
-\urlstyle{same}
 
 \begin{document}
 
@@ -91,12 +88,9 @@
 %%
 %% Références
 %%
-%% apa-uqac-fr si le document est rédigé en français
-%% apa-uqac-en si le document est rédigé en anglais
-%%
 %%%%%%%%%%%%%
 
-\bibliographystyle{apa-uqac-fr}
+%% Le fichier bibtex doit se trouver dans le répertoire "assets/references".
 \bibliography{assets/references}
 
 %%%%%%%%%%%
