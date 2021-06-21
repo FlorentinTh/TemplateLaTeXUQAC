@@ -4,11 +4,15 @@
 
 \subsection{citations}
 
-Ceci est un premier exemple de citation \cite{RN3}. Ceci est un deuxième exemple de citation \citep{RN4}. Ceci est un troisième exemple de citation \citet{RN5}.
+Ceci est un premier exemple de citation \cite{RN3}. Ceci est un deuxième exemple de citation \citep{RN4}. Ceci est un troisième exemple de citation de \citet{RN5}.
+
+\subsection{liens}
+
+Si vous utilisez \href{https://code.visualstudio.com/}{Visual Studio Code} pour composer votre document \LaTeX{}, vous pouvez utiliser l'extension \textit{vscode-ltex} disponible \textit{via} le lien suivant : \url{https://github.com/valentjn/vscode-ltex} pour corriger vos erreurs d'orthographe et de grammaire.
 
 \subsection{acronymes}
 
-Exemple de définition d'un acronyme de trois lettres : \ac{TLA}. Puis utilisation de cet acronyme en version courte \acs{TLA}.
+Exemple de définition d'un acronyme de trois lettres : \ac{TLA}. Puis utilisation de cet acronyme en version courte \acs{TLA}, ou bien le même accronyme long et court au pluriel : \aclp{TLA} \acsp{TLA}.
 
 \subsection{equations}
 
@@ -32,7 +36,7 @@ consequat.
  \centering
  \includegraphics[width=7cm]{lenna.png}
  \caption{Titre de la figure qui doit normalement se tenir sur deux lignes car il est assez long.}
- \label{fig:figure1}
+ \label{fig:figure_long}
 \end{figure}
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -48,9 +52,11 @@ consequat.
 \begin{figure}[H]
   \centering
   \includegraphics[width=7cm]{lenna.png}
-  \caption[Titre de la figure sans citation]{Titre de la figure qui comporte une citation \citep{Ful83}.}
-  \label{fig:figure1}
+  \caption[Titre de la figure sans citation]{Titre de la figure qui comporte une citation de \citet{RN6}.}
+  \label{fig:figure_short}
  \end{figure}
+
+ Vous pouvez utiliser les références aux Figures \ref{fig:figure_long} et \ref{fig:figure_short} directement dans votre texte.
 
 \subsection{tableaux}
 
@@ -62,7 +68,7 @@ consequat.
 \begin{table}[H]
   \begin{center}
     \caption{Titre du tableau qui doit normalement se tenir sur deux lignes.}
-    \label{tab:table1}
+    \label{tab:tableau1}
     \begin{tabular}{l|c|r}
       \textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
       $\alpha$ & $\beta$ & $\gamma$ \\
