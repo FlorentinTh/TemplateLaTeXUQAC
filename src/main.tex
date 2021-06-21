@@ -8,41 +8,92 @@
 %%		être rédigé le document.
 %%  - ieee, apa : style des références bibliographiques
 %%  - twoside : alternance des marges pour impression recto/verso
-%%    vous devez décommenter la ligne 16 si vous utilisez cette classe
-%%  - rev : permet d'activer l'identification des URLs pour la
-%%    révision bibliographique. Vous ne devez pas faire votre dépôt final
-%%    sans avoir préalablement retiré l'utilisation de cette classe.
+%%    vous devez décommenter la ligne 22 si vous utilisez cette classe
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,times,these,french,apa]{uqac}
 
-%% Décommenter la ligne suivante avec l'utilisation de la classe "twoside"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Décommenter la ligne suivante avec l'utilisation de
+%% la classe "twoside"
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \raggedbottom
 
-%% Préciser l'emplacement du fichier contenant les acronymes.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Préciser l'emplacement du fichier
+%% contenant les acronymes.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \acrolistpath{assets/acro}
 
-%% Toutes les images utilisées doivent se trouver dans le répertoire "assets/figure".
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Toutes les images utilisées doivent se trouver dans
+%% le répertoire "assets/figure".
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{assets/figures/}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Packages utilisateurs ci-dessous:
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color, xcolor, soulutf8}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=[rgb]{0,0.501,0.674},
+  breaklinks=true,
+  citecolor=[rgb]{0,0.501,0.674},
+  bookmarks=true
+}
+
+%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Césures manuelles
+%%
+%%%%%%%%%%%%%%%%%%%%%
+% \hyphenation{con-nection con-nue con-cep-tion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Gestion des lignes orphelines
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\widowpenalty10000
+\clubpenalty10000
 
 \begin{document}
 
-% Titre du document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Titre, auteur et programme
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \title{Titre de la thèse du mémoire ou de l'essai}
-
-% Auteur du document
 \author{Prénom Nom}
-
-%% Préciser le nom du programme
 \programme{Informatique}
 
-%% S’il y a lieu,
-%% indiquer le profil
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% S’il y a lieu, indiquer le profil
 %% ou la concentration du programme
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\concentration{profil recherche}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 %% Par défaut l'année courante est utilisée.
 %% Pour spécifier une autre année :
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\degreeyear{2018}
 
 \maketitle
@@ -56,9 +107,12 @@
 
 \include{content/abstract}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
 %% Si vous écrivez un document en anglais,
 %% il sera nécessaire de fournir un résumé en Français :
-
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{content/resume}
 
 \tableofcontents
@@ -90,7 +144,12 @@
 %%
 %%%%%%%%%%%%%
 
-%% Le fichier bibtex doit se trouver dans le répertoire "assets/references".
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Le fichier BibTeX contenant les références
+%% doit se trouver dans le répertoire "assets/references".
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{assets/references}
 
 %%%%%%%%%%%
