@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1] - 2021-06-21
+
+### Features
+
+- Format URLs and DOIs same as text with blue color.
+
+- Add support for orphan lines.
+### Bug Fixes
+
+- IEEE FR citation style : translate ```Available``` into ```Repéré à``` for online references.
+- Remove spaces before ```:``` for DOIs and editors in order to better respect APA 6th Provost.
+
 ## [2.0] - 2021-06-15
 
 ### Features
@@ -142,3 +154,4 @@ __If your bib file is exported from *Mendeley*, you should consider updating it 
 [1.3.2]: https://github.com/florentinth/FlOS/compare/v1.3.1...v1.3.2
 [1.3.3]: https://github.com/florentinth/FlOS/compare/v1.3.2...v1.3.3
 [2.0]: https://github.com/florentinth/FlOS/compare/v1.3.3...v2.0
+[2.1]: https://github.com/florentinth/FlOS/compare/v2.0...v2.1
