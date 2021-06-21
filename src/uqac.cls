@@ -76,19 +76,16 @@
   \def\@uqacenglish{true}
 }
 
+%% IEEE
 \def\@refieee{false}
 \DeclareOption{ieee}{%
   \def\@refieee{true}
 }
 
+%% APA
 \def\@refapa{false}
 \DeclareOption{apa}{%
   \def\@refapa{true}
-}
-
-\def\@uqacrev{false}
-\DeclareOption{rev}{%
-  \def\@uqacrev{true}
 }
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
@@ -129,6 +126,7 @@
 \RequirePackage{hyphenat}
 \RequirePackage{multirow}
 \RequirePackage{makecell}
+\RequirePackage{booktabs}
 \RequirePackage{textcomp}
 \RequirePackage{rotating}
 \RequirePackage{microtype}
@@ -143,19 +141,14 @@
  \RequirePackage[lined,boxed,linesnumbered,english,onelanguage,resetcount,algochapter]{algorithm2e}
 }
 
-\ifthenelse{\equal{\@uqacrev}{true}}{%
-  \usepackage{hyperref}
-}{
-  \usepackage[hidelinks=true]{hyperref}
-}
-
-\RequirePackage{soul}
 \RequirePackage{silence}
 
 \WarningsOff
 
 %% URLs
-\urlstyle{same}
+\def\url@uqstyle{
+\@ifundefined{selectfont}{\def\UrlFont{\rm}}{\def\UrlFont{\normalsize\rm}}}
+\itshape\urlstyle{uq}
 
 % interligne simple
 \def\mystretch{1}
