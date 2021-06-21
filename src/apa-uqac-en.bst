@@ -128,16 +128,12 @@ FUNCTION{sans.date}
 STRINGS {
   journart
   urlintro
-  doiprefix
-  doiurl
 }
 
 FUNCTION{init.variables}
 {
   "journal article" 'journart :=
   "Available" 'urlintro :=
-  "doi : " 'doiurl :=
-  "" 'doiprefix :=
 }
 
 % used for month field
@@ -231,7 +227,7 @@ FUNCTION {eho.special.output}
 FUNCTION {eho.output.nonnull}
 { 's :=
   output.state mid.sentence =
-    { ": " * write$ }
+    { "\string: " * write$ }
     { output.state after.block =
 	{ add.period$ write$
 	  newline$
@@ -511,13 +507,11 @@ FUNCTION {eho.format.editors}
   if$
 }
 
-
 FUNCTION {format.doi}
 {
   doi empty$
     { "" }
-    {doiprefix "\url{" * doiurl * doi * "}" *}
-
+    {"doi\string: \href{https://doi.org/" doi * "}{{\detokenize{" * doi * "}}}" *}
   if$
 }
 
@@ -545,7 +539,7 @@ FUNCTION {format.support}
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { title }
+    { title "t" change.case$ }
   if$
 }
 
@@ -853,6 +847,7 @@ FUNCTION {article}
 
 FUNCTION {book}
 { output.bibitem
+
   author empty$
     { format.editors "author and editor" output.check
       editor format.key output
@@ -865,11 +860,13 @@ FUNCTION {book}
       if$
     }
   if$
+
   output.year.check
   new.block
   format.btitle "title" output.check
   format.edition eho.special.output
   format.support output.point
+
   crossref missing$
     { format.bvolume output
       new.block
@@ -882,9 +879,10 @@ FUNCTION {book}
       format.book.crossref output.nonnull
     }
   if$
-   new.block
+
+  new.block
   note output
- format.doi output
+  format.doi output
   new.block
   format.url output
   fin.entry
