@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.2] - 2021-06-22
+
+### Bug Fixes
+
+- Fix package error to allow build with both ```texlive-2020``` and older version.
+
 ## [2.1.1] - 2021-06-22
 
 ### Bug Fixes
@@ -166,3 +172,4 @@ __If your bib file is exported from *Mendeley*, you should consider updating it 
 [2.0]: https://github.com/florentinth/FlOS/compare/v1.3.3...v2.0
 [2.1]: https://github.com/florentinth/FlOS/compare/v2.0...v2.1
 [2.1.1]: https://github.com/florentinth/FlOS/compare/v2.1...v2.1.1
+[2.1.2]: https://github.com/florentinth/FlOS/compare/v2.1.1...v2.1.2
