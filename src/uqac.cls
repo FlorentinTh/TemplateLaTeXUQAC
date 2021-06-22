@@ -132,6 +132,7 @@
 \RequirePackage{microtype}
 \RequirePackage{chngcntr}
 \RequirePackage{geometry}
+\RequirePackage{setspace}
 
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
   \RequirePackage[lined,boxed,linesnumbered,french,onelanguage,resetcount,algochapter]{algorithm2e}
@@ -251,34 +252,34 @@
 %% Ajout des commandes setstrerch et doublespacing si
 %% package setspace non chargé
 
-% \AtBeginDocument{ \@ifpackageloaded{setspace}
-%    {\relax}
-%    {\newcommand{\restore@spacing}{%
-% 	    \par
-% 	    \vskip \parskip
-% 	    \vskip \baselineskip
-% 	  \endgroup
-% 	  \vskip -\parskip
-% 	  \vskip -\baselineskip
-% 	}
+\AtBeginDocument{ \@ifpackageloaded{setspace}
+   {\relax}
+   {\newcommand{\restore@spacing}{%
+	    \par
+	    \vskip \parskip
+	    \vskip \baselineskip
+	  \endgroup
+	  \vskip -\parskip
+	  \vskip -\baselineskip
+	}
 
-% 	\newcommand{\setstretch}[1]{%
-% 	  \def\baselinestretch{#1}%
-% 	  \@currsize
-% 	}
-% 	\newcommand{\doublespacing}{%
-% 	  \setstretch {2}%  default
-% 	}
+	\newcommand{\setstretch}[1]{%
+	  \def\baselinestretch{#1}%
+	  \@currsize
+	}
+	\newcommand{\doublespacing}{%
+	  \setstretch {2}%  default
+	}
 
-% 	% double spacing is 2 x pt size
-% 	\newenvironment{doublespace}{%
-% 	  \begingroup
-% 	    \doublespacing
-% 	}{%
-% 	  \restore@spacing
-% 	}
-% 	}
-% }
+	% double spacing is 2 x pt size
+	\newenvironment{doublespace}{%
+	  \begingroup
+	    \doublespacing
+	}{%
+	  \restore@spacing
+	}
+	}
+}
 
 % Redefine '/chapter' to always start on an odd page.
 % Should make no difference in singleside mode.
