@@ -35,7 +35,7 @@ $ code .
 - Générer le PDF final pour la première fois :
 
 ```
-$ docker-compose -f "docker-compose.yml" up -d --build
+$ docker-compose up -d --build
 ```
 
 > La première fois que vous allez générer le fichier PDF final, cela pourra prendre un certain temps (en fonction de votre matériel). Ne vous inquiétez pas, c'est tout à fait normal et les prochaines itérations seront beaucoup plus rapides.
@@ -43,10 +43,14 @@ $ docker-compose -f "docker-compose.yml" up -d --build
 - Générer le PDF final les fois suivantes :
 
 ```sh
-$ docker start latex
+$ docker start template_uqac
 ```
 
 > Si vous n'êtes pas familier avec LaTeX, vous pouvez [télécharger](https://github.com/FlorentinTh/TemplateLaTeXUQAC/archive/master.zip) les fichiers sources de ce dépôt, extraire l'archive et importer le contenu du dossier ```src``` directement dans [Overleaf](https://overleaf.com/).
+
+## Documentation LaTeX
+
+_coming soon_
 
 ## Licence
 
