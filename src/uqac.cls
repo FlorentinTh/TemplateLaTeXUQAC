@@ -110,6 +110,7 @@
 \RequirePackage{float}
 \RequirePackage{fancyhdr}
 \RequirePackage{amsmath}
+\RequirePackage{amsthm}
 \RequirePackage{amssymb}
 \RequirePackage[explicit]{titlesec}
 
@@ -142,14 +143,18 @@
  \RequirePackage[lined,boxed,linesnumbered,english,onelanguage,resetcount,algochapter]{algorithm2e}
 }
 
+\RequirePackage{minted}
+
 \RequirePackage{silence}
 
 \WarningsOff
 
 %% URLs
 \def\url@uqstyle{
-\@ifundefined{selectfont}{\def\UrlFont{\rm}}{\def\UrlFont{\normalsize\rm}}}
-\itshape\urlstyle{uq}
+  \@ifundefined{selectfont}{\def\UrlFont{\rm}}{\def\UrlFont{\iffootnote{\footnotesize\rm}{\normalsize\rm}}}
+}
+
+\renewcommand{\UrlFont}{}
 
 % interligne simple
 \def\mystretch{1}
@@ -393,6 +398,27 @@
 
 % Renfoncement au début d'un paragraphe
 \parindent=1cm
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%  Théorèmes, Lemmes, etc.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifthenelse{\equal{\@uqacfrench}{true}}{
+  \newtheorem{theorem}{Théorème}[section]
+  \newtheorem{corollary}{Corollaire}[theorem]
+  \newtheorem{lemma}[theorem]{Lemme}
+  \newtheorem{definition}{Définition}[section]
+}{
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{corollary}{Corollary}[theorem]
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{definition}{Definition}[section]
+}
+
+\renewcommand\qedsymbol{$\blacksquare$}
 
 %%%%%%%%%%%%%%%%%%%%%
 %%
