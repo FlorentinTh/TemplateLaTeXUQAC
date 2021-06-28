@@ -569,7 +569,10 @@ FUNCTION {n.dashify}
 }
 
 FUNCTION {format.btitle}
-{ title emphasize
+{ title empty$
+    { "" }
+    { title "t" change.case$ emphasize}
+  if$
 }
 
 FUNCTION {tie.or.space.connect}
@@ -1060,7 +1063,7 @@ FUNCTION {misc}
 
   new.sentence
   address eho.output
-  institution "institution" eho.output.check
+  institution output
   new.block
   howpublished output
   format.support output.point
