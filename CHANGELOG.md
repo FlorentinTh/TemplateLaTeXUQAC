@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.3] - 2021-06-28
+
+### Features
+
+- Add several missing packages (minted, tikz, chemfig, _etc_) in both template and main file.
+- Add few missing translations (Theorems, Lemmas, _etc._).\
+
+### Bug Fixes
+
+- Fix book title case format in APA-Provost citation style.
+- Remove warning for missing ```institution``` field for ```@misc``` objects in APA-Provost citation style.
+
+### Refactors
+
+- Add several samples of TeX code and replace existing ones in main content.
+
 ## [2.1.2] - 2021-06-22
 
 ### Bug Fixes
@@ -173,3 +189,4 @@ __If your bib file is exported from *Mendeley*, you should consider updating it 
 [2.1]: https://github.com/florentinth/FlOS/compare/v2.0...v2.1
 [2.1.1]: https://github.com/florentinth/FlOS/compare/v2.1...v2.1.1
 [2.1.2]: https://github.com/florentinth/FlOS/compare/v2.1.1...v2.1.2
+[2.1.3]: https://github.com/florentinth/FlOS/compare/v2.1.2...v2.1.3
