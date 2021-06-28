@@ -1,66 +1,72 @@
 \chapter{second chapitre}
 
-\section{sous-titre}
+\section{exemples avancés}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\subsection{équations}
 
-\subsection{sous-titre}
+\begin{equation}
+  \label{eq:eq_1}
+  E=mc^2
+\end{equation}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Il est possible de référencer l'Équation \ref{eq:eq_1} dans le texte.
 
-\subsection{sous-titre}
+\subsection{théorèmes et preuves}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{theorem}
+  \label{theo:theo_1}
+  Let $f$ be a function whose derivative exists in every point, then $f$ is
+  a continuous function.
+\end{theorem}
 
-\begin{table}[H]
-  \begin{center}
-    \caption{Titre du tableau.}
-    \label{tab:tableau2}
-    \begin{tabular}{l|c|r}
-      \textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
-      $\alpha$ & $\beta$ & $\gamma$ \\
-      \hline
-      1 & 1110.1 & a\\
-      2 & 10.1 & b\\
-      3 & 23.113231 & c\\
-    \end{tabular}
-  \end{center}
-\end{table}
+\begin{theorem}[Pythagorean theorem]
+  \label{theo:theo_2}
+  This is a theorema about right triangles and can be summarised in the next
+  equation
+  \[ x^2 + y^2 = z^2 \]
+\end{theorem}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{corollary}
+  \label{coro:coro_1}
+  There's no right rectangle whose sides measure 3cm, 4cm, and 6cm.
+\end{corollary}
 
-\section{sous-titre}
+\begin{lemma}
+  \label{lem:lem_1}
+  Given two line segments whose lengths are $a$ and $b$ respectively there
+  is a real number $r$ such that $b=ra$.
+\end{lemma}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{definition}[Fibration]
+  \label{def:def_1}
+  A fibration is a mapping between two topological spaces that has the homotopy lifting property for every space $X$.
+\end{definition}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\begin{proof}
+  \label{proof:proof_1}
+  To prove it by contradiction try and assume that the statement is false,
+  proceed from there and at some point you will arrive to a contradiction.
+\end{proof}
+
+Vous pouvez ensuite référencer les Théorèmes \ref{theo:theo_1} et \ref{theo:theo_2}, ainsi que le Corollaire \ref{coro:coro_1} et le Lemme \ref{lem:lem_1} dans votre texte. De plus, la Définition \ref{def:def_1} et la Démonstration \ref{proof:proof_1} peuvent également être référencées dans le texte.
+
+\subsection{algorithmes}
+
+\begin{algorithm}[H]
+  \KwData{input}
+  \KwResult{output}
+  initialization\;
+   \While{predicat}{
+    instructions\;
+    \eIf{condition}{
+     instructions1\;
+     instructions2\;
+     }{
+     instructions3\;
+    }
+   }
+  \caption{Titre de l'algorithme.}
+  \label{algo:algo_1}
+\end{algorithm}
+
+L'algorithme \ref{algo:algo_1} peut ensuite être référencé dans le texte.

@@ -1,54 +1,72 @@
 \chapter{troisième chapitre}
 
-\section{sous-titre}
+\section{Informatique}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Vous pouvez inclure du code de la manière suivante :
 
-\subsection{sous-titre}
+\begin{minted}[frame=single,framesep=2mm,baselinestretch=1,fontsize=\footnotesize,linenos]{cpp}
+{
+  #include <iostream>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  int main() {
+      std::cout << "Hello World!";
+      return 0;
+  }
+}
+\end{minted}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\section{Chimie}
+
+Vous pouvez inclure des formules chimiques de la manière suivante :
 
 \begin{figure}[H]
- \centering
- \includegraphics[width=7cm]{lenna.png}
- \caption{Titre de la figure.}
- \label{fig:figure_chap_3}
+  \centering
+  \chemfig{-[:30](=[:90]O)-[:-30]OH}
+  \caption{La formule de l'Éthanol.}
+  \label{fig:ethanol}
 \end{figure}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+\noindent La formule de l'Éthanol est représentée en Figure \ref{fig:ethanol}.
 
-\subsection{sous-titre}
+\section{Ingénierie}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat.
+Vous pouvez inclure des schémas électriques de la manière suivante :
 
-\section{sous-titre}
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}[american voltages]
+    \draw
+      (0,0) to [short, *-] (6,0)
+      to [V, l_=$\mathrm{j}{\omega}_m \underline{\psi}^s_R$] (6,2)
+      to [R, l_=$R_R$] (6,4)
+      to [short, i_=$\underline{i}^s_R$] (5,4)
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat.
+      (0,0) to [open, v^>=$\underline{u}^s_s$] (0,4)
+      to [short, *- ,i=$\underline{i}^s_s$] (1,4)
+      to [R, l=$R_s$] (3,4)
+      to [L, l=$L_{\sigma}$] (5,4)
+      to [short, i_=$\underline{i}^s_M$] (5,3)
+      to [L, l_=$L_M$] (5,0);
+  \end{circuitikz}
+  \caption{Exemple d'un schéma électriques.}
+  \label{fig:elec}
+\end{figure}
+
+\noindent La Figure \ref{fig:elec} montre un exemple de schéma électriques.
+
+\section{Physique}
+
+Vous pouvez inclure des diagrammes de Feynman de la manière suivante :
+
+\begin{figure}[H]
+  \centering
+  \feynmandiagram [small, horizontal=a to t1] {
+    a [particle=\(\pi^{0}\)] -- [scalar] t1 -- t2 -- t3 -- t1,
+    t2 -- [photon] p1 [particle=\(\gamma\)],
+    t3 -- [photon] p2 [particle=\(\gamma\)],
+  };
+  \caption{Exemple d'un diagramme de Feynman.}
+  \label{fig:feynman}
+\end{figure}
+
+\noindent La Figure \ref{fig:feynman} montre l'exemple d'un diagramme de Feynman.
