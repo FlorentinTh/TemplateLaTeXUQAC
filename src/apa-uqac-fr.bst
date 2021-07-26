@@ -541,7 +541,8 @@ FUNCTION {format.support}
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { title "t" change.case$ }
+    % { title "t" change.case$ }
+    { title }
   if$
 }
 
@@ -573,7 +574,8 @@ FUNCTION {n.dashify}
 FUNCTION {format.btitle}
 { title empty$
     { "" }
-    { title "t" change.case$ emphasize}
+    % { title "t" change.case$ }
+    { title emphasize}
   if$
 }
 
@@ -1001,7 +1003,17 @@ FUNCTION {inproceedings}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
-  output.year.check
+
+  month missing$
+    { output.year.check }
+    {
+      month year =
+      { output.year.check }
+      { " (" * year * ", " * month * ")" * }
+      if$
+    }
+  if$
+
   new.block
   format.title "title" output.check
   new.block
@@ -1032,7 +1044,7 @@ FUNCTION {misc}
 { output.bibitem
   format.authors output
   author format.key output
-   month missing$
+  month missing$
     { output.year.check }
     {
       month year =
