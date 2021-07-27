@@ -1181,8 +1181,9 @@ FUNCTION {unpublished}
   publisher "publisher" output.check
   address "address" output.check
   new.block
-  format.url output
   note "note" output.check
+  new.block
+  format.url output
   fin.entry
 }
 
