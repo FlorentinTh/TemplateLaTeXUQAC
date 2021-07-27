@@ -50,7 +50,30 @@ $ docker start template_uqac
 
 ## Documentation LaTeX
 
-_coming soon_
+Le contenu du template fournit tous les exemples dont vous pourriez avoir besoin :
+
+- **Chapitre I** :
+  - listes
+  - citations
+  - liens et références
+  - notes de bas de page
+  - acronymes
+  - figures
+  - tableaux
+- **Chapitre II** :
+  - équations
+  - théorèmes et preuves
+  - algorithmes
+- **Chapitre III** :
+  - informatique
+  - chimie
+  - ingénierie
+  - physique
+
+## Documentation BibTeX :
+
+- [APA-Provost 6<sup>th</sup>](https://bibliotheque.uqac.ca/rediger-bibliographie/apa-latex)
+- IEEE (_coming soon_)
 
 ## Licence
 
