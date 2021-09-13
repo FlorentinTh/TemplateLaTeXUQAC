@@ -839,13 +839,23 @@ FUNCTION {article}
   if$
   new.block
   note output
-  format.doi output
-  new.block
 
-  type "l" change.case$ journart =
-    'skip$
+  doi missing$ not
+    {
+      doi empty$ not
+      { format.doi output }
+      { format.url output }
+      if$
+    }
     { format.url output }
   if$
+
+  new.block
+
+  %type "l" change.case$ journart =
+  %  'skip$
+  %  { format.url output }
+  %if$
 
   fin.entry
 }
@@ -889,9 +899,17 @@ FUNCTION {book}
 
   new.block
   note output
-  format.doi output
-  new.block
-  format.url output
+
+  doi missing$ not
+    {
+      doi empty$ not
+      { format.doi output }
+      { format.url output }
+      if$
+    }
+    { format.url output }
+  if$
+
   fin.entry
 }
 
@@ -962,9 +980,17 @@ FUNCTION {inbook}
   if$
 
   new.block
-  format.url output
-  new.block
-  format.doi output
+
+  doi missing$ not
+    {
+      doi empty$ not
+      { format.doi output }
+      { format.url output }
+      if$
+    }
+    { format.url output }
+  if$
+
   new.block
   note output
   fin.entry
@@ -1034,9 +1060,17 @@ FUNCTION {inproceedings}
   if$
   new.block
   note output
-  format.doi output
-  new.block
-  format.url output
+
+  doi missing$ not
+    {
+      doi empty$ not
+      { format.doi output }
+      { format.url output }
+      if$
+    }
+    { format.url output }
+  if$
+
   fin.entry
 }
 
@@ -1083,9 +1117,16 @@ FUNCTION {misc}
   format.support output.point
   new.block
   note output
-  format.doi output
-  new.block
-  format.url output
+
+  doi missing$ not
+    {
+      doi empty$ not
+      { format.doi output }
+      { format.url output }
+      if$
+    }
+    { format.url output }
+  if$
 
   fin.entry
 }
@@ -1105,9 +1146,17 @@ FUNCTION {phdthesis}
   address output
   new.block
   note output
-  format.doi output
-  new.block
-  format.url output
+
+  doi missing$ not
+    {
+      doi empty$ not
+      { format.doi output }
+      { format.url output }
+      if$
+    }
+    { format.url output }
+  if$
+
   fin.entry
 }
 
