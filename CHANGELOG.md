@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.0] - 2021-09-13
+
+### Features
+
+- Add an english reference example in ```references.bib```.
+
+### Bug Fixes
+
+- Add missing required url condition when no doi for all documents in both ```apa-uqac-fr``` and ```apa-uqac-en``` files.
+
 ## [2.1.5] - 2021-07-27
 
 ### Bug Fixes
@@ -210,3 +220,6 @@ __If your bib file is exported from *Mendeley*, you should consider updating it 
 [2.1.3]: https://github.com/florentinth/FlOS/compare/v2.1.2...v2.1.3
 [2.1.4]: https://github.com/florentinth/FlOS/compare/v2.1.3...v2.1.4
 [2.1.5]: https://github.com/florentinth/FlOS/compare/v2.1.4...v2.1.5
+
+[2.2.0]: https://github.com/florentinth/FlOS/compare/v2.1.5...v2.2.0
+
